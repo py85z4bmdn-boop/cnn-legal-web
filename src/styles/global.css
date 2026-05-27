@@ -108,6 +108,11 @@
   }
   .secondary-button:active { transform: scale(0.97); }
 
+  .service-tab[aria-selected="false"]:hover {
+    border-color: rgba(28, 78, 140, 0.3);
+    color: #1c4e8c;
+  }
+
   .mega-panel {
     transform: translateY(-4px);
     transition:
