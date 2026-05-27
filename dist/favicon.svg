@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CNN Legal">
+  <rect width="64" height="64" rx="10" fill="#1c4e8c"/>
+  <path d="M16 19h32v5H16zM20 30h24v4H20zM20 40h18v4H20z" fill="#FAF7F0"/>
+  <path d="M15 50h34" stroke="#e08738" stroke-width="4" stroke-linecap="round"/>
+</svg>

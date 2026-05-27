@@ -1,0 +1,108 @@
+---
+import { services } from "../data/services";
+---
+
+<section class="bg-warm-ivory">
+  <div class="section-shell py-16 md:py-20">
+    <h2 class="text-[1.625rem] font-semibold leading-tight text-text-dark md:text-[1.875rem]">
+      Các Lĩnh vực hỗ trợ
+    </h2>
+    <p class="mt-4 max-w-2xl text-[0.9375rem] leading-7 text-text-muted">
+      CNN Legal tiếp nhận hồ sơ trong các lĩnh vực dưới đây. Nhấn vào từng lĩnh vực để xem phạm vi hỗ trợ và cách tiếp cận cụ thể.
+    </p>
+
+    <!-- Service buttons -->
+    <div class="mt-8 flex flex-wrap gap-2" id="service-tabs" role="tablist">
+      {services.map((service, i) => (
+        <button
+          class:list={[
+            "service-tab rounded-md border px-4 py-2 text-[0.875rem] font-medium transition-all",
+            i === 0
+              ? "border-deep-blue-navy bg-deep-blue-navy text-white"
+              : "border-border-soft bg-surface-white text-text-dark hover:border-deep-blue-navy/30 hover:text-deep-blue-navy",
+          ]}
+          role="tab"
+          aria-selected={i === 0 ? "true" : "false"}
+          aria-controls={`panel-${service.slug}`}
+          data-index={i}
+        >
+          {service.title}
+        </button>
+      ))}
+    </div>
+
+    <!-- Service panels -->
+    <div class="mt-8">
+      {services.map((service, i) => (
+        <div
+          class:list={[
+            "service-panel rounded-xl border border-border-soft bg-surface-white p-6 md:p-8",
+            i !== 0 && "hidden",
+          ]}
+          id={`panel-${service.slug}`}
+          role="tabpanel"
+          data-index={i}
+        >
+          <div class="grid gap-8 lg:grid-cols-[1fr_1fr]">
+            <div>
+              <h3 class="text-xl font-semibold text-text-dark">{service.title}</h3>
+              <p class="mt-3 text-[0.9375rem] leading-7 text-text-muted">{service.description}</p>
+
+              <h4 class="mt-6 text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-text-muted/70">Tình huống thường gặp</h4>
+              <ul class="mt-3 space-y-2">
+                {service.situations.map((s) => (
+                  <li class="flex items-start gap-2.5 text-[0.875rem] leading-6 text-text-muted">
+                    <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-blue-navy/40" aria-hidden="true"></span>
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-text-muted/70">Cách tiếp cận</h4>
+              <ul class="mt-3 space-y-2">
+                {service.approach.map((a) => (
+                  <li class="flex items-start gap-2.5 text-[0.875rem] leading-6 text-text-muted">
+                    <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-blue-navy/40" aria-hidden="true"></span>
+                    {a}
+                  </li>
+                ))}
+              </ul>
+
+              <div class="mt-8">
+                <a class="secondary-button" href={`/dich-vu/${service.slug}/`}>Xem chi tiết →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>(".service-tab");
+  const panels = document.querySelectorAll<HTMLDivElement>(".service-panel");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const idx = tab.dataset.index;
+
+      tabs.forEach((t) => {
+        const isActive = t.dataset.index === idx;
+        t.setAttribute("aria-selected", String(isActive));
+        t.classList.toggle("border-deep-blue-navy", isActive);
+        t.classList.toggle("bg-deep-blue-navy", isActive);
+        t.classList.toggle("text-white", isActive);
+        t.classList.toggle("border-border-soft", !isActive);
+        t.classList.toggle("bg-surface-white", !isActive);
+        t.classList.toggle("text-text-dark", !isActive);
+      });
+
+      panels.forEach((p) => {
+        p.classList.toggle("hidden", p.dataset.index !== idx);
+      });
+    });
+  });
+</script>

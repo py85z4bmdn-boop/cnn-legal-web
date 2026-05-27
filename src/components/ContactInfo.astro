@@ -1,0 +1,87 @@
+---
+import { site } from "../data/site";
+interface Props { detail?: boolean; }
+const { detail = false } = Astro.props;
+---
+
+<section id="lien-he" class="bg-surface-white">
+  <div class="section-shell py-16 md:py-20">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-bold leading-tight text-text-dark md:text-4xl">
+        {detail ? "Thông tin liên hệ CNN Legal." : "Trao đổi trực tiếp khi cần đánh giá vấn đề pháp lý."}
+      </h2>
+      <p class="mt-5 text-base leading-8 text-text-muted">
+        Website không có biểu mẫu liên hệ. Vui lòng chỉ chia sẻ tài liệu nhạy cảm khi đã thống nhất cách trao đổi phù hợp.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Email -->
+      <a
+        class="group flex flex-col items-center gap-3 rounded-lg border border-border-soft bg-warm-ivory p-6 text-center transition-colors hover:border-deep-blue-navy/30 hover:bg-muted-blue"
+        href={`${site.publicEmailHref}?subject=${encodeURIComponent('Yêu cầu tư vấn pháp lý – CNN Legal')}`}
+        title={site.publicEmail}
+        aria-label={`Gửi email đến ${site.publicEmail}`}
+      >
+        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-border-soft bg-surface-white text-deep-blue-navy transition-colors group-hover:border-deep-blue-navy/40 group-hover:bg-muted-blue">
+          <svg class="h-5 w-5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/>
+            <path d="M1.5 4.5l6.5 4 6.5-4"/>
+          </svg>
+        </div>
+        <span class="text-[0.75rem] font-semibold uppercase tracking-[0.06em] text-text-muted">Email</span>
+      </a>
+
+      <!-- Phone -->
+      <a
+        class="group flex flex-col items-center gap-3 rounded-lg border border-border-soft bg-warm-ivory p-6 text-center transition-colors hover:border-deep-blue-navy/30 hover:bg-muted-blue"
+        href={site.publicPhoneHref}
+        title={site.publicPhone}
+        aria-label={`Gọi điện đến ${site.publicPhone}`}
+      >
+        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-border-soft bg-surface-white text-deep-blue-navy transition-colors group-hover:border-deep-blue-navy/40 group-hover:bg-muted-blue">
+          <svg class="h-5 w-5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M3.5 1.5h3l1.5 4-2 1.5a8 8 0 003.5 3.5l1.5-2 4 1.5v3c0 .6-.4 1-1 1C6.5 14.5 1.5 9.5 1.5 4.5c0-.6.4-1 1-1z"/>
+          </svg>
+        </div>
+        <span class="text-[0.75rem] font-semibold uppercase tracking-[0.06em] text-text-muted">Điện thoại</span>
+      </a>
+
+      <!-- dangkimchinh.vn -->
+      <a
+        class="group flex flex-col items-center gap-3 rounded-lg border border-border-soft bg-warm-ivory p-6 text-center transition-colors hover:border-deep-blue-navy/30 hover:bg-muted-blue"
+        href={site.externalProfileUrl}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="dangkimchinh.vn"
+        aria-label="Trang thông tin công khai của luật sư phụ trách — dangkimchinh.vn"
+      >
+        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-border-soft bg-surface-white text-deep-blue-navy transition-colors group-hover:border-deep-blue-navy/40 group-hover:bg-muted-blue">
+          <svg class="h-5 w-5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <circle cx="7" cy="7" r="6"/>
+            <path d="M1 7h12M7 1c-1.657 2.333-1.657 4.667 0 6 1.657 1.333 1.657 3.667 0 6"/>
+            <path d="M2 4h10M2 10h10"/>
+          </svg>
+        </div>
+        <span class="text-[0.75rem] font-semibold uppercase tracking-[0.06em] text-text-muted">Luật sư phụ trách</span>
+      </a>
+
+      <!-- LinkedIn -->
+      <a
+        class="group flex flex-col items-center gap-3 rounded-lg border border-border-soft bg-warm-ivory p-6 text-center transition-colors hover:border-deep-blue-navy/30 hover:bg-muted-blue"
+        href={site.linkedInUrl}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="LinkedIn — Đặng Kim Chinh"
+        aria-label="Hồ sơ LinkedIn — Luật sư Đặng Kim Chinh"
+      >
+        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-border-soft bg-surface-white text-deep-blue-navy transition-colors group-hover:border-deep-blue-navy/40 group-hover:bg-muted-blue">
+          <svg class="h-5 w-5" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+            <path d="M12.25 0H1.75C.784 0 0 .784 0 1.75v10.5C0 13.216.784 14 1.75 14h10.5c.966 0 1.75-.784 1.75-1.75V1.75C14 .784 13.216 0 12.25 0zM4.155 11.9H2.1V5.25h2.055v6.65zM3.128 4.375a1.19 1.19 0 110-2.381 1.19 1.19 0 010 2.381zM11.9 11.9H9.845V8.662c0-.772-.014-1.766-1.076-1.766-1.078 0-1.243.841-1.243 1.71v3.294H5.472V5.25h1.973v.908h.027c.275-.52.946-1.068 1.947-1.068 2.082 0 2.466 1.371 2.466 3.153V11.9h.015z"/>
+          </svg>
+        </div>
+        <span class="text-[0.75rem] font-semibold uppercase tracking-[0.06em] text-text-muted">LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</section>

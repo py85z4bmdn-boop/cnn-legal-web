@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 840" role="img" aria-label="Ảnh đại diện luật sư phụ trách">
+  <rect width="720" height="840" fill="#EAF1F8"/>
+  <rect x="72" y="72" width="576" height="696" rx="18" fill="#FFFFFF" stroke="#D8E0EA" stroke-width="2"/>
+  <circle cx="360" cy="288" r="92" fill="#1c4e8c"/>
+  <path d="M198 602c24-116 94-174 162-174s138 58 162 174" fill="#3d6ca1"/>
+  <path d="M198 650h324" stroke="#D8E0EA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M242 700h236" stroke="#e08738" stroke-width="8" stroke-linecap="round"/>
+</svg>

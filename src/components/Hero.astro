@@ -1,0 +1,40 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="relative overflow-hidden">
+  <!-- Dark gradient canvas — fills the viewport above the fold -->
+  <div class="bg-gradient-to-b from-ink-black via-[#142a45] to-deep-blue-navy">
+    <div class="section-shell flex min-h-[calc(100vh-4rem)] flex-col justify-center py-20 md:py-28">
+      <h1 class="max-w-2xl text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
+        {site.slogan}
+      </h1>
+
+      <p class="mt-6 max-w-xl text-[1rem] leading-[1.8] text-white/65 md:text-[1.0625rem]">
+        Khách hàng làm việc trực tiếp với luật sư phụ trách — không qua trung gian, không qua biểu mẫu công khai. Tập trung vào rủi ro, lựa chọn và bước đi thực tế.
+      </p>
+
+      <div class="mt-10">
+        <a
+          class="inline-flex items-center rounded-full bg-white px-6 py-3 text-[0.9375rem] font-semibold text-ink-black shadow-sm transition-colors hover:bg-white/90 active:scale-[0.98]"
+          href="/lien-he/"
+        >
+          Tư vấn với Luật sư
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative image band -->
+  <div class="relative h-[180px] md:h-[220px]">
+    <img
+      class="absolute inset-0 h-full w-full object-cover"
+      src="/images/hero-water-bokeh.png"
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-deep-blue-navy to-transparent"></div>
+    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-warm-ivory via-warm-ivory/80 to-transparent"></div>
+  </div>
+</section>

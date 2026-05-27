@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { site } from "../data/site";
+
+const title = `Luật sư phụ trách | ${site.name}`;
+const description =
+  "Trang giới thiệu cách CNN Legal tổ chức việc tư vấn trực tiếp với luật sư phụ trách, đặt trọng tâm vào bảo mật, trách nhiệm và đánh giá rủi ro thực tế.";
+const pagePath = "/luat-su-phu-trach/";
+const pageUrl = new URL(pagePath, site.canonicalBaseUrl).toString();
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: title,
+    description,
+    url: pageUrl,
+    inLanguage: "vi-VN",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Trang chủ", item: site.canonicalBaseUrl },
+      { "@type": "ListItem", position: 2, name: "Luật sư phụ trách", item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonicalPath={pagePath} structuredData={structuredData}>
+  <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Luật sư phụ trách" }]} />
+  <section class="bg-warm-ivory">
+    <div class="section-shell py-16 md:py-20">
+
+      <div class="mt-8 grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div class="overflow-hidden rounded-xl border border-border-soft bg-muted-blue">
+          <img
+            class="aspect-[16/11] h-full w-full object-cover"
+            src="/images/lawyer-section.png"
+            alt="Hình ảnh trừu tượng đại diện cho luật sư phụ trách"
+            loading="lazy"
+          />
+        </div>
+
+        <article>
+          <h1 class="text-4xl font-bold leading-tight text-text-dark md:text-5xl">
+            Tư vấn trực tiếp với người chịu trách nhiệm xử lý.
+          </h1>
+          <div class="mt-6 space-y-5 text-base leading-8 text-text-muted">
+            <p>
+              CNN Legal được xây dựng cho khách hàng cần một đầu mối pháp lý rõ ràng. Cách làm việc không dựa vào cảm giác quy mô lớn, mà dựa vào việc tiếp nhận kỹ, giữ bảo mật và trao đổi thẳng về vấn đề cần xử lý.
+            </p>
+            <p>
+              Vì trang công khai của luật sư phụ trách chưa truy cập ổn định trong lần kiểm tra này, nội dung tại đây chỉ giữ các mô tả có thể chỉnh sửa và không thêm thông tin tiểu sử, bằng cấp, giải thưởng, số năm kinh nghiệm hoặc địa chỉ.
+            </p>
+          </div>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-lg border border-border-soft bg-surface-white p-5">
+              <h2 class="text-base font-bold text-text-dark">Trực tiếp</h2>
+              <p class="mt-3 text-sm leading-7 text-text-muted">Khách hàng làm việc với đầu mối chịu trách nhiệm, không bị đẩy qua nhiều tầng xử lý.</p>
+            </div>
+            <div class="rounded-lg border border-border-soft bg-surface-white p-5">
+              <h2 class="text-base font-bold text-text-dark">Bảo mật</h2>
+              <p class="mt-3 text-sm leading-7 text-text-muted">Thông tin được tiếp nhận thận trọng và chỉ trao đổi theo phạm vi cần thiết.</p>
+            </div>
+            <div class="rounded-lg border border-border-soft bg-surface-white p-5">
+              <h2 class="text-base font-bold text-text-dark">Thực tế</h2>
+              <p class="mt-3 text-sm leading-7 text-text-muted">Tập trung vào rủi ro, lựa chọn khả thi và việc cần chuẩn bị tiếp theo.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 rounded-md border border-border-soft bg-surface-white p-5">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-semibold text-text-dark">Hồ sơ công khai:</span>
+              <a
+                class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border-soft bg-warm-ivory text-deep-blue-navy transition-colors hover:border-deep-blue-navy/40 hover:bg-muted-blue"
+                href={site.externalProfileUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+                title="dangkimchinh.vn"
+                aria-label="Trang thông tin công khai của luật sư phụ trách — dangkimchinh.vn"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                  <circle cx="7" cy="7" r="6"/>
+                  <path d="M1 7h12M7 1c-1.657 2.333-1.657 4.667 0 6 1.657 1.333 1.657 3.667 0 6M7 1c1.657 2.333 1.657 4.667 0 6-1.657 1.333-1.657 3.667 0 6"/>
+                  <path d="M2 4h10M2 10h10"/>
+                </svg>
+              </a>
+              <a
+                class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border-soft bg-warm-ivory text-deep-blue-navy transition-colors hover:border-deep-blue-navy/40 hover:bg-muted-blue"
+                href={site.linkedInUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+                title="LinkedIn"
+                aria-label="Hồ sơ LinkedIn — Luật sư Đặng Kim Chinh"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+                  <path d="M12.25 0H1.75C.784 0 0 .784 0 1.75v10.5C0 13.216.784 14 1.75 14h10.5c.966 0 1.75-.784 1.75-1.75V1.75C14 .784 13.216 0 12.25 0zM4.155 11.9H2.1V5.25h2.055v6.65zM3.128 4.375a1.19 1.19 0 110-2.381 1.19 1.19 0 010 2.381zM11.9 11.9H9.845V8.662c0-.772-.014-1.766-1.076-1.766-1.078 0-1.243.841-1.243 1.71v3.294H5.472V5.25h1.973v.908h.027c.275-.52.946-1.068 1.947-1.068 2.082 0 2.466 1.371 2.466 3.153V11.9h.015z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

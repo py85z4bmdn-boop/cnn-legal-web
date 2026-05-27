@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import ContactInfo from "../components/ContactInfo.astro";
+import { site } from "../data/site";
+
+const title = `Liên hệ | ${site.name}`;
+const description =
+  "Thông tin liên hệ trực tiếp của CNN Legal qua email và điện thoại. Website không có biểu mẫu liên hệ.";
+const pagePath = "/lien-he/";
+const pageUrl = new URL(pagePath, site.canonicalBaseUrl).toString();
+const legalServiceData = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: site.name,
+  url: site.canonicalBaseUrl,
+  description: site.description,
+  sameAs: [site.externalProfileUrl],
+  ...(site.publicPhone ? { telephone: site.publicPhone } : {}),
+};
+const structuredData = [
+  legalServiceData,
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: title,
+    description,
+    url: pageUrl,
+    inLanguage: "vi-VN",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Trang chủ", item: site.canonicalBaseUrl },
+      { "@type": "ListItem", position: 2, name: "Liên hệ", item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonicalPath={pagePath} structuredData={structuredData}>
+  <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Liên hệ" }]} />
+  <ContactInfo detail />
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import FounderPreview from "../components/FounderPreview.astro";
+import ServicesPreview from "../components/ServicesPreview.astro";
+import ArticlesPreview from "../components/ArticlesPreview.astro";
+import { services } from "../data/services";
+import { site } from "../data/site";
+
+const title = `${site.name} | ${site.slogan}`;
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.canonicalBaseUrl}/#website`,
+    name: site.name,
+    url: site.canonicalBaseUrl,
+    inLanguage: "vi-VN",
+    description: site.description,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "LegalService"],
+    "@id": `${site.canonicalBaseUrl}/#legal-service`,
+    name: site.name,
+    url: site.canonicalBaseUrl,
+    description: site.description,
+    sameAs: [site.externalProfileUrl, site.linkedInUrl],
+    knowsAbout: services.map((service) => service.title),
+    email: site.publicEmail,
+    ...(site.publicPhone ? { telephone: site.publicPhone } : {}),
+  },
+];
+---
+
+<BaseLayout title={title} description={site.description} canonicalPath="/" structuredData={structuredData}>
+  <Hero />
+  <ServicesPreview />
+  <ArticlesPreview />
+</BaseLayout>

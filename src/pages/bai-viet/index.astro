@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import { getAllArticles } from "../../data/articles";
+import { site } from "../../data/site";
+
+const articles = await getAllArticles();
+
+const title = `Bài viết | ${site.name}`;
+const description =
+  "Các bài viết pháp lý được đăng lại với sự đồng ý của tác giả và Tạp chí điện tử Luật sư Việt Nam. CNN Legal cung cấp liên kết đến nguồn gốc đầy đủ.";
+const canonicalPath = "/bai-viet/";
+const pageUrl = new URL(canonicalPath, site.canonicalBaseUrl).toString();
+---
+
+<BaseLayout title={title} description={description} canonicalPath={canonicalPath}>
+  <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Bài viết" }]} />
+  <!-- Page header -->
+  <div class="border-b border-border-soft bg-surface-white">
+    <div class="section-shell py-12 md:py-16">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl font-semibold leading-tight text-text-dark md:text-4xl">
+          Phân tích và bình luận pháp luật.
+        </h1>
+        <p class="mt-4 text-[0.9375rem] leading-7 text-text-muted">
+          Các bài viết dưới đây được đăng lại từ{" "}
+          <a
+            class="font-medium text-deep-blue-navy hover:text-professional-blue"
+            href="https://lsvn.vn/tag/luat-su-dang-kim-chinh.html"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Tạp chí điện tử Luật sư Việt Nam
+          </a>{" "}
+          với sự đồng ý của tác giả. Mọi quyền thuộc về tác giả và nguồn xuất bản gốc.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article grid -->
+  <section class="bg-warm-ivory">
+    <div class="section-shell py-10 md:py-14">
+      <div class="grid gap-px border border-border-soft bg-border-soft md:grid-cols-2 xl:grid-cols-3">
+        {articles.map((article) => (
+          <a
+            class="group flex flex-col bg-surface-white hover:bg-surface-subtle transition-colors"
+            href={`/bai-viet/${article.slug}/`}
+          >
+            <div class="overflow-hidden">
+              <img
+                class="aspect-[16/9] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                src={article.imageUrl}
+                alt={article.imageAlt}
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <div class="flex items-center gap-2.5">
+                <span class="rounded-sm bg-muted-blue px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-[0.06em] text-deep-blue-navy">
+                  {article.category}
+                </span>
+                <span class="text-[0.6875rem] font-medium text-text-muted">{article.publishedAt}</span>
+              </div>
+              <h2 class="mt-3 line-clamp-3 text-[0.9375rem] font-semibold leading-snug text-text-dark group-hover:text-deep-blue-navy">
+                {article.title}
+              </h2>
+              <p class="mt-3 line-clamp-3 text-[0.8125rem] leading-6 text-text-muted">
+                {article.excerpt}
+              </p>
+              <div class="mt-auto flex items-center justify-between gap-4 pt-5">
+                <p class="text-[0.6875rem] font-medium text-text-muted truncate">{article.sourceName}</p>
+                <span class="shrink-0 text-[0.75rem] font-medium text-deep-blue-navy group-hover:underline">
+                  Đọc bài →
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-8 border-t border-border-soft pt-6">
+        <p class="text-[0.8125rem] leading-7 text-text-muted">
+          <strong class="font-semibold text-text-dark">Về bản quyền:</strong>{" "}
+          Các bài viết được đăng lại với sự đồng ý của tác giả và tạp chí nguồn.
+          Để đọc toàn bộ bài viết tại nguồn gốc, vui lòng nhấn vào từng bài và sử dụng liên kết
+          "Đọc bài viết gốc tại LSVN".
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
