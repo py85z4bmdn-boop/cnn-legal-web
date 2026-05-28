@@ -28,13 +28,37 @@ const structuredData = [
     sameAs: [site.externalProfileUrl, site.linkedInUrl],
     knowsAbout: services.map((service) => service.title),
     email: site.publicEmail,
-    ...(site.publicPhone ? { telephone: site.publicPhone } : {}),
+    telephone: site.publicPhone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: site.address.streetAddress,
+      addressLocality: site.address.addressLocality,
+      addressRegion: site.address.addressRegion,
+      addressCountry: site.address.addressCountry,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: site.geo.latitude,
+      longitude: site.geo.longitude,
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00",
+    },
+    areaServed: {
+      "@type": "City",
+      name: site.areaServed,
+    },
+    priceRange: "$$",
   },
 ];
 ---
 
 <BaseLayout title={title} description={site.description} canonicalPath="/" structuredData={structuredData}>
   <Hero />
+  <FounderPreview />
   <ServicesPreview />
   <ArticlesPreview />
 </BaseLayout>

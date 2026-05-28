@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
 import ContactInfo from "../components/ContactInfo.astro";
 import { site } from "../data/site";
 
@@ -15,8 +14,27 @@ const legalServiceData = {
   name: site.name,
   url: site.canonicalBaseUrl,
   description: site.description,
-  sameAs: [site.externalProfileUrl],
-  ...(site.publicPhone ? { telephone: site.publicPhone } : {}),
+  sameAs: [site.externalProfileUrl, site.linkedInUrl],
+  telephone: site.publicPhone,
+  email: site.publicEmail,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.streetAddress,
+    addressLocality: site.address.addressLocality,
+    addressRegion: site.address.addressRegion,
+    addressCountry: site.address.addressCountry,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.latitude,
+    longitude: site.geo.longitude,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:00",
+    closes: "17:00",
+  },
 };
 const structuredData = [
   legalServiceData,
@@ -40,6 +58,72 @@ const structuredData = [
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={pagePath} structuredData={structuredData}>
-  <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Liên hệ" }]} />
-  <ContactInfo detail />
+  <!-- Hero banner -->
+  <section class="relative overflow-hidden">
+    <div class="bg-gradient-to-b from-ink-black via-[#142a45] to-deep-blue-navy">
+      <div class="section-shell py-20 md:py-28 lg:py-32">
+        <nav class="text-[0.8125rem] font-medium text-white/35" aria-label="Breadcrumb">
+          <a class="transition-colors hover:text-white/60" href="/">Trang chủ</a>
+          <svg class="mx-1.5 inline-block h-3 w-3 text-white/25" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-white/50">Liên hệ</span>
+        </nav>
+
+        <h1 class="mt-8 max-w-3xl text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
+          Liên hệ với chúng tôi
+        </h1>
+
+        <p class="mt-6 max-w-xl text-[1rem] leading-[1.8] text-white/65 md:text-[1.0625rem]">
+          Vui lòng liên hệ trực tiếp qua email hoặc điện thoại. Chỉ chia sẻ tài liệu nhạy cảm khi đã thống nhất cách trao đổi phù hợp.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Office info card -->
+  <section class="bg-warm-ivory">
+    <div class="section-shell -mt-2 pb-10 pt-10 md:pb-14 md:pt-12">
+      <div class="mx-auto max-w-3xl rounded-xl border border-border-soft bg-surface-white p-8 shadow-[0_4px_24px_rgba(15,25,35,0.06)] md:p-10">
+        <h2 class="text-xl font-bold text-text-dark">{site.name}</h2>
+
+        <div class="mt-6 space-y-5">
+          <!-- Email -->
+          <div>
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">Email</p>
+            <a class="mt-1 block text-[0.9375rem] leading-7 text-text-muted hover:text-deep-blue-navy" href={`${site.publicEmailHref}?subject=${encodeURIComponent('Yêu cầu tư vấn pháp lý – CNN Legal')}`}>
+              {site.publicEmail}
+            </a>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">Hotline</p>
+            <a class="mt-1 block text-[0.9375rem] leading-7 text-text-muted hover:text-deep-blue-navy" href={site.publicPhoneHref}>
+              {site.publicPhone}
+            </a>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">Địa chỉ</p>
+            <p class="mt-1 text-[0.9375rem] leading-7 text-text-muted">
+              {site.addressDisplay}
+            </p>
+          </div>
+
+          <!-- Working hours -->
+          <div>
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">Thời gian làm việc</p>
+            <p class="mt-1 text-[0.9375rem] leading-7 text-text-muted">
+              {site.workingHoursDisplay}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick contact icons -->
+  <ContactInfo />
 </BaseLayout>

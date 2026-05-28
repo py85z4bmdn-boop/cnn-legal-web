@@ -1,26 +1,58 @@
 ---
+import { site } from "../data/site";
 ---
 
-<section class="relative overflow-hidden bg-deep-blue-navy">
-  <img
-    class="absolute inset-0 h-full w-full object-cover opacity-40"
-    src="/images/lawyer-section.png"
-    alt=""
-    loading="lazy"
-  />
-  <div class="absolute inset-0 bg-gradient-to-r from-ink-black/80 via-ink-black/60 to-transparent"></div>
+<section class="bg-warm-ivory">
+  <div class="section-shell py-16 md:py-20 lg:py-24">
+    <div class="overflow-hidden rounded-xl border border-border-soft bg-surface-white shadow-[0_4px_24px_rgba(15,25,35,0.06)]">
+      <div class="grid lg:grid-cols-[0.45fr_0.55fr]">
 
-  <div class="section-shell relative py-16 md:py-20">
-    <h2 class="max-w-2xl text-[1.625rem] font-semibold leading-tight text-white md:text-[1.875rem]">
-      Một đầu mối. Trực tiếp. Có trách nhiệm.
-    </h2>
-    <div class="mt-5 max-w-xl space-y-3.5 text-[0.9375rem] leading-[1.8] text-white/60 md:text-[1rem]">
-      <p>
-        CNN Legal hoạt động theo mô hình boutique một luật sư. Khách hàng không làm việc qua trung gian — mọi trao đổi, đánh giá và quyết định đều thực hiện trực tiếp với luật sư phụ trách.
-      </p>
-      <p>
-        Cách làm việc tập trung vào sự rõ ràng: hiểu đúng vấn đề, trình bày rõ rủi ro và lựa chọn, giữ bảo mật xuyên suốt.
-      </p>
+        <!-- Lawyer photo -->
+        <div class="relative min-h-[320px] bg-muted-blue lg:min-h-[480px]">
+          <img
+            class="absolute inset-0 h-full w-full object-cover object-top"
+            src="/images/lawyer-portrait.jpg"
+            alt="Luật sư Đặng Kim Chinh – CNN Legal"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Content -->
+        <div class="flex flex-col justify-center p-8 md:p-10 lg:p-12">
+          <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">
+            Về CNN Legal
+          </p>
+
+          <h2 class="mt-4 text-[1.75rem] font-bold leading-[1.2] text-text-dark md:text-[2rem] lg:text-[2.25rem]">
+            CNN Legal là Công ty Luật chuyên sâu
+            <span class="text-deep-blue-navy">tranh tụng.</span>
+          </h2>
+
+          <p class="mt-5 text-[0.9375rem] leading-[1.8] text-text-muted">
+            {site.description}
+          </p>
+
+          <!-- Two value columns -->
+          <div class="mt-8 grid gap-6 sm:grid-cols-2">
+            <div>
+              <h3 class="text-[0.9375rem] font-bold text-text-dark">
+                Chuyên sâu tố tụng hình sự
+              </h3>
+              <p class="mt-2 text-[0.8125rem] leading-[1.7] text-text-muted">
+                Tập trung vào bào chữa, tranh tụng và nghiên cứu pháp luật hình sự Việt Nam, trọng tài đầu tư quốc tế.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-[0.9375rem] font-bold text-text-dark">
+                Trực tiếp, bảo mật, có trách nhiệm
+              </h3>
+              <p class="mt-2 text-[0.8125rem] leading-[1.7] text-text-muted">
+                Khách hàng làm việc trực tiếp với luật sư phụ trách. Không qua trung gian, không qua biểu mẫu công khai.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

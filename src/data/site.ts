@@ -10,9 +10,20 @@ export const site = {
   publicEmailHref: "mailto:cnnlegal.vn@gmail.com",
   publicPhone: "0944968686",
   publicPhoneHref: "tel:0944968686",
-  phonePlaceholder: "Số điện thoại: cập nhật sau",
-  addressPlaceholder: "Địa chỉ văn phòng: cập nhật sau",
-  workingHoursPlaceholder: "Thời gian làm việc: cập nhật sau",
+
+  // Structured address for Schema.org PostalAddress
+  address: {
+    streetAddress: "LA3-T3.18, Tòa nhà La Astoria 3, Số 383 Nguyễn Duy Trinh",
+    addressLocality: "Phường Bình Trưng Tây, Thành phố Thủ Đức",
+    addressRegion: "Thành phố Hồ Chí Minh",
+    addressCountry: "VN",
+  },
+  addressDisplay:
+    "LA3-T3.18, Tòa nhà La Astoria 3, Số 383 Nguyễn Duy Trinh, Phường Bình Trưng Tây, TP. Thủ Đức, TP. Hồ Chí Minh",
+  geo: { latitude: 10.7836, longitude: 106.7675 },
+  areaServed: "Thành phố Hồ Chí Minh, Việt Nam",
+  workingHoursDisplay: "Thứ Hai – Thứ Sáu: 08:00 – 17:00",
+  openingHoursSpec: "Mo-Fr 08:00-17:00",
 } as const;
 
 /** @deprecated Used only by orphaned /quy-trinh/ page */

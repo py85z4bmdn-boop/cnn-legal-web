@@ -111,6 +111,7 @@
   .service-tab[aria-selected="false"]:hover {
     border-color: rgba(28, 78, 140, 0.3);
     color: #1c4e8c;
+    box-shadow: 0 2px 8px rgba(15, 25, 35, 0.1);
   }
 
   .mega-panel {

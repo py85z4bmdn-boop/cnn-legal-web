@@ -1,21 +1,13 @@
 ---
 import { site } from "../data/site";
-interface Props { detail?: boolean; }
-const { detail = false } = Astro.props;
 ---
 
-<section id="lien-he" class="bg-surface-white">
-  <div class="section-shell py-16 md:py-20">
-    <div class="max-w-2xl">
-      <h2 class="text-3xl font-bold leading-tight text-text-dark md:text-4xl">
-        {detail ? "Thông tin liên hệ CNN Legal." : "Trao đổi trực tiếp khi cần đánh giá vấn đề pháp lý."}
-      </h2>
-      <p class="mt-5 text-base leading-8 text-text-muted">
-        Website không có biểu mẫu liên hệ. Vui lòng chỉ chia sẻ tài liệu nhạy cảm khi đã thống nhất cách trao đổi phù hợp.
-      </p>
-    </div>
+<section id="lien-he" class="bg-warm-ivory">
+  <div class="section-shell py-10 md:py-14">
+    <p class="mb-6 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Liên hệ nhanh</p>
 
-    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <!-- Email -->
       <a
         class="group flex flex-col items-center gap-3 rounded-lg border border-border-soft bg-warm-ivory p-6 text-center transition-colors hover:border-deep-blue-navy/30 hover:bg-muted-blue"

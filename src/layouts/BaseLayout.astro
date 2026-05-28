@@ -11,7 +11,9 @@ interface Props {
   description?: string;
   canonicalPath?: string;
   ogType?: string;
+  ogImage?: string;
   structuredData?: JsonLd | JsonLd[];
+  noindex?: boolean;
 }
 
 const {
@@ -19,10 +21,13 @@ const {
   description = site.description,
   canonicalPath = Astro.url.pathname,
   ogType = "website",
+  ogImage = "/images/og-default.svg",
   structuredData = [],
+  noindex = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(canonicalPath, site.canonicalBaseUrl).toString();
+const ogImageUrl = new URL(ogImage, site.canonicalBaseUrl).toString();
 const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structuredData];
 const jsonLdToString = (item: JsonLd) => JSON.stringify(item).replaceAll("<", "\\u003c");
 ---
@@ -36,16 +41,45 @@ const jsonLdToString = (item: JsonLd) => JSON.stringify(item).replaceAll("<", "\
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
 
+    <!-- Robots -->
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    }
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0f1923" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Author & Geo -->
+    <meta name="author" content={site.name} />
+    <meta name="geo.region" content="VN-SG" />
+    <meta name="geo.placename" content="Thành phố Hồ Chí Minh" />
+    <meta name="geo.position" content={`${site.geo.latitude};${site.geo.longitude}`} />
+    <meta name="ICBM" content={`${site.geo.latitude}, ${site.geo.longitude}`} />
+
+    <!-- Open Graph -->
     <meta property="og:locale" content="vi_VN" />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content={site.name} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} – ${site.slogan}`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Structured Data -->
     {jsonLdItems.map((item) => <script is:inline type="application/ld+json" set:html={jsonLdToString(item)} />)}
   </head>
   <body class="bg-warm-ivory text-text-dark antialiased">

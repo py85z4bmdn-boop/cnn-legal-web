@@ -11,9 +11,27 @@ const description =
   "Các bài viết pháp lý được đăng lại với sự đồng ý của tác giả và Tạp chí điện tử Luật sư Việt Nam. CNN Legal cung cấp liên kết đến nguồn gốc đầy đủ.";
 const canonicalPath = "/bai-viet/";
 const pageUrl = new URL(canonicalPath, site.canonicalBaseUrl).toString();
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: title,
+    description,
+    url: pageUrl,
+    inLanguage: "vi-VN",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Trang chủ", item: site.canonicalBaseUrl },
+      { "@type": "ListItem", position: 2, name: "Bài viết", item: pageUrl },
+    ],
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} canonicalPath={canonicalPath}>
+<BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
   <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Bài viết" }]} />
   <!-- Page header -->
   <div class="border-b border-border-soft bg-surface-white">
