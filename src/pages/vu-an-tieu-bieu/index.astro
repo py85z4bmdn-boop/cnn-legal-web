@@ -30,22 +30,28 @@ const structuredData = [
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
-  <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Vụ án tiêu biểu" }]} />
+  <section class="relative overflow-hidden">
+    <div class="bg-gradient-to-b from-ink-black via-[#142a45] to-deep-blue-navy">
+      <div class="section-shell py-20 md:py-28 lg:py-32">
+        <nav class="text-[0.8125rem] font-medium text-white/35" aria-label="Breadcrumb">
+          <a class="transition-colors hover:text-white/60" href="/">Trang chủ</a>
+          <svg class="mx-1.5 inline-block h-3 w-3 text-white/25" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-white/50">Vụ án tiêu biểu</span>
+        </nav>
 
-  <!-- Page header -->
-  <div class="border-b border-border-soft bg-surface-white">
-    <div class="section-shell py-12 md:py-16">
-      <div class="max-w-2xl">
-        <h1 class="text-3xl font-semibold leading-tight text-text-dark md:text-4xl">
+        <h1 class="mt-8 max-w-3xl text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
           Vụ án tiêu biểu.
         </h1>
-        <p class="mt-4 text-[0.9375rem] leading-7 text-text-muted">
+
+        <p class="mt-6 max-w-xl text-[1rem] leading-[1.8] text-white/65 md:text-[1.0625rem]">
           Luật sư Đặng Kim Chinh đã tham gia bào chữa trong nhiều vụ án hình sự lớn tại Việt Nam.
           Nhấn vào từng vụ án để xem thông tin chi tiết, kèm nguồn dẫn từ báo chí uy tín.
         </p>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Cases grid -->
   <div class="bg-warm-ivory">
@@ -56,13 +62,10 @@ const structuredData = [
             href={`/vu-an-tieu-bieu/${caseItem.slug}/`}
             class="group flex flex-col overflow-hidden rounded-xl border border-border-soft bg-surface-white shadow-[0_2px_12px_rgba(15,25,35,0.04)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(15,25,35,0.10)]"
           >
-            <!-- Color bar -->
-            <div class="h-1.5 w-full bg-deep-blue-navy"></div>
-
             <div class="flex flex-1 flex-col p-6">
               <!-- Year + Court -->
               <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center rounded-full bg-deep-blue-navy px-2.5 py-0.5 text-[0.6875rem] font-semibold text-white">
+                <span class="text-[0.6875rem] font-semibold text-text-dark">
                   {caseItem.year}
                 </span>
                 <span class="text-[0.6875rem] font-medium text-text-muted">
@@ -71,7 +74,7 @@ const structuredData = [
               </div>
 
               <!-- Title -->
-              <h2 class="mt-4 text-[1.0625rem] font-bold leading-snug text-text-dark group-hover:text-deep-blue-navy">
+              <h2 class="mt-4 text-[1.0625rem] font-bold leading-snug text-text-dark">
                 {caseItem.title}
               </h2>
 
@@ -80,14 +83,8 @@ const structuredData = [
                 {caseItem.summary}
               </p>
 
-              <!-- Defendant -->
-              <div class="mt-4 border-t border-border-soft pt-4">
-                <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Bị cáo</p>
-                <p class="mt-1 text-[0.8125rem] font-medium text-text-dark line-clamp-1">{caseItem.defendant}</p>
-              </div>
-
               <!-- CTA -->
-              <div class="mt-4 flex items-center gap-1.5 text-[0.8125rem] font-medium text-deep-blue-navy">
+              <div class="mt-4 flex items-center gap-1.5 text-[0.8125rem] font-medium text-text-dark">
                 <span>Xem chi tiết</span>
                 <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />

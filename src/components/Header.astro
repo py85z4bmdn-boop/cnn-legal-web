@@ -4,7 +4,7 @@ import { navigationItems } from "../data/navigation";
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) =>
   href === "/" ? currentPath === "/" : currentPath.startsWith(href);
-const menuItems = navigationItems.filter((item) => item.groups?.length);
+
 ---
 
 <header
@@ -23,32 +23,17 @@ const menuItems = navigationItems.filter((item) => item.groups?.length);
       class="hidden flex-1 items-center gap-0.5 lg:flex"
       aria-label="Điều hướng chính"
     >
-      {navigationItems.map((item) =>
-        item.groups?.length ? (
-          <button
-            class:list={[
-              "rounded-md px-3 py-2 text-[0.8125rem] font-medium leading-none transition-all hover:bg-surface-subtle hover:shadow-[0_1px_3px_rgba(0,0,0,0.06)]",
-              isActive(item.href) ? "text-text-dark" : "text-text-muted hover:text-text-dark",
-            ]}
-            type="button"
-            aria-expanded="false"
-            aria-controls={`mega-${item.id}`}
-            data-mega-trigger
-          >
-            {item.label}
-          </button>
-        ) : (
-          <a
-            class:list={[
-              "rounded-md px-3 py-2 text-[0.8125rem] font-medium leading-none transition-all hover:bg-surface-subtle hover:shadow-[0_1px_3px_rgba(0,0,0,0.06)]",
-              isActive(item.href) ? "text-text-dark" : "text-text-muted hover:text-text-dark",
-            ]}
-            href={item.href}
-          >
-            {item.label}
-          </a>
-        )
-      )}
+      {navigationItems.map((item) => (
+        <a
+          class:list={[
+            "rounded-md px-3 py-2 text-[0.8125rem] font-medium leading-none transition-all hover:bg-surface-subtle hover:shadow-[0_1px_3px_rgba(0,0,0,0.06)]",
+            isActive(item.href) ? "text-text-dark" : "text-text-muted hover:text-text-dark",
+          ]}
+          href={item.href}
+        >
+          {item.label}
+        </a>
+      ))}
     </nav>
 
     <div class="ml-auto flex shrink-0 items-center gap-3">
@@ -76,91 +61,7 @@ const menuItems = navigationItems.filter((item) => item.groups?.length);
 
   </div>
 
-  <!-- Desktop Mega Panels -->
-  <div class="hidden lg:block">
-    {menuItems.map((item) => {
-      return (
-        <div
-          id={`mega-${item.id}`}
-          class="mega-panel pointer-events-none absolute left-0 right-0 top-full z-40 opacity-0"
-          data-mega-panel
-        >
-          <div class="section-shell pb-3 pt-1">
-            <div class="overflow-hidden rounded-xl border border-border-soft bg-surface-white shadow-[0_8px_30px_rgba(15,25,35,0.12)]">
-              <div class="flex">
-                {/* Left context column */}
-                <div class="w-[200px] shrink-0 border-r border-border-soft bg-surface-subtle p-6">
-                  <p class="text-[0.8125rem] font-semibold leading-snug text-text-dark">
-                    {item.description}
-                  </p>
-                  <a
-                    class="mt-5 inline-flex text-[0.75rem] font-medium text-deep-blue-navy hover:text-professional-blue"
-                    href={item.href}
-                  >
-                    Xem tất cả →
-                  </a>
-                </div>
 
-                {/* Right content area */}
-                <div class="flex-1 p-5">
-                  {item.groups?.map((group) => (
-                    <div class="mb-4 last:mb-0">
-                      <p class="mb-2 text-[0.625rem] font-semibold uppercase tracking-[0.07em] text-text-muted">
-                        {group.label}
-                      </p>
-                      <div class="grid grid-cols-3 gap-x-6 gap-y-0.5">
-                        {group.children.map((child) =>
-                          child.external ? (
-                            <a
-                              class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border-soft text-text-muted transition-colors hover:border-deep-blue-navy/40 hover:bg-surface-hover hover:text-deep-blue-navy"
-                              href={child.href}
-                              rel="noopener noreferrer"
-                              target="_blank"
-                              title={child.label}
-                              aria-label={child.description || child.label}
-                            >
-                              {child.label === "LinkedIn" && (
-                                <svg class="h-4 w-4" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-                                  <path d="M12.25 0H1.75C.784 0 0 .784 0 1.75v10.5C0 13.216.784 14 1.75 14h10.5c.966 0 1.75-.784 1.75-1.75V1.75C14 .784 13.216 0 12.25 0zM4.155 11.9H2.1V5.25h2.055v6.65zM3.128 4.375a1.19 1.19 0 110-2.381 1.19 1.19 0 010 2.381zM11.9 11.9H9.845V8.662c0-.772-.014-1.766-1.076-1.766-1.078 0-1.243.841-1.243 1.71v3.294H5.472V5.25h1.973v.908h.027c.275-.52.946-1.068 1.947-1.068 2.082 0 2.466 1.371 2.466 3.153V11.9h.015z"/>
-                                </svg>
-                              )}
-                              {child.label === "dangkimchinh.vn" && (
-                                <svg class="h-4 w-4" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
-                                  <circle cx="7" cy="7" r="6"/>
-                                  <path d="M1 7h12M7 1c-1.657 2.333-1.657 4.667 0 6 1.657 1.333 1.657 3.667 0 6M7 1c1.657 2.333 1.657 4.667 0 6-1.657 1.333-1.657 3.667 0 6"/>
-                                  <path d="M2 4h10M2 10h10"/>
-                                </svg>
-                              )}
-                            </a>
-                          ) : (
-                            <a
-                              class="group flex items-center gap-2.5 rounded px-2.5 py-2 transition-colors hover:bg-surface-hover"
-                              href={child.href}
-                            >
-                              <div class="min-w-0">
-                                <span class="block text-[0.8125rem] font-medium leading-snug text-text-dark">
-                                  {child.label}
-                                </span>
-                                {child.description && (
-                                  <span class="mt-0.5 block text-[0.6875rem] leading-4 text-text-muted">
-                                    {child.description}
-                                  </span>
-                                )}
-                              </div>
-                            </a>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    })}
-  </div>
 
   <!-- Mobile overlay -->
   <div
@@ -190,61 +91,17 @@ const menuItems = navigationItems.filter((item) => item.groups?.length);
     </div>
 
     <nav class="flex flex-col gap-0.5" aria-label="Điều hướng di động">
-      {navigationItems.map((item) =>
-        item.groups?.length ? (
-          <div>
-            <button
-              class:list={[
-                "flex w-full items-center justify-between gap-3 rounded px-3 py-2.5 text-left text-[0.875rem] font-medium hover:bg-surface-subtle",
-                isActive(item.href) ? "text-text-dark" : "text-text-muted",
-              ]}
-              type="button"
-              aria-expanded="false"
-              aria-controls={`mobile-group-${item.id}`}
-              data-accordion-trigger
-            >
-              <span>{item.label}</span>
-            </button>
-            <div
-              id={`mobile-group-${item.id}`}
-              class="accordion-panel"
-              data-accordion-panel
-            >
-              <div class="accordion-inner">
-                <div class="py-1 pl-3">
-                  {item.groups?.map((group) => (
-                    <div class="mb-3 mt-1.5 first:mt-0">
-                      <p class="px-2.5 pb-1 text-[0.625rem] font-semibold uppercase tracking-[0.07em] text-text-muted">
-                        {group.label}
-                      </p>
-                      {group.children.map((child) => (
-                        <a
-                          class="block rounded px-2.5 py-2 text-[0.8125rem] text-text-muted hover:bg-surface-subtle hover:text-text-dark"
-                          href={child.href}
-                          rel={child.external ? "noopener noreferrer" : undefined}
-                          target={child.external ? "_blank" : undefined}
-                        >
-                          {child.label}
-                        </a>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <a
-            class:list={[
-              "rounded px-3 py-2.5 text-[0.875rem] font-medium hover:bg-surface-subtle hover:text-text-dark",
-              isActive(item.href) ? "text-text-dark" : "text-text-muted",
-            ]}
-            href={item.href}
-          >
-            {item.label}
-          </a>
-        )
-      )}
+      {navigationItems.map((item) => (
+        <a
+          class:list={[
+            "rounded px-3 py-2.5 text-[0.875rem] font-medium hover:bg-surface-subtle hover:text-text-dark",
+            isActive(item.href) ? "text-text-dark" : "text-text-muted",
+          ]}
+          href={item.href}
+        >
+          {item.label}
+        </a>
+      ))}
     </nav>
 
     <div class="mt-6 border-t border-border-soft pt-5">
