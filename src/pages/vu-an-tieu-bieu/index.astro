@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import { notableCases } from "../../data/cases";
+import { site } from "../../data/site";
+
+const title = `Vụ án tiêu biểu | ${site.name}`;
+const description =
+  "Các vụ án tiêu biểu mà Luật sư Đặng Kim Chinh đã tham gia bào chữa tại TAND Cấp cao tại TP.HCM, bao gồm đại án Vạn Thịnh Phát và vụ buôn lậu xăng dầu quy mô lớn.";
+const canonicalPath = "/vu-an-tieu-bieu/";
+const pageUrl = new URL(canonicalPath, site.canonicalBaseUrl).toString();
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: title,
+    description,
+    url: pageUrl,
+    inLanguage: "vi-VN",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Trang chủ", item: site.canonicalBaseUrl },
+      { "@type": "ListItem", position: 2, name: "Vụ án tiêu biểu", item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
+  <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Vụ án tiêu biểu" }]} />
+
+  <!-- Page header -->
+  <div class="border-b border-border-soft bg-surface-white">
+    <div class="section-shell py-12 md:py-16">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl font-semibold leading-tight text-text-dark md:text-4xl">
+          Vụ án tiêu biểu.
+        </h1>
+        <p class="mt-4 text-[0.9375rem] leading-7 text-text-muted">
+          Luật sư Đặng Kim Chinh đã tham gia bào chữa trong nhiều vụ án hình sự lớn tại Việt Nam.
+          Nhấn vào từng vụ án để xem thông tin chi tiết, kèm nguồn dẫn từ báo chí uy tín.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cases grid -->
+  <div class="bg-warm-ivory">
+    <div class="section-shell py-12 md:py-16">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {notableCases.map((caseItem) => (
+          <a
+            href={`/vu-an-tieu-bieu/${caseItem.slug}/`}
+            class="group flex flex-col overflow-hidden rounded-xl border border-border-soft bg-surface-white shadow-[0_2px_12px_rgba(15,25,35,0.04)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(15,25,35,0.10)]"
+          >
+            <!-- Color bar -->
+            <div class="h-1.5 w-full bg-deep-blue-navy"></div>
+
+            <div class="flex flex-1 flex-col p-6">
+              <!-- Year + Court -->
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center rounded-full bg-deep-blue-navy px-2.5 py-0.5 text-[0.6875rem] font-semibold text-white">
+                  {caseItem.year}
+                </span>
+                <span class="text-[0.6875rem] font-medium text-text-muted">
+                  {caseItem.court}
+                </span>
+              </div>
+
+              <!-- Title -->
+              <h2 class="mt-4 text-[1.0625rem] font-bold leading-snug text-text-dark group-hover:text-deep-blue-navy">
+                {caseItem.title}
+              </h2>
+
+              <!-- Summary -->
+              <p class="mt-3 flex-1 text-[0.8125rem] leading-[1.7] text-text-muted line-clamp-3">
+                {caseItem.summary}
+              </p>
+
+              <!-- Defendant -->
+              <div class="mt-4 border-t border-border-soft pt-4">
+                <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Bị cáo</p>
+                <p class="mt-1 text-[0.8125rem] font-medium text-text-dark line-clamp-1">{caseItem.defendant}</p>
+              </div>
+
+              <!-- CTA -->
+              <div class="mt-4 flex items-center gap-1.5 text-[0.8125rem] font-medium text-deep-blue-navy">
+                <span>Xem chi tiết</span>
+                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="mt-12 rounded-lg border border-border-soft bg-surface-white p-6 text-center">
+        <p class="text-[0.8125rem] leading-[1.7] text-text-muted">
+          Các thông tin trên được tổng hợp từ nguồn báo chí công khai tại Việt Nam.
+          <br class="hidden sm:inline" />
+          CNN Legal không đại diện cho quan điểm của bất kỳ cơ quan tư pháp nào.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
