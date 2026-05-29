@@ -117,9 +117,9 @@ export const navigationItems: readonly NavigationItem[] = [
     ],
   },
   {
-    id: "lien-he",
-    label: "Liên hệ",
-    href: "/lien-he/",
-    description: "Thông tin liên hệ trực tiếp và nguyên tắc bảo mật khi trao đổi hồ sơ.",
+    id: "vu-an-tieu-bieu",
+    label: "Vụ án tiêu biểu",
+    href: "/vu-an-tieu-bieu/",
+    description: "Các vụ án mà Luật sư Đặng Kim Chinh đã tham gia bào chữa.",
   },
 ];
