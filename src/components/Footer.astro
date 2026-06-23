@@ -1,0 +1,93 @@
+---
+import { site } from "../data/site";
+import { services } from "../data/services";
+import { articles } from "../data/articles";
+const footerServices = services.slice(0, 5);
+const footerArticles = articles.slice(0, 3);
+---
+
+<footer class="mt-6 md:mt-8">
+  <div class="rounded-t-[2.5rem] bg-ink-black text-white">
+    <div class="section-shell pb-8 pt-14 md:pt-16">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div class="sm:col-span-2 lg:col-span-1">
+          <p class="text-base font-bold tracking-tight">{site.name}</p>
+          <p class="mt-3 max-w-xs text-[0.8125rem] leading-6 text-white/55">Tư vấn pháp lý trực tiếp, rõ ràng và có trách nhiệm cho cá nhân và doanh nghiệp.</p>
+        </div>
+        <div>
+          <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-white/40">Dịch vụ</p>
+          <ul class="mt-4 space-y-2.5">
+            {footerServices.map((s) => (<li><a class="text-[0.8125rem] leading-snug text-white/60 hover:text-white" href={`/dich-vu/${s.slug}/`}>{s.title}</a></li>))}
+            <li><a class="text-[0.8125rem] font-medium text-white/70 hover:text-white" href="/dich-vu/">Xem tất cả →</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-white/40">Bài viết</p>
+          <ul class="mt-4 space-y-2.5">
+            {footerArticles.map((a) => (<li><a class="line-clamp-2 text-[0.8125rem] leading-snug text-white/60 hover:text-white" href={`/bai-viet/${a.slug}/`}>{a.title}</a></li>))}
+            <li><a class="text-[0.8125rem] font-medium text-white/70 hover:text-white" href="/bai-viet/">Xem tất cả →</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-white/40">Liên hệ</p>
+          <div class="mt-4 flex items-center gap-3">
+            <!-- Email -->
+            <a
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/50 transition-colors hover:border-white/30 hover:text-white"
+              href={`${site.publicEmailHref}?subject=${encodeURIComponent('Yêu cầu tư vấn pháp lý – CNN Legal')}`}
+              title={site.publicEmail}
+              aria-label={`Gửi email đến ${site.publicEmail}`}
+            >
+              <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                <rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/>
+                <path d="M1.5 4.5l6.5 4 6.5-4"/>
+              </svg>
+            </a>
+            <!-- Phone -->
+            <a
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/50 transition-colors hover:border-white/30 hover:text-white"
+              href={site.publicPhoneHref}
+              title={site.publicPhone}
+              aria-label={`Gọi điện đến ${site.publicPhone}`}
+            >
+              <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                <path d="M3.5 1.5h3l1.5 4-2 1.5a8 8 0 003.5 3.5l1.5-2 4 1.5v3c0 .6-.4 1-1 1C6.5 14.5 1.5 9.5 1.5 4.5c0-.6.4-1 1-1z"/>
+              </svg>
+            </a>
+            <!-- dangkimchinh.vn -->
+            <a
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/50 transition-colors hover:border-white/30 hover:text-white"
+              href={site.externalProfileUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="dangkimchinh.vn"
+              aria-label="Trang thông tin công khai — dangkimchinh.vn"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                <circle cx="7" cy="7" r="6"/>
+                <path d="M1 7h12M7 1c-1.657 2.333-1.657 4.667 0 6 1.657 1.333 1.657 3.667 0 6"/>
+                <path d="M2 4h10M2 10h10"/>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/50 transition-colors hover:border-white/30 hover:text-white"
+              href={site.linkedInUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="LinkedIn — Đặng Kim Chinh"
+              aria-label="Hồ sơ LinkedIn — Luật sư Đặng Kim Chinh"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+                <path d="M12.25 0H1.75C.784 0 0 .784 0 1.75v10.5C0 13.216.784 14 1.75 14h10.5c.966 0 1.75-.784 1.75-1.75V1.75C14 .784 13.216 0 12.25 0zM4.155 11.9H2.1V5.25h2.055v6.65zM3.128 4.375a1.19 1.19 0 110-2.381 1.19 1.19 0 010 2.381zM11.9 11.9H9.845V8.662c0-.772-.014-1.766-1.076-1.766-1.078 0-1.243.841-1.243 1.71v3.294H5.472V5.25h1.973v.908h.027c.275-.52.946-1.068 1.947-1.068 2.082 0 2.466 1.371 2.466 3.153V11.9h.015z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 border-t border-white/10 pt-5">
+        <p class="text-[0.6875rem] leading-5 text-white/35">Nội dung trên website chỉ nhằm giới thiệu thông tin chung về dịch vụ pháp lý, không phải ý kiến tư vấn cho một vụ việc cụ thể. © {new Date().getFullYear()} {site.name}.</p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,58 @@
+---
+import { articles } from "../data/articles";
+const preview = articles.slice(0, 3);
+---
+
+<section class="border-t border-border-soft bg-warm-ivory">
+  <div class="section-shell py-14 md:py-16">
+    <div class="mb-8 flex items-end justify-between gap-6">
+      <div>
+        <h2 class="text-2xl font-semibold leading-tight text-text-dark md:text-3xl">
+          Phân tích và bình luận từ thực tiễn.
+        </h2>
+      </div>
+      <a
+        class="hidden shrink-0 text-[0.8125rem] font-medium text-deep-blue-navy hover:text-professional-blue md:inline-flex"
+        href="/bai-viet/"
+      >
+        Xem tất cả →
+      </a>
+    </div>
+
+    <div class="grid gap-px border border-border-soft bg-border-soft md:grid-cols-3">
+      {preview.map((article) => (
+        <a
+          class="group flex flex-col bg-surface-white hover:bg-surface-subtle transition-colors"
+          href={`/bai-viet/${article.slug}/`}
+        >
+          <div class="overflow-hidden">
+            <img
+              class="aspect-[16/9] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              src={article.imageUrl}
+              alt={article.imageAlt}
+              loading="lazy"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-5">
+            <p class="text-[0.625rem] font-semibold uppercase tracking-[0.06em] text-text-muted">
+              {article.publishedAt} · {article.category}
+            </p>
+            <h3 class="mt-2.5 line-clamp-3 text-[0.9375rem] font-semibold leading-snug text-text-dark group-hover:text-deep-blue-navy">
+              {article.title}
+            </h3>
+            <p class="mt-3 line-clamp-2 text-[0.8125rem] leading-6 text-text-muted">
+              {article.excerpt}
+            </p>
+            <p class="mt-auto pt-4 text-[0.6875rem] font-medium text-text-muted truncate">
+              {article.sourceName}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-5 md:hidden">
+      <a class="secondary-button w-full" href="/bai-viet/">Xem tất cả bài viết</a>
+    </div>
+  </div>
+</section>
