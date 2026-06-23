@@ -49,6 +49,19 @@ function displayMessage(message: ChatMessage) {
   const messageDiv = document.createElement('div');
   messageDiv.className = `message ${message.role === 'user' ? 'user-message' : 'ai-message'}`;
   
+  if (message.role === 'ai') {
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'ai-avatar';
+    avatarDiv.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28" style="border-radius: 6px; flex-shrink: 0;">
+        <rect width="64" height="64" rx="10" fill="#1c4e8c"/>
+        <path d="M16 19h32v5H16zM20 30h24v4H20zM20 40h18v4H20z" fill="#FAF7F0"/>
+        <path d="M15 50h34" stroke="#e08738" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    `;
+    messageDiv.appendChild(avatarDiv);
+  }
+  
   const contentDiv = document.createElement('div');
   contentDiv.className = 'message-content';
   contentDiv.textContent = message.content;
@@ -65,6 +78,17 @@ function displayLoadingMessage() {
   const loadingDiv = document.createElement('div');
   loadingDiv.className = 'message ai-message';
   loadingDiv.id = 'loading-message';
+  
+  const avatarDiv = document.createElement('div');
+  avatarDiv.className = 'ai-avatar';
+  avatarDiv.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28" style="border-radius: 6px; flex-shrink: 0;">
+      <rect width="64" height="64" rx="10" fill="#1c4e8c"/>
+      <path d="M16 19h32v5H16zM20 30h24v4H20zM20 40h18v4H20z" fill="#FAF7F0"/>
+      <path d="M15 50h34" stroke="#e08738" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  `;
+  loadingDiv.appendChild(avatarDiv);
   
   const contentDiv = document.createElement('div');
   contentDiv.className = 'message-content';
@@ -118,6 +142,17 @@ async function sendMessage() {
     const { messagesContainer } = getElements();
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message ai-message';
+    
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'ai-avatar';
+    avatarDiv.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28" style="border-radius: 6px; flex-shrink: 0;">
+        <rect width="64" height="64" rx="10" fill="#1c4e8c"/>
+        <path d="M16 19h32v5H16zM20 30h24v4H20zM20 40h18v4H20z" fill="#FAF7F0"/>
+        <path d="M15 50h34" stroke="#e08738" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    `;
+    messageDiv.appendChild(avatarDiv);
     
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
