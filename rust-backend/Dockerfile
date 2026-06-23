@@ -1,4 +1,4 @@
-FROM rust:1.75-slim AS builder
+FROM rust:1.79-slim AS builder
 
 # Cài đặt các thư viện cần thiết để biên dịch OpenSSL (reqwest sử dụng native-tls)
 RUN apt-get update && apt-get install -y \
