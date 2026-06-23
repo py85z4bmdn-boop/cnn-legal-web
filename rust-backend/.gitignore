@@ -1,5 +1,1 @@
-/target
-.env
-Cargo.lock
-
-
+# No files ignored. Track everything.
