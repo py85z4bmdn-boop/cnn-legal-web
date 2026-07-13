@@ -1,6 +1,5 @@
 import { articles } from "./articles";
 import { services } from "./services";
-import { site } from "./site";
 
 export type NavigationChild = {
   readonly label: string;
