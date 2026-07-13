@@ -69,12 +69,16 @@ impl RateLimiter {
     }
 }
 
+static RATE_LIMITER: std::sync::OnceLock<RateLimiter> = std::sync::OnceLock::new();
+
 pub async fn rate_limit_middleware(
     ConnectInfo(addr): ConnectInfo<SocketAddr>,
     req: Request<Body>,
     next: Next,
 ) -> Response {
-    let limiter = RateLimiter::new(10, Duration::from_secs(60));
+    let limiter = RATE_LIMITER.get_or_init(|| {
+        RateLimiter::new(10, Duration::from_secs(60))
+    });
     let ip = addr.ip().to_string();
 
     if !limiter.check_rate_limit(&ip).await {
@@ -90,4 +94,3 @@ pub async fn rate_limit_middleware(
     next.run(req).await
 }
 
-// Made with Bob

@@ -6,8 +6,25 @@ export default defineConfig({
   output: "static",
   adapter: vercel({
     webAnalytics: { enabled: true },
+    imageService: true,
+    imagesConfig: {
+      sizes: [320, 640, 768, 1024, 1280, 1536],
+      formats: ["avif", "webp"],
+    },
   }),
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssCodeSplit: true,
+      minify: "esbuild",
+    },
+  },
+  compressHTML: true,
+  build: {
+    inlineStylesheets: "auto",
+  },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
   },
 });

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import HeroBreadcrumb from "../../components/HeroBreadcrumb.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllArticles } from "../../data/articles";
@@ -32,32 +33,45 @@ const structuredData = [
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
-  <section class="relative overflow-hidden">
-    <div class="bg-gradient-to-b from-ink-black via-[#142a45] to-deep-blue-navy">
-      <div class="section-shell py-20 md:py-28 lg:py-32">
-        <HeroBreadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Bài viết" }]} />
+  <section class="relative overflow-hidden py-20 md:py-28 lg:py-32">
+    
+    <div class="absolute inset-0 z-0">
+      <Image
+        class="h-full w-full object-cover object-center"
+        src="/images/article-hero.jpg"
+        alt="Hình ảnh nền trang bài viết pháp luật CNN Legal"
+        width={1280}
+        height={720}
+        loading="eager"
+      />
+      
+      <div class="absolute inset-0 bg-black/55"></div>
+    </div>
 
-        <h1 class="mt-8 max-w-3xl text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
-          Phân tích và bình luận pháp luật.
-        </h1>
+    
+    <div class="section-shell relative z-10">
+      <HeroBreadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Bài viết" }]} />
 
-        <p class="mt-6 max-w-xl text-[1rem] leading-[1.8] text-white/65 md:text-[1.0625rem]">
-          Các bài viết dưới đây được đăng lại từ{" "}
-          <a
-            class="font-medium text-white/80 hover:text-white"
-            href="https://lsvn.vn/tag/luat-su-dang-kim-chinh.html"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Tạp chí điện tử Luật sư Việt Nam
-          </a>{" "}
-          với sự đồng ý của tác giả. Mọi quyền thuộc về tác giả và nguồn xuất bản gốc.
-        </p>
-      </div>
+      <h1 class="mt-8 max-w-3xl font-sans text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
+        Phân tích và bình luận pháp luật.
+      </h1>
+
+      <p class="mt-6 max-w-xl font-sans text-[1rem] leading-[1.8] text-white/80 md:text-[1.0625rem]">
+        Các bài viết dưới đây được đăng lại từ{" "}
+        <a
+          class="font-medium text-white hover:underline"
+          href="https://lsvn.vn/tag/luat-su-dang-kim-chinh.html"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Tạp chí điện tử Luật sư Việt Nam
+        </a>{" "}
+        với sự đồng ý của tác giả. Mọi quyền thuộc về tác giả và nguồn xuất bản gốc.
+      </p>
     </div>
   </section>
 
-  <!-- Article grid -->
+  
   <section class="bg-warm-ivory">
     <div class="section-shell py-10 md:py-14">
       <div class="grid gap-px border border-border-soft bg-border-soft md:grid-cols-2 xl:grid-cols-3">

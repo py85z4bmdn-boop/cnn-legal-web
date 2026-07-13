@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://cnn-web.vercel.app/sitemap.xml

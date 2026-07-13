@@ -1,7 +1,6 @@
 ---
 import HeroBreadcrumb from "../components/HeroBreadcrumb.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ContactInfo from "../components/ContactInfo.astro";
 import { site } from "../data/site";
 
 const title = `Liên hệ | ${site.name}`;
@@ -59,66 +58,110 @@ const structuredData = [
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={pagePath} structuredData={structuredData}>
-  <!-- Hero banner -->
-  <section class="relative overflow-hidden">
-    <div class="bg-gradient-to-b from-ink-black via-[#142a45] to-deep-blue-navy">
-      <div class="section-shell py-20 md:py-28 lg:py-32">
-        <HeroBreadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Liên hệ" }]} />
+  
+  <section class="relative overflow-hidden py-24 md:py-32 lg:py-40">
+    
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/images/lien-he-hero.png"
+        alt="Liên hệ với chúng tôi"
+        class="h-full w-full object-cover object-center"
+      />
+      
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
 
-        <h1 class="mt-8 max-w-3xl text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
-          Liên hệ với chúng tôi
-        </h1>
+    
+    <div class="section-shell relative z-10">
+      <HeroBreadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Liên hệ" }]} />
 
-        <p class="mt-6 max-w-xl text-[1rem] leading-[1.8] text-white/65 md:text-[1.0625rem]">
-          Vui lòng liên hệ trực tiếp qua email hoặc điện thoại. Chỉ chia sẻ tài liệu nhạy cảm khi đã thống nhất cách trao đổi phù hợp.
-        </p>
-      </div>
+      <h1 class="mt-8 max-w-3xl font-sans text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
+        Liên hệ với chúng tôi
+      </h1>
+
+      <p class="mt-6 max-w-xl font-sans text-[1rem] leading-[1.8] text-white/80 md:text-[1.0625rem]">
+        Mọi thông tin trao đổi ban đầu đều được giữ kín. Khi cần chia sẻ tài liệu, chúng tôi sẽ thống nhất cách thức phù hợp trước.
+      </p>
     </div>
   </section>
 
-  <!-- Office info card -->
-  <section class="bg-warm-ivory">
-    <div class="section-shell -mt-2 pb-10 pt-10 md:pb-14 md:pt-12">
-      <div class="mx-auto max-w-3xl rounded-xl border border-border-soft bg-surface-white p-8 shadow-[0_4px_24px_rgba(15,25,35,0.06)] md:p-10">
-        <h2 class="text-xl font-bold text-text-dark">{site.name}</h2>
-
-        <div class="mt-6 space-y-5">
-          <!-- Email -->
+  
+  <section class="bg-[#f0f0ec]">
+    <div class="section-shell py-16 md:py-24">
+      <div class="grid gap-10 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr]">
+        <div class="pt-1">
+          <p class="font-sans text-[1.0625rem] font-medium text-text-dark">Văn phòng</p>
+          <div class="mt-3 h-px w-8 bg-text-dark"></div>
+        </div>
+        <div class="space-y-8 font-sans text-[1rem] leading-[1.85] text-text-dark">
+          
           <div>
-            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">Email</p>
-            <a class="mt-1 block text-[0.9375rem] leading-7 text-text-muted hover:text-deep-blue-navy" href={`${site.publicEmailHref}?subject=${encodeURIComponent('Yêu cầu tư vấn pháp lý – CNN Legal')}`}>
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-text-dark">Email</p>
+            <a class="mt-1 block text-[1rem] leading-[1.85] text-text-dark hover:text-deep-blue-navy" href={`${site.publicEmailHref}?subject=${encodeURIComponent('Yêu cầu tư vấn pháp lý – CNN Legal')}`}>
               {site.publicEmail}
             </a>
           </div>
 
-          <!-- Phone -->
+          
           <div>
-            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">Hotline</p>
-            <a class="mt-1 block text-[0.9375rem] leading-7 text-text-muted hover:text-deep-blue-navy" href={site.publicPhoneHref}>
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-text-dark">Hotline</p>
+            <a class="mt-1 block text-[1rem] leading-[1.85] text-text-dark hover:text-deep-blue-navy" href={site.publicPhoneHref}>
               {site.publicPhone}
             </a>
           </div>
 
-          <!-- Address -->
+          
           <div>
-            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">Địa chỉ</p>
-            <p class="mt-1 text-[0.9375rem] leading-7 text-text-muted">
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-text-dark">Địa chỉ</p>
+            <p class="mt-1 text-[1rem] leading-[1.85] text-text-dark">
               {site.addressDisplay}
             </p>
           </div>
 
-          <!-- Working hours -->
+          
           <div>
-            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-deep-blue-navy">Thời gian làm việc</p>
-            <p class="mt-1 text-[0.9375rem] leading-7 text-text-muted">
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-text-dark">Thời gian làm việc</p>
+            <p class="mt-1 text-[1rem] leading-[1.85] text-text-dark">
               {site.workingHoursDisplay}
             </p>
+          </div>
+
+          
+          <div class="mt-12 inline-flex overflow-hidden border border-[#7c7c7c] bg-[#1a1a1a]" aria-label="Liên kết nhanh">
+            
+            <a
+              href="mailto:cnnlegal.vn@gmail.com"
+              class="flex h-14 w-16 items-center justify-center border-r border-[#7c7c7c] transition-colors hover:bg-[#252525]"
+              aria-label="Gửi email"
+            >
+              <img class="h-7 w-7 object-contain" src="/images/gmail-logo.png" alt="" loading="lazy" />
+            </a>
+
+            
+            <a
+              href="https://www.google.com/maps/place/C%C3%B4ng+ty+Lu%E1%BA%ADt+CNN+Legal/@10.7884776,106.765324,17z/data=!3m1!4b1!4m6!3m5!1s0x317527003ee47bdf:0x75dc07e36f22f8e1!8m2!3d10.7884776!4d106.7678989!16s%2Fg%2F11zbqqq4mz?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex h-14 w-16 items-center justify-center border-r border-[#7c7c7c] transition-colors hover:bg-[#252525]"
+              aria-label="Xem trên Google Maps"
+            >
+              <img class="h-8 w-8 object-contain" src="/images/google-maps-logo.png" alt="" loading="lazy" />
+            </a>
+
+            
+            <a
+              href="https://masothue.com/0319315660-cong-ty-luat-trach-nhiem-huu-han-mot-thanh-vien-cnn-legal"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex h-14 w-20 items-center justify-center transition-colors hover:bg-[#252525]"
+              aria-label="Tra cứu mã số thuế"
+            >
+              <img class="h-5 w-16 object-contain" src="/images/masothue-logo.png" alt="" loading="lazy" />
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Quick contact icons -->
-  <ContactInfo />
 </BaseLayout>

@@ -26,3 +26,4 @@ EXPOSE 3001
 ENV PORT=3001
 
 CMD ["./cnn-legal-support"]
+

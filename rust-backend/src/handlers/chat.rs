@@ -4,9 +4,11 @@ use std::sync::Arc;
 
 use crate::services::openrouter::OpenRouterClient;
 
+use crate::services::openrouter::Message;
+
 #[derive(Debug, Deserialize)]
 pub struct ChatRequest {
-    pub message: String,
+    pub history: Vec<Message>,
 }
 
 #[derive(Debug, Serialize)]
@@ -27,25 +29,34 @@ pub async fn chat_handler(
     State(client): State<Arc<OpenRouterClient>>,
     Json(payload): Json<ChatRequest>,
 ) -> Result<Sse<impl futures_util::Stream<Item = Result<Event, Infallible>>>, (StatusCode, Json<ErrorResponse>)> {
-    if payload.message.trim().is_empty() {
+    let last_message = payload.history.last().ok_or_else(|| {
+        (
+            StatusCode::BAD_REQUEST,
+            Json(ErrorResponse {
+                error: "Message history cannot be empty".to_string(),
+            }),
+        )
+    })?;
+
+    if last_message.content.trim().is_empty() {
         return Err((
             StatusCode::BAD_REQUEST,
             Json(ErrorResponse {
-                error: "Message cannot be empty".to_string(),
+                error: "Last message content cannot be empty".to_string(),
             }),
         ));
     }
 
-    if payload.message.len() > 2000 {
+    if last_message.content.len() > 2000 {
         return Err((
             StatusCode::BAD_REQUEST,
             Json(ErrorResponse {
-                error: "Message exceeds maximum length of 2000 characters".to_string(),
+                error: "Last message content exceeds maximum length of 2000 characters".to_string(),
             }),
         ));
     }
 
-    match client.stream_message(payload.message).await {
+    match client.stream_message(payload.history).await {
         Ok(stream) => {
             let event_stream = stream.map(|res| {
                 match res {
@@ -64,4 +75,3 @@ pub async fn chat_handler(
     }
 }
 
-// Made with Bob

@@ -1,1 +1,10 @@
-# No files ignored. Track everything.
+# Build artifacts
+target/
+
+# Private environment variables
+.env
+.env*.local
+
+# OS files
+.DS_Store
+Thumbs.db

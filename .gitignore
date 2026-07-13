@@ -1,0 +1,29 @@
+# Build output
+dist/
+.vercel/output/
+
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Rust build artifacts
+rust-backend/target/
+
+# Astro generated
+.astro/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/

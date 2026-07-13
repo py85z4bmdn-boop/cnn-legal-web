@@ -23,66 +23,20 @@ export type NavigationItem = {
 };
 
 const serviceMenuDescriptions: Record<string, string> = {
-  "luat-bao-chua-hinh-su": "Tố tụng hình sự.",
-  "luat-kinh-doanh": "Hợp đồng và giao dịch.",
-  "luat-doanh-nghiep": "Quản trị doanh nghiệp.",
-  "lap-ke-hoach-thua-ke-tai-san": "Di chúc và tài sản.",
-  "luat-cong-nghe-thong-tin": "Dữ liệu và công nghệ.",
-  "luat-tai-san": "Tranh chấp tài sản.",
-  "tranh-tung-uy-thac-di-san": "Ủy thác và di sản.",
+  "bao-chua-hinh-su": "Bào chữa trực tiếp tại tòa án.",
+  "tu-van-phap-ly-hinh-su": "Phân tích hồ sơ và chiến lược tố tụng.",
+  "dat-dai-bat-dong-san": "Tranh chấp đất đai và bồi thường.",
+  "dan-su-hop-dong": "Tranh chấp dân sự và hợp đồng.",
+  "thuong-mai-quoc-te": "Thư tín dụng L/C và trọng tài quốc tế.",
+  "nghien-cuu-tu-van-chinh-sach-phap-luat": "Đóng góp dự thảo luật và nghiên cứu.",
 };
 
 export const navigationItems: readonly NavigationItem[] = [
   {
     id: "tong-quan",
     label: "Tổng quan",
-    href: "/",
+    href: "/tong-quan/",
     description: "Giới thiệu ngắn gọn về CNN Legal và các hướng hỗ trợ chính.",
-  },
-  {
-    id: "luat-su-phu-trach",
-    label: "Luật sư phụ trách",
-    href: "/luat-su-phu-trach/",
-    description: "Cách làm việc trực tiếp với người chịu trách nhiệm xử lý.",
-    groups: [
-      {
-        label: "Trọng tâm",
-        children: [
-          {
-            label: "Làm việc trực tiếp với luật sư",
-            href: "/luat-su-phu-trach/",
-            description: "Một đầu mối pháp lý rõ ràng cho vấn đề cần xử lý.",
-          },
-          {
-            label: "Đánh giá vấn đề ban đầu",
-            href: "/luat-su-phu-trach/",
-            description: "Tiếp nhận bối cảnh, hồ sơ và rủi ro trước khi đề xuất hướng đi.",
-          },
-          {
-            label: "Bảo mật thông tin",
-            href: "/luat-su-phu-trach/",
-            description: "Giữ cách trao đổi thận trọng với tài liệu và thông tin nhạy cảm.",
-          },
-        ],
-      },
-      {
-        label: "Hồ sơ công khai",
-        children: [
-          {
-            label: "dangkimchinh.vn",
-            href: site.externalProfileUrl,
-            description: "Trang thông tin công khai của luật sư phụ trách.",
-            external: true,
-          },
-          {
-            label: "LinkedIn",
-            href: site.linkedInUrl,
-            description: "Liên kết hồ sơ nghề nghiệp công khai.",
-            external: true,
-          },
-        ],
-      },
-    ],
   },
   {
     id: "dich-vu",

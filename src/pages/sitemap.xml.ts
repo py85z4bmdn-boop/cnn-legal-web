@@ -31,7 +31,6 @@ const pages: SitemapEntry[] = [
     changefreq: "monthly" as const,
     priority: 0.7,
   })),
-  { path: "/luat-su-phu-trach/", changefreq: "monthly", priority: 0.8 },
   { path: "/lien-he/", changefreq: "monthly", priority: 0.7 },
 ];
 

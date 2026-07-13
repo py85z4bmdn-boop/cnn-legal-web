@@ -1,10 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import FounderPreview from "../components/FounderPreview.astro";
-import ServicesPreview from "../components/ServicesPreview.astro";
-import ArticlesPreview from "../components/ArticlesPreview.astro";
-import { services } from "../data/services";
 import { site } from "../data/site";
 
 const title = `${site.name} | ${site.slogan}`;
@@ -26,7 +22,6 @@ const structuredData = [
     url: site.canonicalBaseUrl,
     description: site.description,
     sameAs: [site.externalProfileUrl, site.linkedInUrl],
-    knowsAbout: services.map((service) => service.title),
     email: site.publicEmail,
     telephone: site.publicPhone,
     address: {
@@ -58,7 +53,11 @@ const structuredData = [
 
 <BaseLayout title={title} description={site.description} canonicalPath="/" structuredData={structuredData}>
   <Hero />
-  <FounderPreview />
-  <ServicesPreview />
-  <ArticlesPreview />
 </BaseLayout>
+
+<style is:global>
+  body {
+    overflow: hidden;
+    height: 100vh;
+  }
+</style>

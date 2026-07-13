@@ -24,7 +24,7 @@ Nguyên tắc:
 - Quy định/Căn cứ
 - Hướng xử lý/Thủ tục
 Nếu phức tạp/tranh chấp, khuyên khách liên hệ CNN Legal gặp LS Đặng Kim Chinh.
-Bắt buộc kết thúc bằng: "Thông tin trên chỉ mang tính chất tham khảo và không thay thế ý kiến tư vấn pháp lý chính thức.""#),
+Nếu nội dung chat liên quan đến cho biết thông tin đến pháp luật thì bắt buộc kết thúc bằng: "Thông tin trên chỉ mang tính chất tham khảo và không thay thế ý kiến tư vấn pháp lý chính thức.""#),
             model: String::from("deepseek/deepseek-v4-flash"),
             max_tokens: 2000,
             temperature: 0.7,
@@ -38,5 +38,4 @@ impl ChatConfig {
         Self::default()
     }
 }
-
 

@@ -1,4 +1,6 @@
 const API_URL = import.meta.env.PUBLIC_CHAT_API_URL || 'http://localhost:3001/chat';
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000;
 
 interface ChatMessage {
   role: 'user' | 'ai';
@@ -7,16 +9,26 @@ interface ChatMessage {
 
 let isWidgetOpen = false;
 let isLoading = false;
+let abortController: AbortController | null = null;
+let messageHistory: ChatMessage[] = [];
 
 function getElements() {
   return {
     icon: document.getElementById('cnn-support-icon') as HTMLButtonElement,
     widget: document.getElementById('cnn-support-widget') as HTMLDivElement,
-    closeButton: document.getElementById('cnn-support-close') as HTMLButtonElement,
     messagesContainer: document.getElementById('cnn-support-messages') as HTMLDivElement,
     input: document.getElementById('cnn-support-input') as HTMLInputElement,
     sendButton: document.getElementById('cnn-support-send') as HTMLButtonElement,
+    emptyState: document.getElementById('cnn-empty-state') as HTMLDivElement,
+    loadingIndicator: document.getElementById('cnn-support-loading') as HTMLDivElement,
   };
+}
+
+function hideEmptyState() {
+  const { emptyState } = getElements();
+  if (emptyState && !emptyState.classList.contains('hidden')) {
+    emptyState.classList.add('hidden');
+  }
 }
 
 function toggleWidget() {
@@ -43,53 +55,72 @@ function toggleWidget() {
   }
 }
 
-function displayMessage(message: ChatMessage) {
+function displayMessage(message: ChatMessage, contentDiv?: HTMLDivElement) {
   const { messagesContainer } = getElements();
+  
+  hideEmptyState();
+  
+  if (contentDiv) {
+    contentDiv.textContent = message.content;
+    return contentDiv;
+  }
   
   const messageDiv = document.createElement('div');
   messageDiv.className = `message ${message.role === 'user' ? 'user-message' : 'ai-message'}`;
   
-  const contentDiv = document.createElement('div');
-  contentDiv.className = 'message-content';
-  contentDiv.textContent = message.content;
+  const newContentDiv = document.createElement('div');
+  newContentDiv.className = 'message-content';
+  newContentDiv.textContent = message.content;
   
-  messageDiv.appendChild(contentDiv);
+  messageDiv.appendChild(newContentDiv);
   messagesContainer.appendChild(messageDiv);
   
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  requestAnimationFrame(() => {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  });
+  
+  return newContentDiv;
 }
 
-function displayLoadingMessage() {
-  const { messagesContainer } = getElements();
-  
-  const loadingDiv = document.createElement('div');
-  loadingDiv.className = 'message ai-message';
-  loadingDiv.id = 'loading-message';
-  
-  const contentDiv = document.createElement('div');
-  contentDiv.className = 'message-content';
-  contentDiv.textContent = 'Đang suy nghĩ...';
-  
-  loadingDiv.appendChild(contentDiv);
-  messagesContainer.appendChild(loadingDiv);
-  
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+function smoothScroll(container: HTMLElement) {
+  requestAnimationFrame(() => {
+    container.scrollTop = container.scrollHeight;
+  });
 }
 
-function removeLoadingMessage() {
-  const loadingMessage = document.getElementById('loading-message');
-  if (loadingMessage) {
-    loadingMessage.remove();
+async function fetchWithRetry(url: string, options: RequestInit, retries = MAX_RETRIES): Promise<Response> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url, options);
+      if (response.ok || response.status === 400) {
+        return response;
+      }
+      if (i < retries - 1 && response.status >= 500) {
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (i + 1)));
+        continue;
+      }
+      return response;
+    } catch (error) {
+      if (i < retries - 1) {
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (i + 1)));
+        continue;
+      }
+      throw error;
+    }
   }
+  throw new Error('Max retries exceeded');
 }
 
 async function sendMessage() {
-  const { input, sendButton } = getElements();
+  const { input, sendButton, loadingIndicator, messagesContainer } = getElements();
   const message = input.value.trim();
   
-  if (!message || isLoading) return;
+  if (!message || isLoading || message.length === 0) return;
   
-  displayMessage({ role: 'user', content: message });
+  const userMessage: ChatMessage = { role: 'user', content: message };
+  messageHistory.push(userMessage);
+  displayMessage(userMessage);
+  
   input.value = '';
   updateSendButtonState();
   
@@ -98,40 +129,55 @@ async function sendMessage() {
   sendButton.classList.remove('is-active');
   input.disabled = true;
   
-  displayLoadingMessage();
+  hideEmptyState();
+  loadingIndicator.classList.remove('hidden');
+  
+  abortController = new AbortController();
+  const startTime = Date.now();
+  
+  let aiContentDiv: HTMLDivElement | null = null;
+  let accumulatedContent = '';
   
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetchWithRetry(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'text/event-stream',
       },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({
+        history: messageHistory.map(msg => ({
+          role: msg.role === 'ai' ? 'assistant' : msg.role,
+          content: msg.content
+        }))
+      }),
+      signal: abortController.signal,
     });
     
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`HTTP ${response.status}: ${errorText}`);
     }
     
-    removeLoadingMessage();
-    
-    const { messagesContainer } = getElements();
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message ai-message';
     
-    const contentDiv = document.createElement('div');
-    contentDiv.className = 'message-content';
-    contentDiv.textContent = '';
+    aiContentDiv = document.createElement('div');
+    aiContentDiv.className = 'message-content';
+    aiContentDiv.textContent = '';
     
-    messageDiv.appendChild(contentDiv);
+    messageDiv.appendChild(aiContentDiv);
     messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    smoothScroll(messagesContainer);
 
     const reader = response.body?.getReader();
     const decoder = new TextDecoder();
     
     if (reader) {
       let buffer = '';
+      let lastUpdateTime = Date.now();
+      const UPDATE_INTERVAL = 50;
+      
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
@@ -142,23 +188,61 @@ async function sendMessage() {
         buffer = lines.pop() || '';
         
         for (const line of lines) {
-          if (line.startsWith('data:')) {
-            // Axum SSE trả về dạng "data: <từ>", cắt bỏ 6 ký tự đầu ("data: ") để giữ nguyên khoảng trắng của từ
-            const data = line.startsWith('data: ') ? line.slice(6) : line.slice(5);
-            if (data) {
-              contentDiv.textContent += data;
-              messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          const trimmed = line.trim();
+          if (!trimmed) continue;
+          
+          if (trimmed.startsWith('data:')) {
+            const data = trimmed.startsWith('data: ') ? trimmed.slice(6) : trimmed.slice(5);
+            if (data && data !== '[DONE]') {
+              accumulatedContent += data;
+              
+              const now = Date.now();
+              if (now - lastUpdateTime >= UPDATE_INTERVAL) {
+                aiContentDiv.textContent = accumulatedContent;
+                smoothScroll(messagesContainer);
+                lastUpdateTime = now;
+              }
             }
           }
         }
       }
+      
+      if (aiContentDiv && accumulatedContent) {
+        aiContentDiv.textContent = accumulatedContent;
+        smoothScroll(messagesContainer);
+      }
     }
-  } catch (error) {
-    removeLoadingMessage();
+    
+    if (accumulatedContent) {
+      messageHistory.push({ role: 'ai', content: accumulatedContent });
+    }
+    
+    const elapsed = Date.now() - startTime;
+    const remainingDelay = Math.max(0, 800 - elapsed);
+    await new Promise(resolve => setTimeout(resolve, remainingDelay));
+    
+    loadingIndicator.classList.add('hidden');
+  } catch (error: any) {
+    const elapsed = Date.now() - startTime;
+    const remainingDelay = Math.max(0, 800 - elapsed);
+    await new Promise(resolve => setTimeout(resolve, remainingDelay));
+    
+    loadingIndicator.classList.add('hidden');
+    
+    if (error.name === 'AbortError') {
+      console.log('Request cancelled by user');
+      return;
+    }
+    
     console.error('Error sending message:', error);
+    
+    const errorMessage = error.message?.includes('Failed to fetch')
+      ? 'Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.'
+      : 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.';
+    
     displayMessage({
       role: 'ai',
-      content: 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.',
+      content: errorMessage,
     });
   } finally {
     isLoading = false;
@@ -166,13 +250,21 @@ async function sendMessage() {
     input.disabled = false;
     input.focus();
     updateSendButtonState();
+    abortController = null;
   }
 }
 
 function updateSendButtonState() {
   const { input, sendButton } = getElements();
-  const hasContent = input.value.trim().length > 0;
-  sendButton.classList.toggle('is-active', hasContent);
+  const hasValidText = input.value.trim().length > 0;
+  
+  if (hasValidText && !isLoading) {
+    sendButton.classList.add('is-active');
+    sendButton.disabled = false;
+  } else {
+    sendButton.classList.remove('is-active');
+    sendButton.disabled = true;
+  }
 }
 
 function initializeChatWidget() {
@@ -184,7 +276,6 @@ function initializeChatWidget() {
   }
   
   elements.icon.addEventListener('click', toggleWidget);
-  elements.closeButton.addEventListener('click', toggleWidget);
   
   elements.sendButton.addEventListener('click', sendMessage);
   
@@ -193,7 +284,8 @@ function initializeChatWidget() {
   elements.input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      if (elements.input.value.trim().length > 0) {
+      const hasValidText = elements.input.value.trim().length > 0;
+      if (hasValidText && !isLoading) {
         sendMessage();
       }
     }
@@ -208,4 +300,3 @@ if (document.readyState === 'loading') {
   initializeChatWidget();
 }
 
-// Made with Bob

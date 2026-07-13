@@ -10,165 +10,106 @@ export type Service = {
 
 export const services = [
   {
-    slug: "luat-bao-chua-hinh-su",
-    title: "Luật bào chữa hình sự",
+    slug: "bao-chua-hinh-su",
+    title: "Bào chữa hình sự",
     summary:
-      "Hỗ trợ đánh giá hồ sơ, quyền tố tụng và hướng bảo vệ quyền lợi trong vụ việc hình sự.",
+      "Trực tiếp bào chữa tại tòa trong các vụ án hình sự, từ tội phạm kinh tế đến các vụ án phức tạp có yếu tố đặc thù.",
     description:
-      "Dịch vụ tập trung vào việc đọc hồ sơ, xác định vấn đề pháp lý trọng tâm và chuẩn bị phương án làm việc phù hợp trong từng giai đoạn tố tụng.",
+      "Bào chữa hình sự không chỉ là tranh luận tại tòa — mà bắt đầu từ việc hiểu đúng vụ việc, xác định rõ vai trò và hoàn cảnh của từng bị cáo, và chuẩn bị kỹ lưỡng ở mọi giai đoạn tố tụng. CNN Legal tiếp cận mỗi vụ án với thái độ thực tế — không phóng đại khả năng, nhưng bảo vệ quyền lợi hợp pháp của khách hàng đến cùng.",
     situations: [
-      "Cần hiểu quyền và nghĩa vụ khi làm việc với cơ quan tiến hành tố tụng.",
-      "Cần đánh giá tài liệu, lời khai, chứng cứ hoặc quyết định tố tụng đã nhận.",
-      "Cần chuẩn bị hướng bảo vệ quyền lợi cho cá nhân hoặc người thân.",
+      "Bào chữa tại phiên tòa sơ thẩm và phúc thẩm",
+      "Tư vấn pháp lý từ giai đoạn điều tra, truy tố",
+      "Phân tích tình tiết giảm nhẹ và xây dựng hồ sơ bào chữa",
+      "Bào chữa trong các vụ án kinh tế, tham nhũng, chức vụ",
+      "Hỗ trợ bị cáo người nước ngoài trong các vụ án có yếu tố đặc thù",
     ],
-    approach: [
-      "Xác định giai đoạn tố tụng và các mốc thời gian quan trọng.",
-      "Rà soát tài liệu để nhận diện vấn đề cần làm rõ.",
-      "Trao đổi thẳng về rủi ro, giới hạn pháp lý và việc cần chuẩn bị.",
-    ],
-    points: [
-      "Đánh giá rủi ro pháp lý từ tài liệu ban đầu.",
-      "Tư vấn quyền và nghĩa vụ trong quá trình tố tụng.",
-      "Chuẩn bị luận cứ, tài liệu và hướng làm việc với cơ quan tiến hành tố tụng.",
-    ],
+    approach: [],
+    points: [],
   },
   {
-    slug: "luat-kinh-doanh",
-    title: "Luật kinh doanh",
+    slug: "tu-van-phap-ly-hinh-su",
+    title: "Tư vấn pháp lý hình sự",
     summary:
-      "Tư vấn giao dịch, hợp đồng và rủi ro pháp lý trong hoạt động kinh doanh thường xuyên.",
+      "Phân tích hồ sơ, đánh giá tình tiết, tư vấn chiến lược xử lý trước và trong quá trình tố tụng.",
     description:
-      "CNN Legal hỗ trợ nhìn rõ rủi ro trước khi ký kết, thực hiện hoặc xử lý tranh chấp phát sinh từ giao dịch thương mại.",
+      "Không phải vụ việc nào cũng cần đến phiên tòa — nhưng mọi vụ việc đều cần được hiểu đúng ngay từ đầu. Khi bị triệu tập, khởi tố hoặc đối mặt với nguy cơ bị truy cứu trách nhiệm hình sự, việc có được tư vấn pháp lý kịp thời và thực tế có thể tạo ra sự khác biệt lớn. CNN Legal giúp khách hàng hiểu rõ tình huống của mình và chuẩn bị phương án ứng phó phù hợp.",
     situations: [
-      "Cần rà soát hợp đồng trước khi ký hoặc gia hạn.",
-      "Giao dịch đang phát sinh chậm thanh toán, không thực hiện hoặc tranh chấp nghĩa vụ.",
-      "Cần chuẩn bị phương án thương lượng hoặc xử lý khi đối tác vi phạm.",
+      "Tư vấn khi bị triệu tập lấy lời khai hoặc khởi tố bị can",
+      "Đánh giá dấu hiệu hình sự trong các tranh chấp dân sự, kinh tế",
+      "Phân tích cấu thành tội phạm và khả năng miễn, giảm trách nhiệm hình sự",
+      "Tư vấn phòng ngừa rủi ro hình sự cho cá nhân và doanh nghiệp",
+      "Hỗ trợ xây dựng hồ sơ giảm nhẹ, bồi thường khắc phục hậu quả",
     ],
-    approach: [
-      "Đọc hợp đồng theo nghĩa vụ cốt lõi, điều kiện thực hiện và điều khoản rủi ro.",
-      "Đánh giá chứng cứ giao dịch, trao đổi và lịch sử thực hiện.",
-      "Đề xuất hướng làm việc thực tế trước khi chọn phương án tranh chấp.",
-    ],
-    points: [
-      "Rà soát điều khoản hợp đồng và nghĩa vụ chính.",
-      "Đánh giá rủi ro trước khi đàm phán hoặc ký kết.",
-      "Tư vấn hướng xử lý khi giao dịch phát sinh tranh chấp.",
-    ],
+    approach: [],
+    points: [],
   },
   {
-    slug: "luat-doanh-nghiep",
-    title: "Luật doanh nghiệp",
+    slug: "dat-dai-bat-dong-san",
+    title: "Đất đai & Bất động sản",
     summary:
-      "Hỗ trợ vấn đề nội bộ doanh nghiệp, quản trị, nghĩa vụ thành viên và hồ sơ pháp lý cơ bản.",
+      "Tư vấn tranh chấp chuyển nhượng quyền sử dụng đất, bồi thường giải phóng mặt bằng, cơ chế thu hồi đất.",
     description:
-      "Dịch vụ hướng đến cách xử lý thực tế cho chủ doanh nghiệp, thành viên góp vốn và người quản lý khi cần quyết định có cơ sở pháp lý.",
+      "Tranh chấp đất đai thường kéo dài và phức tạp hơn nhiều so với ban đầu — đặc biệt khi giá đất tăng cao tạo động cơ để một bên phủ nhận ý chí ban đầu của giao dịch. CNN Legal giúp khách hàng nhận diện rủi ro pháp lý từ sớm, hiểu rõ bản chất giao dịch và chuẩn bị phương án xử lý thực tế nhất.",
     situations: [
-      "Cần xem xét quyền và nghĩa vụ của thành viên, cổ đông hoặc người quản lý.",
-      "Doanh nghiệp cần chuẩn bị quyết định, biên bản hoặc hồ sơ nội bộ.",
-      "Phát sinh bất đồng nội bộ về góp vốn, quản trị hoặc điều hành.",
+      "Tranh chấp chuyển nhượng quyền sử dụng đất",
+      "Giao dịch chuyển nhượng để cấn trừ nợ và rủi ro vô hiệu hóa",
+      "Bồi thường, hỗ trợ tái định cư khi bị thu hồi đất",
+      "Tư vấn pháp lý trước khi ký hợp đồng mua bán, chuyển nhượng",
+      "Phân tích rủi ro trong các dự án bất động sản có tranh chấp",
     ],
-    approach: [
-      "Xác định cơ cấu pháp lý và tài liệu nội bộ đang có.",
-      "Đối chiếu quyền, nghĩa vụ và thủ tục cần tuân thủ.",
-      "Ưu tiên hướng xử lý rõ ràng, giảm rủi ro cho quyết định kinh doanh.",
-    ],
-    points: [
-      "Tư vấn quyền và nghĩa vụ của thành viên, cổ đông, người quản lý.",
-      "Rà soát quyết định, biên bản và tài liệu nội bộ.",
-      "Hỗ trợ xử lý mâu thuẫn hoặc thay đổi trong hoạt động doanh nghiệp.",
-    ],
+    approach: [],
+    points: [],
   },
   {
-    slug: "lap-ke-hoach-thua-ke-tai-san",
-    title: "Luật lập kế hoạch thừa kế/tài sản",
+    slug: "dan-su-hop-dong",
+    title: "Dân sự & Hợp đồng",
     summary:
-      "Tư vấn sắp xếp tài sản, thừa kế và giấy tờ liên quan một cách rõ ràng, hạn chế tranh chấp.",
+      "Tư vấn và tranh tụng trong các tranh chấp dân sự, hợp đồng thuê mặt bằng, hợp đồng thương mại.",
     description:
-      "CNN Legal hỗ trợ khách hàng nhận diện tài sản, quyền liên quan và phương án pháp lý phù hợp trước khi lập hoặc điều chỉnh kế hoạch tài sản.",
+      "Tranh chấp dân sự có thể phát sinh từ bất kỳ giao dịch nào — hợp đồng thuê mặt bằng, vay mượn, mua bán tài sản hay bồi thường thiệt hại. CNN Legal giúp khách hàng hiểu rõ quyền lợi của mình, đánh giá thực tế tình huống và tìm hướng xử lý phù hợp — không hứa hẹn kết quả, nhưng luôn nói thẳng những gì có thể và không thể làm được.",
     situations: [
-      "Cần sắp xếp tài sản cá nhân hoặc gia đình để hạn chế tranh chấp.",
-      "Cần hiểu điều kiện, hình thức và rủi ro khi lập di chúc hoặc thỏa thuận liên quan.",
-      "Có nhiều người liên quan đến tài sản và cần làm rõ quyền, nghĩa vụ.",
+      "Tranh chấp hợp đồng thuê mặt bằng, mua bán tài sản",
+      "Bồi thường thiệt hại ngoài hợp đồng",
+      "Tranh chấp vay mượn, đặt cọc, tài sản chung",
+      "Tư vấn soạn thảo và rà soát hợp đồng dân sự trước khi ký kết",
+      "Hỗ trợ hòa giải và khởi kiện dân sự tại tòa",
     ],
-    approach: [
-      "Xác định tài sản, giấy tờ và người có quyền lợi liên quan.",
-      "Đánh giá phương án pháp lý phù hợp với mục tiêu của khách hàng.",
-      "Chuẩn bị tài liệu theo hướng rõ ràng, dễ kiểm chứng và hạn chế hiểu nhầm.",
-    ],
-    points: [
-      "Đánh giá tình trạng pháp lý của tài sản và người liên quan.",
-      "Tư vấn phương án lập di chúc, thỏa thuận hoặc văn bản cần thiết.",
-      "Hỗ trợ chuẩn bị tài liệu để giảm rủi ro tranh chấp sau này.",
-    ],
+    approach: [],
+    points: [],
   },
   {
-    slug: "luat-cong-nghe-thong-tin",
-    title: "Luật công nghệ thông tin",
+    slug: "thuong-mai-quoc-te",
+    title: "Thương mại Quốc tế",
     summary:
-      "Tư vấn hợp đồng công nghệ, dữ liệu, nền tảng số và rủi ro pháp lý trong vận hành trực tuyến.",
+      "Tư vấn thư tín dụng L/C, hợp đồng mua bán hàng hóa quốc tế, trọng tài đầu tư quốc tế.",
     description:
-      "Dịch vụ dành cho cá nhân, nhóm kinh doanh và doanh nghiệp cần hiểu nghĩa vụ pháp lý trong sản phẩm, dịch vụ hoặc giao dịch công nghệ.",
+      "Các giao dịch thương mại quốc tế đặt ra những vấn đề pháp lý mà pháp luật trong nước không phải lúc nào cũng có câu trả lời rõ ràng. CNN Legal tư vấn dựa trên nền tảng am hiểu cả quy định Việt Nam lẫn thông lệ quốc tế — giúp khách hàng nhận diện rủi ro trước khi ký kết và bảo vệ quyền lợi khi tranh chấp phát sinh.",
     situations: [
-      "Cần rà soát hợp đồng phần mềm, dịch vụ số hoặc điều khoản sử dụng.",
-      "Sản phẩm trực tuyến có rủi ro về dữ liệu, nội dung hoặc quan hệ với người dùng.",
-      "Phát sinh tranh chấp trong giao dịch công nghệ hoặc vận hành nền tảng.",
+      "Tư vấn và xử lý tranh chấp thư tín dụng L/C trong thanh toán quốc tế",
+      "Phân tích điều khoản và pháp luật áp dụng trong hợp đồng mua bán hàng hóa quốc tế",
+      "Tư vấn trọng tài đầu tư quốc tế và giải quyết tranh chấp xuyên biên giới",
+      "Phân tích rủi ro pháp lý trong hợp đồng có yếu tố nước ngoài trước khi ký kết",
+      "Tư vấn tuân thủ pháp luật Việt Nam cho doanh nghiệp nước ngoài",
     ],
-    approach: [
-      "Đọc tài liệu theo luồng vận hành thực tế của sản phẩm hoặc dịch vụ.",
-      "Xác định nghĩa vụ pháp lý liên quan đến dữ liệu, nội dung và hợp đồng.",
-      "Đưa ra hướng xử lý có thể áp dụng mà không làm phức tạp hoạt động kinh doanh.",
-    ],
-    points: [
-      "Rà soát điều khoản dịch vụ, hợp đồng phần mềm và giao dịch số.",
-      "Tư vấn rủi ro liên quan dữ liệu, nội dung và nền tảng trực tuyến.",
-      "Hỗ trợ xử lý tranh chấp phát sinh trong môi trường công nghệ.",
-    ],
+    approach: [],
+    points: [],
   },
   {
-    slug: "luat-tai-san",
-    title: "Luật tài sản",
+    slug: "nghien-cuu-tu-van-chinh-sach-phap-luat",
+    title: "Chính sách & Nghiên cứu Pháp luật",
     summary:
-      "Tư vấn quyền tài sản, giao dịch tài sản và tranh chấp liên quan đến sở hữu hoặc sử dụng.",
+      "Đóng góp ý kiến pháp lý cho dự thảo luật, viết bài chuyên ngành được đăng tại Thư viện Quốc hội và các tạp chí pháp lý hàng đầu.",
     description:
-      "CNN Legal hỗ trợ xác định quyền, nghĩa vụ và hướng xử lý khi tài sản là trọng tâm của giao dịch hoặc tranh chấp.",
+      "Bên cạnh hoạt động tranh tụng, CNN Legal dành thời gian nghiên cứu và đóng góp vào quá trình hoàn thiện pháp luật. Các phân tích chính sách đã được đăng tải tại Thư viện Quốc hội và Tạp chí Luật sư Việt Nam — không phải để quảng bá, mà vì đây là cách chúng tôi hiểu pháp luật sâu hơn và phục vụ khách hàng tốt hơn.",
     situations: [
-      "Cần đánh giá giấy tờ, nguồn gốc hoặc quyền đối với tài sản.",
-      "Chuẩn bị giao dịch chuyển nhượng, cho thuê, bảo đảm hoặc thỏa thuận sử dụng.",
-      "Đang có tranh chấp về việc chiếm hữu, sử dụng hoặc định đoạt tài sản.",
+      "Phân tích và phản biện dự thảo Bộ luật Hình sự sửa đổi",
+      "Nghiên cứu về hình phạt, dẫn độ và hợp tác tư pháp quốc tế",
+      "Bình luận án lệ và thực tiễn tố tụng",
+      "Tư vấn chính sách pháp lý cho doanh nghiệp đổi mới sáng tạo",
+      "Tư vấn pháp lý cho tổ chức, hiệp hội nghề nghiệp",
     ],
-    approach: [
-      "Rà soát tài liệu chứng minh quyền và tình trạng pháp lý của tài sản.",
-      "Xác định người liên quan, nghĩa vụ kèm theo và điểm có thể tranh chấp.",
-      "Đề xuất hướng xử lý dựa trên chứng cứ và mục tiêu thực tế của khách hàng.",
-    ],
-    points: [
-      "Đánh giá giấy tờ, nguồn gốc và tình trạng pháp lý của tài sản.",
-      "Tư vấn giao dịch chuyển nhượng, bảo đảm hoặc sử dụng tài sản.",
-      "Hỗ trợ định hướng xử lý khi phát sinh tranh chấp.",
-    ],
-  },
-  {
-    slug: "tranh-tung-uy-thac-di-san",
-    title: "Tranh tụng về ủy thác và di sản",
-    summary:
-      "Hỗ trợ tranh chấp liên quan đến quản lý tài sản, di sản, nghĩa vụ ủy thác và quyền thừa kế.",
-    description:
-      "Dịch vụ tập trung vào việc phân tích tài liệu, quan hệ pháp lý và quyền lợi của các bên trong tranh chấp tài sản, di sản.",
-    situations: [
-      "Có tranh chấp về quản lý, phân chia hoặc thực hiện nghĩa vụ liên quan đến di sản.",
-      "Cần xem xét vai trò của người quản lý tài sản, người thụ hưởng hoặc người thừa kế.",
-      "Cần chuẩn bị hướng thương lượng hoặc tố tụng dựa trên hồ sơ hiện có.",
-    ],
-    approach: [
-      "Lập lại bức tranh tài sản, di sản, người liên quan và tài liệu chứng minh.",
-      "Đánh giá quyền, nghĩa vụ và điểm yếu trong từng hướng yêu cầu.",
-      "Chuẩn bị phương án làm việc thận trọng, không công bố chi tiết nhạy cảm.",
-    ],
-    points: [
-      "Rà soát hồ sơ di sản, thỏa thuận và tài liệu quản lý tài sản.",
-      "Đánh giá quyền, nghĩa vụ và vị trí pháp lý của từng bên.",
-      "Chuẩn bị hướng thương lượng hoặc tố tụng khi cần thiết.",
-    ],
+    approach: [],
+    points: [],
   },
 ] as const satisfies readonly Service[];
 
