@@ -9,7 +9,7 @@ export default defineConfig({
     imageService: true,
     imagesConfig: {
       sizes: [320, 640, 768, 1024, 1280, 1536],
-      formats: ["avif", "webp"],
+      formats: ["image/avif", "image/webp"],
     },
   }),
   vite: {
