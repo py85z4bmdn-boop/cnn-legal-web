@@ -13,6 +13,7 @@ export type NotableCase = {
   readonly role: string;
   readonly defendant: string;
   readonly charge: string;
+  readonly category: string;
   readonly summary: string;
   readonly body: string;
   readonly keyArguments: readonly string[];
@@ -31,6 +32,7 @@ export const notableCases: readonly NotableCase[] = [
     role: "Luật sư bào chữa",
     defendant: "Kwok Hakman Oliver (quốc tịch Úc, nguyên TGĐ Công ty CP Tập đoàn Đầu tư An Đông)",
     charge: "Lừa đảo chiếm đoạt tài sản (đồng phạm giúp sức)",
+    category: "Hình sự",
     summary:
       "Luật sư Đặng Kim Chinh tham gia bào chữa cho bị cáo Kwok Hakman Oliver — bị cáo người nước ngoài duy nhất kháng cáo trong vụ án. Tại phiên tòa, luật sư đã trực tiếp thẩm vấn bị cáo để làm rõ vai trò, nhận thức và hoàn cảnh phạm tội.",
     body: `<p>Trong phiên phúc thẩm đại án Vạn Thịnh Phát giai đoạn 2 (diễn ra từ ngày 25/3 đến 21/4/2025 tại TAND Cấp cao tại TP.HCM), Luật sư Đặng Kim Chinh tham gia bào chữa cho bị cáo <strong>Kwok Hakman Oliver</strong> — quốc tịch Úc, nguyên Tổng Giám đốc Công ty CP Tập đoàn Đầu tư An Đông.</p>
@@ -68,6 +70,7 @@ export const notableCases: readonly NotableCase[] = [
     role: "Luật sư bào chữa",
     defendant: "Lê Khánh Hiền (cựu Tổng Giám đốc Ngân hàng SCB)",
     charge: "Vi phạm quy định về cho vay trong hoạt động của các tổ chức tín dụng",
+    category: "Hình sự",
     summary:
       "Luật sư Đặng Kim Chinh bào chữa cho bị cáo Lê Khánh Hiền tại phiên phúc thẩm. Luật sư đã trình bày trước HĐXX rằng bị cáo là một \"trường hợp đặc biệt\" cần được xem xét giảm nhẹ hình phạt.",
     body: `<p>Tại phiên phúc thẩm đại án Vạn Thịnh Phát giai đoạn 1 (diễn ra tháng 11–12/2024 tại TAND Cấp cao tại TP.HCM), Luật sư Đặng Kim Chinh tham gia bào chữa cho bị cáo <strong>Lê Khánh Hiền</strong> — cựu Tổng Giám đốc Ngân hàng SCB.</p>
@@ -98,6 +101,7 @@ export const notableCases: readonly NotableCase[] = [
     role: "Luật sư bào chữa",
     defendant: "Bị cáo trong vụ án buôn lậu xăng dầu quy mô lớn (74 bị cáo, giai đoạn 1)",
     charge: "Buôn lậu",
+    category: "Hình sự",
     summary:
       "Vụ án buôn lậu xăng dầu quy mô lớn nhất từ trước đến nay tại Việt Nam, với 74 bị cáo bị truy tố trong giai đoạn 1. Luật sư Đặng Kim Chinh tham gia bào chữa tại phiên phúc thẩm tại TAND Cấp cao tại TP.HCM.",
     body: `<p>Vụ án buôn lậu gần 200 triệu lít xăng dầu là một trong những vụ án buôn lậu quy mô lớn nhất từ trước đến nay tại Việt Nam. Giai đoạn 1 của vụ án có 74 bị cáo bị truy tố.</p>

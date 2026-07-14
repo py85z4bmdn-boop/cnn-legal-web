@@ -54,25 +54,29 @@ export const navigationItems: readonly NavigationItem[] = [
     ],
   },
   {
-    id: "bai-viet",
-    label: "Bài viết",
+    id: "kinh-nghiem",
+    label: "Kinh nghiệm",
     href: "/bai-viet/",
-    description: "Một số bài viết pháp lý công khai được dẫn nguồn rõ ràng.",
+    description: "Bài viết pháp lý và các vụ án tiêu biểu của CNN Legal.",
     groups: [
       {
-        label: "Bài viết gần đây",
+        label: "Bài viết",
         children: articles.slice(0, 4).map((article) => ({
           label: article.title,
           href: `/bai-viet/${article.slug}/`,
           description: `${article.publishedAt} · ${article.category}`,
         })),
       },
+      {
+        label: "Vụ án tiêu biểu",
+        children: [
+          {
+            label: "Xem tất cả vụ án",
+            href: "/vu-an-tieu-bieu/",
+            description: "Các vụ án mà Luật sư Đặng Kim Chinh đã tham gia bào chữa.",
+          },
+        ],
+      },
     ],
-  },
-  {
-    id: "vu-an-tieu-bieu",
-    label: "Vụ án tiêu biểu",
-    href: "/vu-an-tieu-bieu/",
-    description: "Các vụ án mà Luật sư Đặng Kim Chinh đã tham gia bào chữa.",
   },
 ];

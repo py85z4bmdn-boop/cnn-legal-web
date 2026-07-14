@@ -3,13 +3,44 @@ import { Image } from "astro:assets";
 import HeroBreadcrumb from "../../components/HeroBreadcrumb.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllArticles } from "../../data/articles";
+import { notableCases } from "../../data/cases";
 import { site } from "../../data/site";
 
 const articles = await getAllArticles();
 
-const title = `Bài viết | ${site.name}`;
-const description =
-  "Các bài viết pháp lý được đăng lại với sự đồng ý của tác giả và Tạp chí điện tử Luật sư Việt Nam. CNN Legal cung cấp liên kết đến nguồn gốc đầy đủ.";
+// Gộp bài viết và vụ án thành một danh sách chung
+const allItems = [
+  ...articles.map((a) => ({
+    type: "article" as const,
+    slug: a.slug,
+    href: `/bai-viet/${a.slug}/`,
+    title: a.title,
+    category: a.category,
+    date: a.publishedAt,
+    excerpt: a.excerpt,
+    imageUrl: a.imageUrl,
+    imageAlt: a.imageAlt,
+    source: a.sourceName,
+  })),
+  ...notableCases.map((c) => ({
+    type: "case" as const,
+    slug: c.slug,
+    href: `/vu-an-tieu-bieu/${c.slug}/`,
+    title: c.title,
+    category: c.category,
+    date: c.date,
+    excerpt: c.summary,
+    imageUrl: "",
+    imageAlt: "",
+    source: c.court,
+  })),
+];
+
+// Lấy danh sách category duy nhất
+const categories = ["Tất cả", ...Array.from(new Set(allItems.map((i) => i.category))).sort()];
+
+const title = `Kinh nghiệm | ${site.name}`;
+const description = "Tổng hợp các bài viết chuyên môn và vụ án tiêu biểu trong quá trình hành nghề của Luật sư Đặng Kim Chinh.";
 const canonicalPath = "/bai-viet/";
 const pageUrl = new URL(canonicalPath, site.canonicalBaseUrl).toString();
 const structuredData = [
@@ -26,100 +57,130 @@ const structuredData = [
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Trang chủ", item: site.canonicalBaseUrl },
-      { "@type": "ListItem", position: 2, name: "Bài viết", item: pageUrl },
+      { "@type": "ListItem", position: 2, name: "Kinh nghiệm", item: pageUrl },
     ],
   },
 ];
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
+  <!-- Hero -->
   <section class="relative overflow-hidden py-20 md:py-28 lg:py-32">
-    
     <div class="absolute inset-0 z-0">
       <Image
         class="h-full w-full object-cover object-center"
         src="/images/article-hero.jpg"
-        alt="Hình ảnh nền trang bài viết pháp luật CNN Legal"
+        alt="Hình ảnh nền trang kinh nghiệm pháp lý CNN Legal"
         width={1280}
         height={720}
         loading="eager"
       />
-      
       <div class="absolute inset-0 bg-black/55"></div>
     </div>
 
-    
     <div class="section-shell relative z-10">
-      <HeroBreadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Bài viết" }]} />
+      <HeroBreadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Kinh nghiệm" }]} />
 
       <h1 class="mt-8 max-w-3xl font-sans text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
-        Phân tích và bình luận pháp luật.
+        Kinh nghiệm thực tiễn pháp lý.
       </h1>
 
       <p class="mt-6 max-w-xl font-sans text-[1rem] leading-[1.8] text-white/80 md:text-[1.0625rem]">
-        Các bài viết dưới đây được đăng lại từ{" "}
-        <a
-          class="font-medium text-white hover:underline"
-          href="https://lsvn.vn/tag/luat-su-dang-kim-chinh.html"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Tạp chí điện tử Luật sư Việt Nam
-        </a>{" "}
-        với sự đồng ý của tác giả. Mọi quyền thuộc về tác giả và nguồn xuất bản gốc.
+        Tổng hợp các bài viết chuyên môn và vụ án tiêu biểu trong quá trình hành nghề của Luật sư Đặng Kim Chinh.
       </p>
     </div>
   </section>
 
-  
-  <section class="bg-warm-ivory">
-    <div class="section-shell py-10 md:py-14">
-      <div class="grid gap-px border border-border-soft bg-border-soft md:grid-cols-2 xl:grid-cols-3">
-        {articles.map((article) => (
-          <a
-            class="group flex flex-col bg-surface-white hover:bg-surface-subtle transition-colors"
-            href={`/bai-viet/${article.slug}/`}
-          >
-            <div class="overflow-hidden">
-              <img
-                class="aspect-[16/9] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                src={article.imageUrl}
-                alt={article.imageAlt}
-                loading="lazy"
-              />
-            </div>
-            <div class="flex flex-1 flex-col p-5">
-              <div class="flex items-center gap-2.5">
-                <span class="text-[0.625rem] font-semibold uppercase tracking-[0.06em] text-text-dark">
-                  {article.category}
-                </span>
-                <span class="text-[0.6875rem] font-medium text-text-muted">{article.publishedAt}</span>
-              </div>
-              <h2 class="mt-3 line-clamp-3 text-[0.9375rem] font-semibold leading-snug text-text-dark group-hover:text-deep-blue-navy">
-                {article.title}
-              </h2>
-              <p class="mt-3 line-clamp-3 text-[0.8125rem] leading-6 text-text-muted">
-                {article.excerpt}
-              </p>
-              <div class="mt-auto flex items-center justify-between gap-4 pt-5">
-                <p class="text-[0.6875rem] font-medium text-text-muted truncate">{article.sourceName}</p>
-                <span class="shrink-0 text-[0.75rem] font-medium text-deep-blue-navy group-hover:underline">
-                  Đọc bài →
-                </span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
+  <!-- Filter + List -->
+  <section style="background:#e8e8e4;">
+    <div class="section-shell py-16 md:py-20">
+      <div class="flex flex-col gap-12 lg:flex-row lg:gap-20">
 
-      <div class="mt-8 border-t border-border-soft pt-6">
-        <p class="text-[0.8125rem] leading-7 text-text-muted">
-          <strong class="font-semibold text-text-dark">Về bản quyền:</strong>{" "}
-          Các bài viết được đăng lại với sự đồng ý của tác giả và tạp chí nguồn.
-          Để đọc toàn bộ bài viết tại nguồn gốc, vui lòng nhấn vào từng bài và sử dụng liên kết
-          "Đọc bài viết gốc tại LSVN".
-        </p>
+        <!-- Sidebar filter -->
+        <aside class="shrink-0 lg:w-[260px]">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="flex items-center gap-1.5 text-[0.8125rem] font-medium text-text-dark whitespace-nowrap">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"/>
+              </svg>
+              Bộ lọc
+            </span>
+            <div class="h-px flex-1 bg-text-dark/30"></div>
+          </div>
+          <div class="grid grid-cols-1 gap-2">
+            {categories.map((cat) => (
+              <button
+                class:list={[
+                  "filter-btn px-4 py-4 text-center text-[0.875rem] font-medium transition-all border border-text-dark/20 rounded-xl hover:scale-105",
+                  cat === "Tất cả"
+                    ? "bg-ink-black text-white"
+                    : "bg-surface-white text-text-dark",
+                ]}
+                data-category={cat}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        <!-- 2-column link list -->
+        <div class="flex-1">
+          <p class="mb-8 text-[2rem] text-text-dark" style="font-family:'Inter',sans-serif; font-weight:600; letter-spacing:-0.01em;">Bài viết & Dự án</p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-5" id="items-grid">
+            {allItems.map((item) => (
+              <li class="experience-item" data-category={item.category}>
+                <a
+                  class="text-[1.0625rem] leading-snug text-[#1a4a9e] hover:text-[#0f2f6b] hover:underline underline-offset-2"
+                  href={item.href}
+                >
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <!-- Empty state -->
+          <div id="empty-state" class="hidden py-12 text-[0.9375rem] text-text-muted">
+            Không có kết quả cho chủ đề này.
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+  const items = document.querySelectorAll<HTMLLIElement>(".experience-item");
+  const emptyState = document.getElementById("empty-state");
+  const heading = document.querySelector<HTMLParagraphElement>("#items-grid + p, .flex-1 > p");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const selected = btn.dataset.category!;
+
+      // Update active button style
+      buttons.forEach((b) => {
+        const isActive = b.dataset.category === selected;
+        b.classList.toggle("bg-ink-black", isActive);
+        b.classList.toggle("text-white", isActive);
+        b.classList.toggle("bg-surface-white", !isActive);
+        b.classList.toggle("text-text-dark", !isActive);
+        b.classList.toggle("border-text-dark/20", true);
+      });
+
+      // Show/hide items
+      let visibleCount = 0;
+      items.forEach((item) => {
+        const match = selected === "Tất cả" || item.dataset.category === selected;
+        item.classList.toggle("hidden", !match);
+        if (match) visibleCount++;
+      });
+
+      emptyState?.classList.toggle("hidden", visibleCount > 0);
+    });
+  });
+</script>
