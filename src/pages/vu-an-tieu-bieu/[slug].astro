@@ -42,11 +42,6 @@ const structuredData = [
 ---
 
 <BaseLayout title={title} description={caseItem.summary} canonicalPath={canonicalPath} structuredData={structuredData}>
-  <Breadcrumb items={[
-    { label: "Trang chủ", href: "/" },
-    { label: "Kinh nghiệm", href: "/bai-viet/" },
-    { label: caseItem.title },
-  ]} />
 
   <div class="bg-surface-white">
     <div class="section-shell py-12 md:py-16">
@@ -67,24 +62,26 @@ const structuredData = [
         </h1>
 
         
-        <div class="mt-8 grid gap-4 rounded-xl border border-border-soft bg-surface-subtle p-5 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Vai trò</p>
-            <p class="mt-1 text-[0.8125rem] font-medium text-text-dark">{caseItem.role}</p>
+        {(caseItem.role || caseItem.defendant || caseItem.charge || caseItem.date) && (
+          <div class="mt-8 grid gap-4 rounded-xl border border-border-soft bg-surface-subtle p-5 sm:grid-cols-2 lg:grid-cols-4">
+            {caseItem.role && <div>
+              <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Vai trò</p>
+              <p class="mt-1 text-[0.8125rem] font-medium text-text-dark">{caseItem.role}</p>
+            </div>}
+            {caseItem.defendant && <div>
+              <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Bị cáo</p>
+              <p class="mt-1 text-[0.8125rem] font-medium text-text-dark">{caseItem.defendant}</p>
+            </div>}
+            {caseItem.charge && <div>
+              <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Tội danh</p>
+              <p class="mt-1 text-[0.8125rem] font-medium text-text-dark">{caseItem.charge}</p>
+            </div>}
+            {caseItem.date && <div>
+              <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Thời gian</p>
+              <p class="mt-1 text-[0.8125rem] font-medium text-text-dark">{caseItem.date}</p>
+            </div>}
           </div>
-          <div>
-            <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Bị cáo</p>
-            <p class="mt-1 text-[0.8125rem] font-medium text-text-dark">{caseItem.defendant}</p>
-          </div>
-          <div>
-            <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Tội danh</p>
-            <p class="mt-1 text-[0.8125rem] font-medium text-text-dark">{caseItem.charge}</p>
-          </div>
-          <div>
-            <p class="text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-text-muted">Thời gian</p>
-            <p class="mt-1 text-[0.8125rem] font-medium text-text-dark">{caseItem.date}</p>
-          </div>
-        </div>
+        )}
 
         
         <div class="prose-legal mt-10 text-[0.9375rem] leading-[1.85] text-text-muted" set:html={caseItem.body} />
@@ -96,7 +93,7 @@ const structuredData = [
             <ul class="mt-4 space-y-3">
               {caseItem.keyArguments.map((arg) => (
                 <li class="flex gap-3 text-[0.875rem] leading-[1.75] text-text-muted">
-                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-blue-navy" aria-hidden="true"></span>
+                  <span class="shrink-0 font-medium text-text-dark" aria-hidden="true">–</span>
                   <span>{arg}</span>
                 </li>
               ))}
@@ -118,37 +115,38 @@ const structuredData = [
         )}
 
         
-        <div class="mt-10 border-t border-border-soft pt-8">
-          <h2 class="text-[1rem] font-bold text-text-dark">Nguồn tham khảo</h2>
-          <div class="mt-4 space-y-2">
-            {caseItem.sources.map((source, srcIndex) => (
-              <a
-                class="flex items-center gap-3 rounded-lg border border-border-soft bg-surface-white px-4 py-3 text-[0.875rem] font-medium text-deep-blue-navy transition-all hover:border-deep-blue-navy/30 hover:shadow-md"
-                href={source.url}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <svg class="h-4 w-4 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path d="M6.5 3.5H3a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V9.5" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M9.5 2h4.5v4.5M14 2L7 9" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <span>{source.name}</span>
-                <span class="ml-auto text-[0.75rem] text-text-muted">Nguồn {srcIndex + 1}</span>
-              </a>
-            ))}
+        {caseItem.sources.length > 0 && (
+          <div class="mt-10 border-t border-border-soft pt-8">
+            <h2 class="text-[1rem] font-bold text-text-dark">Nguồn tham khảo</h2>
+            <div class="mt-4 space-y-2">
+              {caseItem.sources.map((source, srcIndex) => (
+                <a
+                  class="flex items-center gap-3 rounded-lg border border-border-soft bg-surface-white px-4 py-3 text-[0.875rem] font-medium text-deep-blue-navy transition-all hover:border-deep-blue-navy/30 hover:shadow-md"
+                  href={source.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <svg class="h-4 w-4 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M6.5 3.5H3a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V9.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9.5 2h4.5v4.5M14 2L7 9" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>{source.name}</span>
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         
         <div class="mt-10 border-t border-border-soft pt-8">
           <a
-            href="/vu-an-tieu-bieu/"
+            href="/bai-viet/"
             class="inline-flex items-center gap-2 text-[0.875rem] font-medium text-deep-blue-navy hover:text-professional-blue"
           >
             <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <path d="M13 8H3M7 4L3 8l4 4" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <span>Quay lại danh sách vụ án</span>
+            <span>Quay lại Kinh nghiệm</span>
           </a>
         </div>
       </div>

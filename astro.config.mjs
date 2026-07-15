@@ -18,6 +18,11 @@ export default defineConfig({
       cssCodeSplit: true,
       minify: "esbuild",
     },
+    server: {
+      watch: {
+        ignored: ["!**/src/data/**"],
+      },
+    },
   },
   compressHTML: true,
   build: {
