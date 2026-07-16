@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^10.0.7",
+    "@fontsource/inter": "^5.2.8",
     "@vercel/speed-insights": "^2.0.0",
     "resend": "^6.17.2"
   }

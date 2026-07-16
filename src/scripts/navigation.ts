@@ -8,8 +8,36 @@ const megaTriggers = document.querySelectorAll<HTMLButtonElement>("[data-mega-tr
 const megaPanels = document.querySelectorAll<HTMLElement>("[data-mega-panel]");
 const accordionTriggers = document.querySelectorAll<HTMLButtonElement>("[data-accordion-trigger]");
 
+const DRAWER_TRANSITION_MS = 200;
+let isDrawerAnimating = false;
+let drawerUnlockTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
 const setMenuState = (isOpen: boolean) => {
   if (!menuButton || !drawer || !overlay) return;
+  if (isDrawerAnimating) return;
+
+  const currentlyOpen = menuButton.getAttribute("aria-expanded") === "true";
+  if (currentlyOpen === isOpen) return;
+
+  isDrawerAnimating = true;
+
+  const unlock = () => {
+    isDrawerAnimating = false;
+    if (drawerUnlockTimeoutId !== null) {
+      clearTimeout(drawerUnlockTimeoutId);
+      drawerUnlockTimeoutId = null;
+    }
+  };
+
+  drawer.addEventListener(
+    "transitionend",
+    (event) => {
+      if (event.target === drawer && event.propertyName === "transform") unlock();
+    },
+    { once: true }
+  );
+  drawerUnlockTimeoutId = setTimeout(unlock, DRAWER_TRANSITION_MS + 50);
+
   menuButton.setAttribute("aria-expanded", String(isOpen));
   drawer.classList.toggle("translate-x-full", !isOpen);
   drawer.classList.toggle("translate-x-0", isOpen);
