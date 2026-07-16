@@ -114,28 +114,6 @@
     box-shadow: 0 2px 8px rgba(15, 25, 35, 0.1);
   }
 
-  .mega-panel {
-    transform: translateY(-4px);
-    transition:
-      opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .mega-panel.opacity-100 { transform: translateY(0); }
-
-  .accordion-panel {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .accordion-inner {
-    overflow: hidden;
-    min-height: 0;
-  }
-
-  .accordion-panel.is-open { grid-template-rows: 1fr; }
-
   .article-body p {
     font-size: 0.9375rem;
     line-height: 1.8;
