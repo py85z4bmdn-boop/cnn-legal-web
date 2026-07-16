@@ -34,6 +34,7 @@ interface Props {
 }
 
 const { service } = Astro.props;
+const hasHeroImage = service.slug in heroImages;
 const title = `${service.title} | ${site.name}`;
 const description = service.summary;
 const canonicalPath = `/dich-vu/${service.slug}/`;
@@ -83,7 +84,7 @@ const structuredData = [
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
   
-  {(service.slug === "thuong-mai-quoc-te" || service.slug === "dan-su-hop-dong" || service.slug === "bao-chua-hinh-su" || service.slug === "tu-van-phap-ly-hinh-su" || service.slug === "dat-dai-bat-dong-san" || service.slug === "nghien-cuu-tu-van-chinh-sach-phap-luat") && (
+  {hasHeroImage && (
     <section class="relative overflow-hidden py-24 md:py-32 lg:py-40">
       
       <div class="absolute inset-0 z-0">
@@ -113,14 +114,14 @@ const structuredData = [
     </section>
   )}
 
-  {service.slug !== "thuong-mai-quoc-te" && service.slug !== "dan-su-hop-dong" && service.slug !== "bao-chua-hinh-su" && service.slug !== "tu-van-phap-ly-hinh-su" && service.slug !== "dat-dai-bat-dong-san" && service.slug !== "nghien-cuu-tu-van-chinh-sach-phap-luat" && (
+  {!hasHeroImage && (
     <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Dịch vụ", href: "/dich-vu/" }, { label: service.title }]} />
   )}
-  
-  {(service.slug === "thuong-mai-quoc-te" || service.slug === "dan-su-hop-dong" || service.slug === "bao-chua-hinh-su" || service.slug === "tu-van-phap-ly-hinh-su" || service.slug === "dat-dai-bat-dong-san" || service.slug === "nghien-cuu-tu-van-chinh-sach-phap-luat") ? (
+
+  {hasHeroImage ? (
     
     
-    <section class="bg-[#f0f0ec]">
+    <section class="bg-panel-cream">
       <div class="section-shell py-16 md:py-24">
         <div class="grid gap-10 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr]">
           <div class="pt-1">
@@ -135,7 +136,7 @@ const structuredData = [
     </section>
 
     
-    <section class="bg-[#e8e8e4] border-t border-[#d8d8d4]">
+    <section class="bg-panel-taupe border-t border-panel-taupe-border">
       <div class="section-shell py-16 md:py-24">
         <div class="grid gap-10 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr]">
           <div class="pt-1">

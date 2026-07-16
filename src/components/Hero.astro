@@ -31,7 +31,7 @@ import { site } from "../data/site";
             alt="CNN Legal – Dịch vụ pháp lý"
             width={1763}
             height={892}
-            loading="eager"
+            fetchpriority="low"
           />
         </div>
         
@@ -43,7 +43,7 @@ import { site } from "../data/site";
             alt="CNN Legal – Tư vấn chuyên nghiệp"
             width={1672}
             height={800}
-            loading="eager"
+            fetchpriority="low"
           />
         </div>
         
@@ -172,8 +172,8 @@ import { site } from "../data/site";
       }
 
       let currentIndex = 0;
-      const totalSlides = 3; 
-      const rotationInterval = 3000; 
+      const totalSlides = Math.min(bgImages.length, indicators.length);
+      const rotationInterval = 3000;
 
       function showSlide(index) {
         
@@ -221,12 +221,14 @@ import { site } from "../data/site";
     }
 
     
-    window.addEventListener('pageshow', function() {
-      
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      
+    window.addEventListener('pageshow', function(event) {
+
+      if (!event.persisted) {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+
       initSlider();
     });
   })();

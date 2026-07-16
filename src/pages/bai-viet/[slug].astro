@@ -106,18 +106,30 @@ const structuredData = [
         )}
 
         <div class="article-body mt-8 space-y-5">
-          {article.bodyParagraphs.map((para) => {
-            const isHeading = para.length < 120 && !para.endsWith('.') && !para.endsWith(',') && /^(\d+\.|[IVX]+\.|[A-Z])/.test(para);
-            return isHeading ? (
-              <h2 class="pt-3 text-[1.0625rem] font-semibold leading-snug text-text-dark first:pt-0">
-                {para}
-              </h2>
-            ) : (
-              <p class="text-[0.9375rem] leading-[1.8] text-text-dark">
-                {para}
-              </p>
-            );
-          })}
+          {article.bodyParagraphs.length > 0 ? (
+            article.bodyParagraphs.map((para) => {
+              const isHeading =
+                para.length < 120 &&
+                !para.endsWith('.') &&
+                !para.endsWith(',') &&
+                !para.endsWith(':') &&
+                !para.endsWith('?') &&
+                /^(\d+\.|[IVX]+\.|[A-Z])/.test(para);
+              return isHeading ? (
+                <h2 class="pt-3 text-[1.0625rem] font-semibold leading-snug text-text-dark first:pt-0">
+                  {para}
+                </h2>
+              ) : (
+                <p class="text-[0.9375rem] leading-[1.8] text-text-dark">
+                  {para}
+                </p>
+              );
+            })
+          ) : (
+            <p class="text-[0.9375rem] leading-[1.8] text-text-muted">
+              {article.excerpt || "Nội dung đang được cập nhật."}
+            </p>
+          )}
         </div>
 
         <div class="mt-10 border-t border-border-soft pt-6">

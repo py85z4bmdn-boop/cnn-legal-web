@@ -20,7 +20,7 @@ const {
   description = site.description,
   canonicalPath = Astro.url.pathname,
   ogType = "website",
-  ogImage = "/images/og-default.svg",
+  ogImage = "/images/og-default.png",
   structuredData = [],
   noindex = false,
 } = Astro.props;
@@ -52,7 +52,7 @@ const jsonLdToString = (item: JsonLd) => JSON.stringify(item).replaceAll("<", "\
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     
     <meta name="theme-color" content="#0f1923" />

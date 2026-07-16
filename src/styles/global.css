@@ -15,6 +15,10 @@
   --color-text-muted: #5b6472;
   --color-border-soft: #dce4ed;
   --color-surface-white: #ffffff;
+  --color-panel-cream: #f0f0ec;
+  --color-panel-taupe: #e8e8e4;
+  --color-panel-taupe-border: #d8d8d4;
+  --color-input-border: #c8c8c8;
 }
 
 @layer base {

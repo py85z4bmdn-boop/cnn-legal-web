@@ -1,6 +1,6 @@
 import { services } from "../data/services";
 import { site } from "../data/site";
-import { articles } from "../data/articles";
+import { getAllArticles } from "../data/articles";
 import { notableCases } from "../data/cases";
 
 interface SitemapEntry {
@@ -11,30 +11,32 @@ interface SitemapEntry {
 
 const today = new Date().toISOString().split("T")[0];
 
-const pages: SitemapEntry[] = [
-  { path: "/", changefreq: "weekly", priority: 1.0 },
-  { path: "/dich-vu/", changefreq: "weekly", priority: 0.9 },
-  ...services.map((s) => ({
-    path: `/dich-vu/${s.slug}/`,
-    changefreq: "monthly" as const,
-    priority: 0.8,
-  })),
-  { path: "/bai-viet/", changefreq: "weekly", priority: 0.9 },
-  ...articles.map((a) => ({
-    path: `/bai-viet/${a.slug}/`,
-    changefreq: "monthly" as const,
-    priority: 0.7,
-  })),
-  { path: "/vu-an-tieu-bieu/", changefreq: "monthly", priority: 0.8 },
-  ...notableCases.map((c) => ({
-    path: `/vu-an-tieu-bieu/${c.slug}/`,
-    changefreq: "monthly" as const,
-    priority: 0.7,
-  })),
-  { path: "/lien-he/", changefreq: "monthly", priority: 0.7 },
-];
+export async function GET() {
+  const articles = await getAllArticles();
 
-export function GET() {
+  const pages: SitemapEntry[] = [
+    { path: "/", changefreq: "weekly", priority: 1.0 },
+    { path: "/dich-vu/", changefreq: "weekly", priority: 0.9 },
+    ...services.map((s) => ({
+      path: `/dich-vu/${s.slug}/`,
+      changefreq: "monthly" as const,
+      priority: 0.8,
+    })),
+    { path: "/bai-viet/", changefreq: "weekly", priority: 0.9 },
+    ...articles.map((a) => ({
+      path: `/bai-viet/${a.slug}/`,
+      changefreq: "monthly" as const,
+      priority: 0.7,
+    })),
+    { path: "/vu-an-tieu-bieu/", changefreq: "monthly", priority: 0.8 },
+    ...notableCases.map((c) => ({
+      path: `/vu-an-tieu-bieu/${c.slug}/`,
+      changefreq: "monthly" as const,
+      priority: 0.7,
+    })),
+    { path: "/lien-he/", changefreq: "monthly", priority: 0.7 },
+  ];
+
   const urls = pages
     .map(
       (p) =>

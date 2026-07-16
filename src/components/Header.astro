@@ -1,9 +1,16 @@
 ---
-import { navigationItems } from "../data/navigation";
+import { navigationItems, type NavigationItem } from "../data/navigation";
 
 const currentPath = Astro.url.pathname;
-const isActive = (href: string) =>
+const matchesPrefix = (href: string) =>
   href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+
+const isActive = (item: NavigationItem) => {
+  const childHrefs = (item.groups ?? []).flatMap((group) =>
+    group.children.filter((child) => !child.external).map((child) => child.href)
+  );
+  return [item.href, ...childHrefs].some(matchesPrefix);
+};
 
 ---
 
@@ -27,7 +34,7 @@ const isActive = (href: string) =>
         <a
           class:list={[
             "rounded-md px-3 py-2 text-[0.9375rem] font-medium leading-none transition-all",
-            isActive(item.href) ? "text-text-dark" : "text-text-muted hover:text-text-dark",
+            isActive(item) ? "text-text-dark" : "text-text-muted hover:text-text-dark",
           ]}
           href={item.href}
         >
@@ -95,7 +102,7 @@ const isActive = (href: string) =>
         <a
           class:list={[
             "rounded px-3 py-2.5 text-[0.9375rem] font-medium hover:text-text-dark",
-            isActive(item.href) ? "text-text-dark" : "text-text-muted",
+            isActive(item) ? "text-text-dark" : "text-text-muted",
           ]}
           href={item.href}
         >

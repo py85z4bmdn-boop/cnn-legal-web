@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import HeroBreadcrumb from "../components/HeroBreadcrumb.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../data/site";
@@ -62,12 +63,12 @@ const structuredData = [
   <!-- Hero -->
   <section class="relative overflow-hidden py-24 md:py-32 lg:py-40">
     <div class="absolute inset-0 z-0">
-      <img
+      <Image
         src="/images/lien-he-hero.png"
         alt="Liên hệ với chúng tôi"
         class="h-full w-full object-cover object-center"
-        width="1920"
-        height="1080"
+        width={1920}
+        height={1080}
         loading="eager"
         fetchpriority="high"
       />
@@ -85,7 +86,7 @@ const structuredData = [
   </section>
 
   <!-- Content: 2 columns -->
-  <section class="bg-[#f0f0ec]">
+  <section class="bg-panel-cream">
     <div class="section-shell py-16 md:py-24">
       <div class="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
 
@@ -121,7 +122,7 @@ const structuredData = [
           </div>
 
           <!-- Google Maps -->
-          <div class="mt-8 overflow-hidden rounded-xl border border-[#c8c8c8]">
+          <div class="mt-8 overflow-hidden rounded-xl border border-input-border">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2979383976517!2d106.76532397666304!3d10.788477589361069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527003ee47bdf%3A0x75dc07e36f22f8e1!2zQ8O0bmcgdHkgTHXhuq10IENOTiBMZWdhbA!5e0!3m2!1svi!2s!4v1784172388898!5m2!1svi!2s"
               width="100%"
@@ -154,7 +155,7 @@ const structuredData = [
                   type="text"
                   required
                   autocomplete="name"
-                  class="mt-2 w-full rounded-xl border border-[#c8c8c8] bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
+                  class="mt-2 w-full rounded-xl border border-input-border bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
                   placeholder="Họ tên của bạn"
                 />
               </div>
@@ -168,7 +169,7 @@ const structuredData = [
                   type="tel"
                   required
                   autocomplete="tel"
-                  class="mt-2 w-full rounded-xl border border-[#c8c8c8] bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
+                  class="mt-2 w-full rounded-xl border border-input-border bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
                   placeholder="Số điện thoại để luật sư liên hệ"
                 />
               </div>
@@ -184,7 +185,7 @@ const structuredData = [
                 name="email"
                 type="email"
                 autocomplete="email"
-                class="mt-2 w-full rounded-xl border border-[#c8c8c8] bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
+                class="mt-2 w-full rounded-xl border border-input-border bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
                 placeholder="Email nhận phản hồi"
               />
             </div>
@@ -198,7 +199,7 @@ const structuredData = [
                 id="cf-field"
                 name="field"
                 required
-                class="mt-2 w-full rounded-xl border border-[#c8c8c8] bg-white px-4 py-3 text-[0.9375rem] text-text-dark focus:border-text-dark focus:outline-none"
+                class="mt-2 w-full rounded-xl border border-input-border bg-white px-4 py-3 text-[0.9375rem] text-text-dark focus:border-text-dark focus:outline-none"
               >
                 <option value="" disabled selected style="color: #9ca3af;">— Chọn lĩnh vực —</option>
                 <option value="Hình sự">Hình sự</option>
@@ -218,7 +219,7 @@ const structuredData = [
                 id="cf-subject"
                 name="subject"
                 type="text"
-                class="mt-2 w-full rounded-xl border border-[#c8c8c8] bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
+                class="mt-2 w-full rounded-xl border border-input-border bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
                 placeholder="Mô tả ngắn gọn vụ việc..."
               />
             </div>
@@ -233,7 +234,7 @@ const structuredData = [
                 name="message"
                 required
                 rows="5"
-                class="mt-2 w-full rounded-xl resize-none border border-[#c8c8c8] bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
+                class="mt-2 w-full rounded-xl resize-none border border-input-border bg-white px-4 py-3 text-[0.9375rem] text-text-dark placeholder:text-text-muted focus:border-text-dark focus:outline-none"
                 placeholder="Mô tả chi tiết vụ việc hoặc câu hỏi của bạn..."
               ></textarea>
             </div>
@@ -304,6 +305,7 @@ const structuredData = [
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
+        signal: AbortSignal.timeout(15000),
       });
       const json = await res.json();
 
@@ -315,7 +317,7 @@ const structuredData = [
         errorMsg.classList.remove('hidden');
       }
     } catch {
-      errorMsg.textContent = 'Không thể kết nối. Vui lòng thử lại sau.';
+      errorMsg.textContent = 'Không thể kết nối hoặc yêu cầu hết thời gian chờ. Vui lòng thử lại.';
       errorMsg.classList.remove('hidden');
     } finally {
       submitBtn.disabled = false;

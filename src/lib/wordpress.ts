@@ -41,10 +41,12 @@ function formatDate(isoDate: string): string {
 }
 
 function htmlToParagraphs(html: string): string[] {
-  const blocks = html.split(/<\/p>|<br\s*\/?>/gi);
-  return blocks
-    .map(stripHtml)
-    .filter((p) => p.length > 0);
+  const blocks = html.split(/<\/(?:p|h[1-6]|li|blockquote|div|tr|ul|ol|table)>|<br\s*\/?>/gi);
+  const paragraphs = blocks.map(stripHtml).filter((p) => p.length > 0);
+  if (paragraphs.length > 0) return paragraphs;
+
+  const fallback = stripHtml(html);
+  return fallback.length > 0 ? [fallback] : [];
 }
 
 function wpPostToArticle(post: WPPost): Article {

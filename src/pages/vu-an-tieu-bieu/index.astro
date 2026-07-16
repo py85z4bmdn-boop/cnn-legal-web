@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import HeroBreadcrumb from "../../components/HeroBreadcrumb.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { notableCases } from "../../data/cases";
@@ -32,12 +33,12 @@ const structuredData = [
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
   <section class="relative overflow-hidden py-20 md:py-28 lg:py-32">
     <div class="absolute inset-0 z-0">
-      <img
+      <Image
         class="h-full w-full object-cover object-center"
         src="/images/cases-hero.jpg"
         alt="Hình ảnh nền trang vụ án tiêu biểu CNN Legal"
-        width="1920"
-        height="1080"
+        width={1920}
+        height={1080}
         loading="eager"
         fetchpriority="high"
       />
