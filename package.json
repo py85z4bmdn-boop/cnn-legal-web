@@ -18,6 +18,8 @@
     "vite": "7.3.3"
   },
   "dependencies": {
-    "@astrojs/vercel": "^10.0.7"
+    "@astrojs/vercel": "^10.0.7",
+    "@vercel/speed-insights": "^2.0.0",
+    "resend": "^6.17.2"
   }
 }

@@ -1,6 +1,5 @@
 ---
 import Header from "../components/Header.astro";
-import CNNLegalSupport from "../components/CNNLegalSupport.astro";
 import { site } from "../data/site";
 import "../styles/global.css";
 
@@ -100,6 +99,5 @@ const jsonLdToString = (item: JsonLd) => JSON.stringify(item).replaceAll("<", "\
     <main>
       <slot />
     </main>
-    <CNNLegalSupport />
   </body>
 </html>

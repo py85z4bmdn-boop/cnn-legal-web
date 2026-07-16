@@ -1,9 +1,26 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import HeroBreadcrumb from "../../components/HeroBreadcrumb.astro";
 import { services, type Service } from "../../data/services";
 import { site } from "../../data/site";
+
+import imgThuongMai from "../../../public/images/thuong-mai-quoc-te-hero.jpg";
+import imgDanSu from "../../../public/images/dan-su-hop-dong-hero.jpg";
+import imgBaoChua from "../../../public/images/bao-chua-hinh-su-hero.jpg";
+import imgTuVan from "../../../public/images/tu-van-phap-ly-hinh-su-hero.png";
+import imgDatDai from "../../../public/images/dat-dai-bat-dong-san-hero.jpg";
+import imgNghienCuu from "../../../public/images/nghien-cuu-tu-van-chinh-sach-phap-luat-hero.jpg";
+
+const heroImages: Record<string, ImageMetadata> = {
+  "thuong-mai-quoc-te": imgThuongMai,
+  "dan-su-hop-dong": imgDanSu,
+  "bao-chua-hinh-su": imgBaoChua,
+  "tu-van-phap-ly-hinh-su": imgTuVan,
+  "dat-dai-bat-dong-san": imgDatDai,
+  "nghien-cuu-tu-van-chinh-sach-phap-luat": imgNghienCuu,
+};
 
 export function getStaticPaths() {
   return services.map((service) => ({
@@ -70,10 +87,12 @@ const structuredData = [
     <section class="relative overflow-hidden py-24 md:py-32 lg:py-40">
       
       <div class="absolute inset-0 z-0">
-        <img
-          src={service.slug === "thuong-mai-quoc-te" ? "/images/thuong-mai-quoc-te-hero.jpg" : service.slug === "dan-su-hop-dong" ? "/images/dan-su-hop-dong-hero.jpg" : service.slug === "bao-chua-hinh-su" ? "/images/bao-chua-hinh-su-hero.jpg" : service.slug === "tu-van-phap-ly-hinh-su" ? "/images/tu-van-phap-ly-hinh-su-hero.png" : service.slug === "dat-dai-bat-dong-san" ? "/images/dat-dai-bat-dong-san-hero.jpg" : "/images/nghien-cuu-tu-van-chinh-sach-phap-luat-hero.jpg"}
+        <Image
+          src={heroImages[service.slug]}
           alt={service.title}
           class="h-full w-full object-cover object-center"
+          loading="eager"
+          fetchpriority="high"
         />
         
         <div class="absolute inset-0 bg-black/50"></div>
