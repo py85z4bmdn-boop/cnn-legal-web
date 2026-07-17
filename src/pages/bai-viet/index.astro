@@ -8,7 +8,6 @@ import { site } from "../../data/site";
 
 const articles = await getAllArticles();
 
-// Gộp bài viết và vụ án thành một danh sách chung
 const allItems = [
   ...articles.map((a) => ({
     type: "article" as const,
@@ -36,7 +35,6 @@ const allItems = [
   })),
 ];
 
-// Lấy danh sách category duy nhất
 const categories = ["Tất cả", ...Array.from(new Set(allItems.map((i) => i.category))).sort()];
 
 const title = `Kinh nghiệm | ${site.name}`;
@@ -64,7 +62,6 @@ const structuredData = [
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
-  <!-- Hero -->
   <section class="relative overflow-hidden py-20 md:py-28 lg:py-32">
     <div class="absolute inset-0 z-0">
       <Image
@@ -91,12 +88,10 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- Filter + List -->
   <section class="bg-panel-taupe">
     <div class="section-shell py-16 md:py-20">
       <div class="flex flex-col gap-12 lg:flex-row lg:gap-20">
 
-        <!-- Sidebar filter -->
         <aside class="shrink-0 lg:w-[260px]">
           <div class="flex items-center gap-4 mb-6">
             <span class="flex items-center gap-1.5 text-[0.8125rem] font-medium text-text-dark whitespace-nowrap">
@@ -125,7 +120,6 @@ const structuredData = [
           </div>
         </aside>
 
-        <!-- 2-column link list -->
         <div class="flex-1">
           <p class="mb-8 text-[2rem] text-text-dark" style="font-family:'Inter',sans-serif; font-weight:600; letter-spacing:-0.01em;">Bài viết & Dự án</p>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-5" id="items-grid">
@@ -141,7 +135,6 @@ const structuredData = [
             ))}
           </ul>
 
-          <!-- Empty state -->
           <div id="empty-state" class="hidden py-12 text-[0.9375rem] text-text-muted">
             Không có kết quả cho chủ đề này.
           </div>
@@ -161,7 +154,6 @@ const structuredData = [
     btn.addEventListener("click", () => {
       const selected = btn.dataset.category!;
 
-      // Update active button style
       buttons.forEach((b) => {
         const isActive = b.dataset.category === selected;
         b.classList.toggle("bg-ink-black", isActive);
@@ -171,7 +163,6 @@ const structuredData = [
         b.classList.toggle("border-text-dark/20", true);
       });
 
-      // Show/hide items
       let visibleCount = 0;
       items.forEach((item) => {
         const match = selected === "Tất cả" || item.dataset.category === selected;

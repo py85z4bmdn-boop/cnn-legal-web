@@ -3,8 +3,14 @@ import { Resend } from "resend";
 
 export const prerender = false;
 
+if (!process.env.RESEND_API_KEY && typeof process.loadEnvFile === "function") {
+  try {
+    process.loadEnvFile();
+  } catch {}
+}
+
 const RATE_LIMIT_MAX = 3;
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 giờ
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 
@@ -22,7 +28,6 @@ function escapeHtml(value: string): string {
 function checkRateLimit(ip: string): { limited: boolean; retryAfterSeconds: number } {
   const now = Date.now();
 
-  // Dọn các entry đã hết hạn để tránh Map phình to trên instance chạy lâu
   for (const [key, entry] of rateLimitStore) {
     if (now >= entry.resetAt) rateLimitStore.delete(key);
   }
@@ -122,6 +127,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   if (sendError) {
+    console.error("[contact] Resend send failed:", JSON.stringify(sendError));
     return new Response(JSON.stringify({ error: "Không thể gửi email. Vui lòng thử lại sau." }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
