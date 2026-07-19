@@ -53,6 +53,10 @@
     overflow: hidden;
   }
 
+  img {
+    color: transparent;
+  }
+
   a, button {
     transition-duration: 125ms;
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);

@@ -4,6 +4,9 @@ import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   output: "static",
+  image: {
+    domains: ["img.lsvn.vn"],
+  },
   adapter: vercel({
     webAnalytics: { enabled: true },
     imageService: true,

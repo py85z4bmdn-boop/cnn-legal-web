@@ -46,8 +46,10 @@ const jsonLdToString = (item: JsonLd) => JSON.stringify(item).replaceAll("<", "\
       : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     }
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/cnn-mark.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/cnn-icon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/cnn-touch-180.png" />
 
     
     <meta name="theme-color" content="#0f1923" />
@@ -92,5 +94,6 @@ const jsonLdToString = (item: JsonLd) => JSON.stringify(item).replaceAll("<", "\
     <main>
       <slot />
     </main>
+    <script src="../scripts/image-preload.ts"></script>
   </body>
 </html>
