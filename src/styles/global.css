@@ -1,11 +1,8 @@
 @import "tailwindcss";
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/600.css";
-@import "@fontsource/inter/700.css";
+@import "@fontsource-variable/inter/wght.css";
 
 @theme {
-  --font-sans: "Inter", "Helvetica Neue", Arial, Helvetica, system-ui, "Segoe UI", sans-serif;
+  --font-sans: "Inter Variable", "Inter", "Helvetica Neue", Arial, Helvetica, system-ui, "Segoe UI", sans-serif;
   --color-ink-black: #0f1923;
   --color-ink-hover: #1c3045;
   --color-surface-subtle: #f7f8fa;
@@ -114,12 +111,6 @@
     text-decoration: underline;
   }
 
-  .service-tab[aria-selected="false"]:hover {
-    border-color: color-mix(in srgb, var(--color-deep-blue-navy) 30%, transparent);
-    color: var(--color-deep-blue-navy);
-    box-shadow: 0 2px 8px rgba(15, 25, 35, 0.1);
-  }
-
   .article-body p {
     font-size: 0.9375rem;
     line-height: 1.8;
@@ -155,9 +146,4 @@
     overflow: hidden;
   }
 
-  .line-clamp-1 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 }

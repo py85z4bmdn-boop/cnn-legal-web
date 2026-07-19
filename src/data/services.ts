@@ -112,6 +112,3 @@ export const services = [
     points: [],
   },
 ] as const satisfies readonly Service[];
-
-export const getServiceBySlug = (slug: string) =>
-  services.find((service) => service.slug === slug);

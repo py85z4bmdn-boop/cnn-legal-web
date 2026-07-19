@@ -437,9 +437,6 @@ export const articles: readonly Article[] = [
   },
 ];
 
-export const getArticleBySlug = (slug: string): Article | undefined =>
-  articles.find((a) => a.slug === slug);
-
 export async function getAllArticles(): Promise<Article[]> {
   const { fetchWordPressArticles } = await import("../lib/wordpress");
   const wpArticles = await fetchWordPressArticles();
