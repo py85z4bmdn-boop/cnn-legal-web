@@ -28,6 +28,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overscroll-behavior: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -36,6 +37,7 @@
     min-width: 320px;
     min-height: 100dvh;
     overflow-x: hidden;
+    overscroll-behavior: none;
     background: var(--color-warm-ivory);
     color: var(--color-text-dark);
     font-family: var(--font-sans);
