@@ -91,7 +91,7 @@ const structuredData = [
     <div class="section-shell py-10 md:py-14">
       <div class="mx-auto max-w-3xl">
 
-        {article.imageUrl && (
+        {article.imageUrl && !article.blocks && (
           <div class="overflow-hidden rounded-sm border border-border-soft bg-muted-blue">
             <Image
               class="aspect-[16/9] w-full object-cover"
@@ -106,25 +106,95 @@ const structuredData = [
         )}
 
         <div class="article-body mt-8 space-y-5">
-          {article.bodyParagraphs.length > 0 ? (
-            article.bodyParagraphs.map((para) => {
-              const isHeading =
-                para.length < 120 &&
-                !para.endsWith('.') &&
-                !para.endsWith(',') &&
-                !para.endsWith(':') &&
-                !para.endsWith('?') &&
-                /^(\d+\.|[IVX]+\.|[A-Z])/.test(para);
-              return isHeading ? (
-                <h2 class="pt-3 text-[1.0625rem] font-semibold leading-snug text-text-dark first:pt-0">
-                  {para}
-                </h2>
-              ) : (
-                <p class="text-[0.9375rem] leading-[1.8] text-text-dark">
-                  {para}
-                </p>
-              );
+          {article.blocks ? (
+            article.blocks.map((block) => {
+              switch (block.type) {
+                case "lead":
+                  return (
+                    <p class="text-[1.0625rem] font-bold leading-[1.7] text-text-dark">
+                      {block.text}
+                    </p>
+                  );
+                case "heading":
+                  return (
+                    <h2 class="pt-3 text-[1.0625rem] font-bold leading-snug text-text-dark">
+                      {block.text}
+                    </h2>
+                  );
+                case "subheading":
+                  return (
+                    <h3 class="pt-2 text-[0.9375rem] font-bold italic leading-snug text-text-dark">
+                      {block.text}
+                    </h3>
+                  );
+                case "italic":
+                  return (
+                    <p class="pt-1 text-[0.9375rem] italic leading-[1.8] text-text-dark">
+                      {block.text}
+                    </p>
+                  );
+                case "paragraph":
+                  return (
+                    <p class="text-[0.9375rem] leading-[1.8] text-text-dark">
+                      {block.text}
+                    </p>
+                  );
+                case "quote":
+                  return (
+                    <p class="border-l-2 border-border-soft pl-4 text-[0.9375rem] leading-[1.8] text-text-dark">
+                      {block.text}
+                    </p>
+                  );
+                case "image":
+                  return (
+                    <figure class="pt-1">
+                      <div class="overflow-hidden rounded-sm border border-border-soft bg-muted-blue">
+                        <Image
+                          class="aspect-[16/9] w-full object-cover"
+                          src={article.imageUrl}
+                          alt={article.imageAlt}
+                          width={900}
+                          height={506}
+                          loading="eager"
+                          fetchpriority="high"
+                        />
+                      </div>
+                      {block.caption && (
+                        <figcaption class="mt-2 text-center text-[0.8125rem] italic text-text-muted">
+                          {block.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  );
+                case "noteHeading":
+                  return (
+                    <p class="pt-2 text-[0.8125rem] font-bold leading-[1.75] text-text-dark">
+                      {block.text}
+                    </p>
+                  );
+                case "note":
+                  return (
+                    <p class="text-[0.8125rem] leading-[1.75] text-text-dark">
+                      {block.text}
+                    </p>
+                  );
+                case "signature":
+                  return (
+                    <div class="pt-4">
+                      <p class:list={["text-[0.9375rem] leading-[1.8] text-text-dark", block.nameBold && "font-bold"]}>
+                        {block.name}
+                      </p>
+                      <p class:list={["text-[0.9375rem] leading-[1.8] text-text-dark", block.orgItalic && "italic"]}>
+                        {block.org}
+                      </p>
+                    </div>
+                  );
+              }
             })
+          ) : article.bodyParagraphs.length > 0 ? (
+            article.bodyParagraphs.map((para) => (
+              <p class="text-[0.9375rem] leading-[1.8] text-text-dark">{para}</p>
+            ))
           ) : (
             <p class="text-[0.9375rem] leading-[1.8] text-text-muted">
               {article.excerpt || "Nội dung đang được cập nhật."}
