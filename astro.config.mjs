@@ -8,7 +8,6 @@ export default defineConfig({
     domains: ["img.lsvn.vn"],
   },
   adapter: vercel({
-    webAnalytics: { enabled: true },
     imageService: true,
     imagesConfig: {
       sizes: [320, 640, 768, 1024, 1280, 1536],
