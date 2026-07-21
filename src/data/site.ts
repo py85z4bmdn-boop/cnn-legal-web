@@ -23,5 +23,4 @@ export const site = {
   geo: { latitude: 10.7836, longitude: 106.7675 },
   areaServed: "Thành phố Hồ Chí Minh, Việt Nam",
   workingHoursDisplay: "Thứ Hai – Thứ Sáu: 08:00 – 17:00",
-  openingHoursSpec: "Mo-Fr 08:00-17:00",
 } as const;

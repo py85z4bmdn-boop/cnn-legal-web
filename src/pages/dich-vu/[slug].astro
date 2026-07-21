@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import HeroBreadcrumb from "../../components/HeroBreadcrumb.astro";
 import { services, type Service } from "../../data/services";
 import { site } from "../../data/site";
@@ -34,12 +33,10 @@ interface Props {
 }
 
 const { service } = Astro.props;
-const hasHeroImage = service.slug in heroImages;
 const title = `${service.title} | ${site.name}`;
 const description = service.summary;
 const canonicalPath = `/dich-vu/${service.slug}/`;
 const serviceUrl = new URL(canonicalPath, site.canonicalBaseUrl).toString();
-const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 3);
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -83,154 +80,65 @@ const structuredData = [
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} structuredData={structuredData}>
-  
-  {hasHeroImage && (
-    <section class="relative overflow-hidden py-24 md:py-32 lg:py-40">
-      
-      <div class="absolute inset-0 z-0 bg-ink-black">
-        <Image
-          src={heroImages[service.slug]}
-          alt={service.title}
-          class="h-full w-full object-cover object-center"
-          loading="eager"
-          fetchpriority="high"
-        />
-        
-        <div class="absolute inset-0 bg-black/50"></div>
-      </div>
 
-      
-      <div class="section-shell relative z-10">
-        <HeroBreadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Dịch vụ", href: "/dich-vu/" }, { label: service.title }]} />
+  <section class="relative overflow-hidden py-24 md:py-32 lg:py-40">
 
-        <h1 class="mt-8 max-w-3xl font-sans text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
-          {service.title}
-        </h1>
+    <div class="absolute inset-0 z-0 bg-ink-black">
+      <Image
+        src={heroImages[service.slug]}
+        alt={service.title}
+        class="h-full w-full object-cover object-center"
+        loading="eager"
+        fetchpriority="high"
+      />
 
-        <p class="mt-6 max-w-xl font-sans text-[1rem] leading-[1.8] text-white/80 md:text-[1.0625rem]">
-          {service.summary}
-        </p>
-      </div>
-    </section>
-  )}
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
 
-  {!hasHeroImage && (
-    <Breadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Dịch vụ", href: "/dich-vu/" }, { label: service.title }]} />
-  )}
 
-  {hasHeroImage ? (
-    
-    
-    <section class="bg-panel-cream">
-      <div class="section-shell py-16 md:py-24">
-        <div class="grid gap-10 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr]">
-          <div class="pt-1">
-            <p class="font-sans text-[1.0625rem] font-medium text-text-dark">Tổng quan</p>
-            <div class="mt-3 h-px w-8 bg-text-dark"></div>
-          </div>
-          <div class="font-sans text-[1rem] leading-[1.85] text-text-dark">
-            <p>{service.description}</p>
-          </div>
+    <div class="section-shell relative z-10">
+      <HeroBreadcrumb items={[{ label: "Trang chủ", href: "/" }, { label: "Dịch vụ", href: "/dich-vu/" }, { label: service.title }]} />
+
+      <h1 class="mt-8 max-w-3xl font-sans text-[2.25rem] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:text-[2.75rem] lg:text-[3.125rem]">
+        {service.title}
+      </h1>
+
+      <p class="mt-6 max-w-xl font-sans text-[1rem] leading-[1.8] text-white/80 md:text-[1.0625rem]">
+        {service.summary}
+      </p>
+    </div>
+  </section>
+
+
+
+  <section class="bg-panel-cream">
+    <div class="section-shell py-16 md:py-24">
+      <div class="grid gap-10 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr]">
+        <div class="pt-1">
+          <p class="font-sans text-[1.0625rem] font-medium text-text-dark">Tổng quan</p>
+          <div class="mt-3 h-px w-8 bg-text-dark"></div>
+        </div>
+        <div class="font-sans text-[1rem] leading-[1.85] text-text-dark">
+          <p>{service.description}</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    
-    <section class="bg-panel-taupe border-t border-panel-taupe-border">
-      <div class="section-shell py-16 md:py-24">
-        <div class="grid gap-10 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr]">
-          <div class="pt-1">
-            <p class="font-sans text-[1.0625rem] font-medium text-text-dark">Chúng tôi hỗ trợ</p>
-            <div class="mt-3 h-px w-8 bg-text-dark"></div>
-          </div>
-          <div class="font-sans text-[1rem] leading-[1.85] text-text-dark space-y-5">
-            {service.situations.map((item) => (
-              <p>{item}</p>
-            ))}
-          </div>
+
+  <section class="bg-panel-taupe border-t border-panel-taupe-border">
+    <div class="section-shell py-16 md:py-24">
+      <div class="grid gap-10 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr]">
+        <div class="pt-1">
+          <p class="font-sans text-[1.0625rem] font-medium text-text-dark">Chúng tôi hỗ trợ</p>
+          <div class="mt-3 h-px w-8 bg-text-dark"></div>
+        </div>
+        <div class="font-sans text-[1rem] leading-[1.85] text-text-dark space-y-5">
+          {service.situations.map((item) => (
+            <p>{item}</p>
+          ))}
         </div>
       </div>
-    </section>
-  ) : (
-    
-    <section class="bg-warm-ivory">
-      <div class="section-shell py-16 md:py-20">
-        <div class="mt-8 grid gap-10 lg:grid-cols-[1fr_0.42fr] lg:items-start">
-          <article>
-            <h1 class="text-4xl font-bold leading-tight text-text-dark md:text-5xl">
-              {service.title}
-            </h1>
-            <p class="mt-6 text-lg leading-8 text-text-muted">{service.description}</p>
-
-            <div class="mt-10 grid gap-5">
-              <section class="rounded-xl border border-border-soft bg-surface-white p-6 md:p-8" aria-labelledby="service-definition">
-                <h2 id="service-definition" class="text-2xl font-bold text-text-dark">Dịch vụ này là gì</h2>
-                <p class="mt-5 text-base leading-8 text-text-muted">{service.description}</p>
-              </section>
-
-              <section class="rounded-xl border border-border-soft bg-surface-white p-6 md:p-8" aria-labelledby="situations">
-                <h2 id="situations" class="text-2xl font-bold text-text-dark">Khi nào khách hàng có thể cần</h2>
-                <ul class="mt-6 grid gap-4">
-                  {service.situations.map((item) => (
-                    <li class="flex gap-3 text-base leading-8 text-text-muted">
-                      <span class="mt-3 h-2 w-2 shrink-0 rounded-full bg-warm-orange" aria-hidden="true"></span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              <section class="rounded-xl border border-border-soft bg-surface-white p-6 md:p-8" aria-labelledby="approach">
-                <h2 id="approach" class="text-2xl font-bold text-text-dark">CNN Legal tiếp cận vấn đề như thế nào</h2>
-                <ul class="mt-6 grid gap-4">
-                  {service.approach.map((item) => (
-                    <li class="flex gap-3 text-base leading-8 text-text-muted">
-                      <span class="mt-3 h-2 w-2 shrink-0 rounded-full bg-professional-blue" aria-hidden="true"></span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              <section class="rounded-xl border border-border-soft bg-surface-white p-6 md:p-8" aria-labelledby="scope">
-                <h2 id="scope" class="text-2xl font-bold text-text-dark">Phạm vi hỗ trợ</h2>
-                <ul class="mt-6 grid gap-4">
-                  {service.points.map((point) => (
-                    <li class="flex gap-3 text-base leading-8 text-text-muted">
-                      <span class="mt-3 h-2 w-2 shrink-0 rounded-full bg-deep-blue-navy" aria-hidden="true"></span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            </div>
-
-            <div class="mt-8 rounded-lg border border-border-soft bg-muted-blue p-5 text-sm leading-7 text-text-muted">
-              Nội dung trên trang này giúp định hướng ban đầu. Việc tư vấn cụ thể cần dựa trên tài liệu, mốc thời gian và mục tiêu xử lý của khách hàng.
-            </div>
-          </article>
-
-          <aside class="rounded-xl border border-border-soft bg-surface-white p-6">
-            <h2 class="text-lg font-bold text-text-dark">Trao đổi về dịch vụ này</h2>
-            <p class="mt-3 text-sm leading-7 text-text-muted">
-              Cần kiểm tra hồ sơ hoặc rủi ro pháp lý? Liên hệ trực tiếp để trao đổi bước đầu.
-            </p>
-            <a class="primary-button mt-6 w-full" href="/lien-he/">Liên hệ tư vấn</a>
-          </aside>
-        </div>
-
-        <section class="mt-14" aria-labelledby="related-services">
-          <h2 id="related-services" class="text-2xl font-bold text-text-dark">Dịch vụ liên quan</h2>
-          <div class="mt-6 grid gap-4 md:grid-cols-3">
-            {relatedServices.map((item) => (
-              <a class="rounded-lg border border-border-soft bg-surface-white p-5 hover:border-professional-blue hover:bg-muted-blue/60" href={`/dich-vu/${item.slug}/`}>
-                <h3 class="font-bold leading-snug text-text-dark">{item.title}</h3>
-                <p class="mt-3 text-sm leading-6 text-text-muted">{item.summary}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-      </div>
-    </section>
-  )}
+    </div>
+  </section>
 </BaseLayout>

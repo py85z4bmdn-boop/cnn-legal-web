@@ -5,23 +5,18 @@ const currentPath = Astro.url.pathname;
 const matchesPrefix = (href: string) =>
   href === "/" ? currentPath === "/" : currentPath.startsWith(href);
 
-const isActive = (item: NavigationItem) => {
-  const childHrefs = (item.groups ?? []).flatMap((group) =>
-    group.children.filter((child) => !child.external).map((child) => child.href)
-  );
-  return [item.href, ...childHrefs].some(matchesPrefix);
-};
+const isActive = (item: NavigationItem) =>
+  [item.href, ...(item.activePrefixes ?? [])].some(matchesPrefix);
 
 ---
 
 <header
-  class="enterprise-header sticky top-0 z-50 border-b border-border-soft bg-surface-white"
-  data-enterprise-header
+  class="sticky top-0 z-50 border-b border-border-soft bg-surface-white"
 >
   <div class="section-shell flex h-[3.75rem] items-center gap-6">
 
     <a href="/" class="shrink-0" aria-label="CNN Legal trang chủ">
-      <span class="font-['Inter',sans-serif] text-[1.25rem] font-bold tracking-tight text-text-dark">
+      <span class="font-sans text-[1.25rem] font-bold tracking-tight text-text-dark">
         CNN Legal
       </span>
     </a>
@@ -89,7 +84,7 @@ const isActive = (item: NavigationItem) => {
   >
     <div class="mb-6 flex items-center justify-between">
       <a href="/" class="shrink-0" aria-label="CNN Legal trang chủ">
-        <span class="font-['Inter',sans-serif] text-[1.25rem] font-bold tracking-tight text-text-dark">
+        <span class="font-sans text-[1.25rem] font-bold tracking-tight text-text-dark">
           CNN Legal
         </span>
       </a>

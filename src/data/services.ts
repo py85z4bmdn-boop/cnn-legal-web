@@ -4,8 +4,6 @@ export type Service = {
   readonly summary: string;
   readonly description: string;
   readonly situations: readonly string[];
-  readonly approach: readonly string[];
-  readonly points: readonly string[];
 };
 
 export const services = [
@@ -23,8 +21,6 @@ export const services = [
       "Bào chữa trong các vụ án kinh tế, tham nhũng, chức vụ",
       "Hỗ trợ bị cáo người nước ngoài trong các vụ án có yếu tố đặc thù",
     ],
-    approach: [],
-    points: [],
   },
   {
     slug: "tu-van-phap-ly-hinh-su",
@@ -40,8 +36,6 @@ export const services = [
       "Tư vấn phòng ngừa rủi ro hình sự cho cá nhân và doanh nghiệp",
       "Hỗ trợ xây dựng hồ sơ giảm nhẹ, bồi thường khắc phục hậu quả",
     ],
-    approach: [],
-    points: [],
   },
   {
     slug: "dat-dai-bat-dong-san",
@@ -57,8 +51,6 @@ export const services = [
       "Tư vấn pháp lý trước khi ký hợp đồng mua bán, chuyển nhượng",
       "Phân tích rủi ro trong các dự án bất động sản có tranh chấp",
     ],
-    approach: [],
-    points: [],
   },
   {
     slug: "dan-su-hop-dong",
@@ -74,8 +66,6 @@ export const services = [
       "Tư vấn soạn thảo và rà soát hợp đồng dân sự trước khi ký kết",
       "Hỗ trợ hòa giải và khởi kiện dân sự tại tòa",
     ],
-    approach: [],
-    points: [],
   },
   {
     slug: "thuong-mai-quoc-te",
@@ -91,8 +81,6 @@ export const services = [
       "Phân tích rủi ro pháp lý trong hợp đồng có yếu tố nước ngoài trước khi ký kết",
       "Tư vấn tuân thủ pháp luật Việt Nam cho doanh nghiệp nước ngoài",
     ],
-    approach: [],
-    points: [],
   },
   {
     slug: "nghien-cuu-tu-van-chinh-sach-phap-luat",
@@ -108,7 +96,5 @@ export const services = [
       "Tư vấn chính sách pháp lý cho doanh nghiệp đổi mới sáng tạo",
       "Tư vấn pháp lý cho tổ chức, hiệp hội nghề nghiệp",
     ],
-    approach: [],
-    points: [],
   },
 ] as const satisfies readonly Service[];
