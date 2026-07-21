@@ -68,6 +68,9 @@ const structuredData = [
         class="h-full w-full object-cover object-center"
         width={1920}
         height={1080}
+        widths={[320, 640, 768, 1024, 1280, 1536]}
+        sizes="100vw"
+        quality={80}
         loading="eager"
         fetchpriority="high"
       />
@@ -254,6 +257,9 @@ const structuredData = [
               class="absolute inset-0 h-full w-full object-cover"
               width={626}
               height={626}
+              widths={[320, 640]}
+              sizes="(min-width: 640px) 640px, 100vw"
+              quality={80}
             />
             <div class="relative z-10 max-w-md">
               <p class="font-sans text-[34px] font-[657] leading-tight tracking-[-0.02em] text-white">Cảm ơn bạn đã gửi yêu cầu liên hệ.</p>
