@@ -83,7 +83,7 @@ const structuredData = [
         )}
 
         
-        <div class="prose-legal mt-10 text-[0.9375rem] leading-[1.85] text-text-muted" set:html={caseItem.body} />
+        <div class="prose-legal mt-10 text-[0.9375rem] leading-[1.85] text-text-dark" set:html={caseItem.body} />
 
         
         {caseItem.keyArguments.length > 0 && (
@@ -91,7 +91,7 @@ const structuredData = [
             <h2 class="text-[1rem] font-bold text-text-dark">Luận điểm bào chữa chính</h2>
             <ul class="mt-4 space-y-3">
               {caseItem.keyArguments.map((arg) => (
-                <li class="flex gap-3 text-[0.875rem] leading-[1.75] text-text-muted">
+                <li class="flex gap-3 text-[0.875rem] leading-[1.75] text-text-dark">
                   <span class="shrink-0 font-medium text-text-dark" aria-hidden="true">–</span>
                   <span>{arg}</span>
                 </li>
@@ -163,5 +163,33 @@ const structuredData = [
   .prose-legal :global(strong) {
     color: var(--color-text-dark);
     font-weight: 600;
+  }
+  /* Matches the page's own section headings ("Luận điểm bào chữa chính",
+     "Nguồn tham khảo") so body and page headings read as one hierarchy. */
+  .prose-legal :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+  }
+  .prose-legal :global(h3) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+  }
+  /* Tailwind's preflight strips list markers and padding, so restore them. */
+  .prose-legal :global(ul) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.125rem;
+    list-style: disc;
+  }
+  .prose-legal :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .prose-legal :global(li:last-child) {
+    margin-bottom: 0;
   }
 </style>
