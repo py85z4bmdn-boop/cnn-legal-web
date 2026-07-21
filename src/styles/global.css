@@ -123,6 +123,16 @@
     background-size: 1rem 1rem;
   }
 
+  /*
+    Footnote blocks cite sources with long unbreakable URLs. Without this the
+    text paints past its container and the page scrolls horizontally on mobile
+    (e.g. 523px of content in a 390px viewport). Only affects words that would
+    otherwise overflow — normal wrapping is untouched.
+  */
+  .article-body {
+    overflow-wrap: break-word;
+  }
+
   .article-body p {
     font-size: 0.9375rem;
     line-height: 1.8;
