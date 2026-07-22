@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import AskBox from "../../components/AskBox.astro";
 import { notableCases } from "../../data/cases";
 import { site } from "../../data/site";
 
@@ -148,9 +149,13 @@ const structuredData = [
             <span>Quay lại Kinh nghiệm</span>
           </a>
         </div>
+
+        <div class="h-24" aria-hidden="true"></div>
       </div>
     </div>
   </div>
+
+  <AskBox />
 </BaseLayout>
 
 <style>
@@ -164,8 +169,6 @@ const structuredData = [
     color: var(--color-text-dark);
     font-weight: 600;
   }
-  /* Matches the page's own section headings ("Luận điểm bào chữa chính",
-     "Nguồn tham khảo") so body and page headings read as one hierarchy. */
   .prose-legal :global(h2) {
     margin-top: 2rem;
     margin-bottom: 0.75rem;
@@ -180,7 +183,6 @@ const structuredData = [
     font-weight: 600;
     color: var(--color-text-dark);
   }
-  /* Tailwind's preflight strips list markers and padding, so restore them. */
   .prose-legal :global(ul) {
     margin-bottom: 1.25rem;
     padding-left: 1.125rem;

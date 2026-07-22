@@ -90,10 +90,12 @@ const jsonLdToString = (item: JsonLd) => JSON.stringify(item).replaceAll("<", "\
     {jsonLdItems.map((item) => <script is:inline type="application/ld+json" set:html={jsonLdToString(item)} />)}
   </head>
   <body class="bg-warm-ivory text-text-dark antialiased">
-    <Header />
-    <main>
-      <slot />
-    </main>
+    <div data-app-shell>
+      <Header />
+      <main>
+        <slot />
+      </main>
+    </div>
     <script src="../scripts/image-preload.ts"></script>
   </body>
 </html>

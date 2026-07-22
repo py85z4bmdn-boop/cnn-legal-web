@@ -1,12 +1,5 @@
 @import "tailwindcss";
 
-/*
-  Only the two Inter subsets this site actually renders are declared here.
-  Importing @fontsource-variable/inter/wght.css pulls in all seven subsets, and
-  the browser then fetches latin-ext (85 KB) solely to cover "ư" — a character
-  the 10 KB vietnamese subset already provides. Cyrillic and Greek are never
-  needed. Ranges are copied verbatim from the upstream wght.css.
-*/
 @font-face {
   font-family: 'Inter Variable';
   font-style: normal;
@@ -123,12 +116,6 @@
     background-size: 1rem 1rem;
   }
 
-  /*
-    Footnote blocks cite sources with long unbreakable URLs. Without this the
-    text paints past its container and the page scrolls horizontally on mobile
-    (e.g. 523px of content in a 390px viewport). Only affects words that would
-    otherwise overflow — normal wrapping is untouched.
-  */
   .article-body {
     overflow-wrap: break-word;
   }

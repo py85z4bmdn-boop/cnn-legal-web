@@ -276,10 +276,6 @@ const structuredData = [
 </BaseLayout>
 
 <script>
-  // Bản đồ Google kéo theo ~400 KiB JavaScript. Nó nằm cuối trang nhưng
-  // loading="lazy" không giữ lại được: ngưỡng lazy của Chrome trên mạng chậm
-  // rất lớn nên iframe vẫn tải ngay, tranh băng thông với ảnh hero (phần tử
-  // LCP). Chỉ gắn src khi người dùng thực sự cuộn tới gần bản đồ.
   const mapFrame = document.querySelector<HTMLIFrameElement>('iframe[data-map-src]');
   if (mapFrame) {
     const loadMap = () => {
@@ -293,9 +289,6 @@ const structuredData = [
             observer.disconnect();
           }
         },
-        // Trên mobile bản đồ chỉ cách mép dưới màn hình ~180px, nên mọi
-        // rootMargin đáng kể đều khiến nó tải ngay lúc mở trang. Để 0: chỉ tải
-        // khi bản đồ thực sự lọt vào khung nhìn.
         { rootMargin: '0px' }
       );
       observer.observe(mapFrame);
