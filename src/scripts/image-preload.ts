@@ -30,11 +30,11 @@ async function preloadPageImages(rawHref: string): Promise<void> {
         const preloader = new Image();
         preloader.src = new URL(src, url.href).href;
       } catch {
-        /* bỏ qua src không hợp lệ */
+        void 0;
       }
     });
   } catch {
-    /* preload thất bại (mạng lỗi, timeout, HTML hỏng) — không ảnh hưởng gì tới trang */
+    void 0;
   }
 }
 

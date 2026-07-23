@@ -24,3 +24,6 @@ npm-debug.log*
 # Editor
 .vscode/
 .idea/
+.env.*
+!.env.example
+*.env

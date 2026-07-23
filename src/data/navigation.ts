@@ -1,7 +1,6 @@
 export type NavigationItem = {
   readonly label: string;
   readonly href: string;
-  /** Extra path prefixes that also mark this item as active. */
   readonly activePrefixes?: readonly string[];
 };
 
