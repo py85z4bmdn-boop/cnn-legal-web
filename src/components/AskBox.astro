@@ -1,3 +1,12 @@
+---
+interface Props {
+  subject?: string;
+}
+
+const { subject = "bài viết" } = Astro.props;
+const askPlaceholder = `Hỏi bất cứ điều gì về ${subject} này...`;
+---
+
 <div
   class="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-4 pb-4"
   data-ask-box
@@ -13,7 +22,7 @@
       type="text"
       autocomplete="off"
       class="block w-full bg-transparent text-[0.875rem] leading-4 text-text-dark placeholder:text-text-muted focus:outline-none"
-      placeholder="Hỏi bất cứ điều gì về bài viết này..."
+      placeholder={askPlaceholder}
       data-ask-input
     />
 
@@ -101,7 +110,7 @@
         type="text"
         autocomplete="off"
         class="block w-full bg-transparent text-[0.875rem] leading-4 text-text-dark placeholder:text-text-muted focus:outline-none"
-        placeholder="Hỏi bất cứ điều gì về bài viết này..."
+        placeholder={askPlaceholder}
         data-ask-panel-input
       />
 
@@ -208,6 +217,11 @@
 </style>
 
 <script>
+  function currentSlug(): string | null {
+    const m = location.pathname.match(/^\/(?:bai-viet|vu-an-tieu-bieu)\/([^/]+)\/?$/);
+    return m ? m[1] : null;
+  }
+
   const box = document.querySelector<HTMLElement>("[data-ask-box]");
   const form = document.querySelector<HTMLFormElement>("[data-ask-form]");
   const input = document.querySelector<HTMLInputElement>("[data-ask-input]");
@@ -353,7 +367,7 @@
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: question }),
+          body: JSON.stringify({ message: question, slug: currentSlug() }),
         });
         if (!res.ok || !res.body) {
           stopThinking();

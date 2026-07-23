@@ -165,6 +165,7 @@ pub fn last_source_updated_at(conn: &Connection, slug: &str) -> Result<Option<St
 
 #[derive(Debug, Clone)]
 pub struct Retrieved {
+    pub id: i64,
     pub title: String,
     pub section: String,
     pub content: String,
@@ -179,7 +180,7 @@ pub fn search_knn(
 ) -> Result<Vec<Retrieved>> {
 
     let mut stmt = conn.prepare(
-        "SELECT c.title, c.section, c.content, c.article_slug, v.distance
+        "SELECT c.id, c.title, c.section, c.content, c.article_slug, v.distance
          FROM vec_chunks v
          JOIN chunks c ON c.id = v.chunk_id
          WHERE v.embedding MATCH ?1 AND k = ?2
@@ -189,17 +190,49 @@ pub fn search_knn(
         rusqlite::params![query_embedding.as_bytes(), k as i64],
         |row| {
             Ok(Retrieved {
-                title: row.get(0)?,
-                section: row.get(1)?,
-                content: row.get(2)?,
-                article_slug: row.get(3)?,
-                distance: row.get::<_, f64>(4)? as f32,
+                id: row.get(0)?,
+                title: row.get(1)?,
+                section: row.get(2)?,
+                content: row.get(3)?,
+                article_slug: row.get(4)?,
+                distance: row.get::<_, f64>(5)? as f32,
             })
         },
     )?;
     let mut out = Vec::new();
     for r in rows {
         out.push(r?);
+    }
+    Ok(out)
+}
+
+pub fn fetch_doc_chunks(conn: &Connection, slug: &str, max_chars: usize) -> Result<Vec<Retrieved>> {
+    let mut stmt = conn.prepare(
+        "SELECT id, title, section, content, article_slug
+         FROM chunks
+         WHERE article_slug = ?1
+         ORDER BY id",
+    )?;
+    let rows = stmt.query_map(rusqlite::params![slug], |row| {
+        Ok(Retrieved {
+            id: row.get(0)?,
+            title: row.get(1)?,
+            section: row.get(2)?,
+            content: row.get(3)?,
+            article_slug: row.get(4)?,
+            distance: 0.0,
+        })
+    })?;
+    let mut out = Vec::new();
+    let mut used = 0usize;
+    for r in rows {
+        let r = r?;
+        let cost = r.content.chars().count();
+        if used + cost > max_chars && !out.is_empty() {
+            break;
+        }
+        used += cost;
+        out.push(r);
     }
     Ok(out)
 }

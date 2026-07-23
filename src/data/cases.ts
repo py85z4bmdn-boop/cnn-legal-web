@@ -23,6 +23,69 @@ export type NotableCase = {
 
 export const notableCases: readonly NotableCase[] = [
   {
+    id: "tham-o-k-center-k-dentist",
+    slug: "tham-o-tai-san-k-center-k-dentist",
+    title:
+      'Vụ án "Tham ô tài sản" xảy ra tại Công ty Cổ phần K Center - Phòng khám nha khoa K Dentist',
+    court: "TAND khu vực 4 - TP.HCM",
+    date: "",
+    year: 2026,
+    role: "",
+    defendant: "",
+    charge: "",
+    category: "Hình sự",
+    summary:
+      'Luật sư Đặng Kim Chinh nêu ý kiến pháp lý trên báo chí về vụ hai người lao động tại một phòng khám nha khoa ở Thành phố Hồ Chí Minh bị truy tố về tội "Tham ô tài sản" do giữ 37,5 triệu đồng tiền thu của khách hàng, đặt vấn đề về khả năng vận dụng tình tiết giảm nhẹ "người bị hại cũng có lỗi" trong khu vực tư nhân. Ngày 30/6/2026, tòa xét xử lại tuyên phạt hai bị cáo 7 năm 6 tháng tù và 2 năm 6 tháng tù.',
+    body: `<h2>Nội dung vụ án</h2>
+<p>Hai bị cáo Phan Ngọc Thanh Tâm và Châu Văn Sang làm việc tại một phòng khám nha khoa tại Thành phố Hồ Chí Minh, không có hợp đồng lao động, bị truy tố về tội "Tham ô tài sản" theo Điều 353 Bộ luật Hình sự do giữ 37,5 triệu đồng tiền làm răng thu của khách hàng. Bản án sơ thẩm lần đầu của Tòa án nhân dân Quận 10 tuyên phạt bị cáo Tâm 8 năm tù, bị cáo Sang 7 năm tù. Tòa án nhân dân Thành phố Hồ Chí Minh xét xử phúc thẩm, hủy toàn bộ bản án để điều tra lại. Tại cáo trạng ban hành ngày 11/8/2025, bị cáo Tâm bị truy tố theo khoản 2 Điều 353 (khung hình phạt 7–15 năm tù), bị cáo Sang theo khoản 1 (khung hình phạt 2–7 năm tù).</p>
+
+<h2>Ý kiến pháp lý</h2>
+<p>Trên Báo Pháp luật Thành phố Hồ Chí Minh ngày 14/8/2025, Luật sư Đặng Kim Chinh đặt vấn đề về khả năng vận dụng tình tiết giảm nhẹ "người bị hại cũng có lỗi" đối với tội tham ô tài sản trong khu vực tư nhân, với ba luận điểm:</p>
+<h3>Về thực trạng quản trị</h3>
+<p>Không ít doanh nghiệp khu vực tư nhân, đặc biệt trong lĩnh vực dịch vụ và thương mại, duy trì quy trình quản lý dòng tiền thu từ khách hàng lỏng lẻo.</p>
+<h3>Về hệ quả phân bổ rủi ro</h3>
+<p>Thực trạng này đặt người lao động — phần lớn có thu nhập thấp và áp lực tài chính cao — vào môi trường rủi ro phạm tội. Khi vụ việc xảy ra, trách nhiệm hình sự và trách nhiệm dân sự dồn về phía người lao động, còn doanh nghiệp mặc nhiên giữ tư cách bị hại.</p>
+<h3>Về bản chất lỗi của bị hại</h3>
+<p>Doanh nghiệp là bị hại, nhưng doanh nghiệp do chủ sở hữu và người quản lý trực tiếp điều hành, kiểm soát. Nếu hành vi tạo sơ hở trong quản lý xuất phát từ ý chí chủ động và quyết định có chủ đích của chính chủ sở hữu hưởng lợi hoặc người quản lý, thì lỗi đó gắn trực tiếp với bị hại. Nói cách khác, lỗi của bị hại trong trường hợp này thực chất là lỗi do chính chủ sở hữu hưởng lợi hoặc người quản lý doanh nghiệp cố ý gây ra.</p>
+
+<h2>Diễn biến tố tụng</h2>
+<p>Ngày 30/6/2026, Tòa án nhân dân khu vực 4 — Thành phố Hồ Chí Minh xét xử lại, tuyên phạt bị cáo Phan Ngọc Thanh Tâm 7 năm 6 tháng tù và bị cáo Châu Văn Sang 2 năm 6 tháng tù.</p>`,
+    keyArguments: [],
+    result: undefined,
+    sources: [],
+  },
+  {
+    id: "cuu-hieu-truong-tham-o-ca-mau",
+    slug: "cuu-hieu-truong-tham-o-tai-san-ca-mau",
+    title: "Vụ án cựu Hiệu trưởng bị cáo buộc tham ô tài sản ở Cà Mau",
+    court: "TAND tỉnh Cà Mau",
+    date: "",
+    year: 2026,
+    role: "",
+    defendant: "",
+    charge: "",
+    category: "Hình sự",
+    summary:
+      "Luật sư Đặng Kim Chinh nêu ý kiến pháp lý trên báo chí về vụ ông Trần Văn Tâm — nguyên Hiệu trưởng Trường Trung học cơ sở Tam Giang Tây, tỉnh Cà Mau — bị cáo buộc tham ô 10,7 triệu đồng và bị tuyên 7 năm tù ở cấp sơ thẩm. Bản án sơ thẩm sau đó bị hủy để điều tra lại; ngày 28/5/2026, Cơ quan Cảnh sát điều tra đình chỉ điều tra bị can.",
+    body: `<h2>Nội dung vụ án</h2>
+<p>Ông Trần Văn Tâm, nguyên Hiệu trưởng Trường Trung học cơ sở Tam Giang Tây (huyện Ngọc Hiển cũ, tỉnh Cà Mau), bị cáo buộc trong năm học 2022–2023 đã tự mua vật tư và trực tiếp sửa chữa, chế tạo thiết bị phục vụ nhà trường, sau đó sử dụng hóa đơn của ba doanh nghiệp (lần lượt 11 triệu đồng, 3,45 triệu đồng và 3,45 triệu đồng) để thanh quyết toán. Phần chênh lệch 10,7 triệu đồng bị quy kết là tài sản chiếm đoạt. Tòa án nhân dân huyện Ngọc Hiển xét xử sơ thẩm ngày 17/02/2025, tuyên phạt 7 năm tù về tội "Tham ô tài sản".</p>
+
+<h2>Ý kiến pháp lý</h2>
+<p>Trên Báo Pháp luật Thành phố Hồ Chí Minh ngày 12/7/2025, Luật sư Đặng Kim Chinh phân tích ba vấn đề:</p>
+<h3>Thứ nhất, về cách tính giá trị tài sản chiếm đoạt</h3>
+<p>Bị cáo vừa giữ chức vụ quản lý, vừa trực tiếp bỏ công lao động sửa chữa, chế tạo thiết bị. Phần công lao động này cần được ghi nhận và tách bạch khi xác định giá trị tài sản bị chiếm đoạt, thay vì quy toàn bộ phần chênh lệch giữa hóa đơn và chi phí vật tư thành tài sản chiếm đoạt.</p>
+<h3>Thứ hai, về việc xác định tình tiết giảm nhẹ</h3>
+<p>Luật sư chỉ ra sự thiếu thống nhất giữa kết luận điều tra — vốn đề nghị áp dụng tình tiết "thành khẩn khai báo, ăn năn hối cải" theo điểm s khoản 1 Điều 51 Bộ luật Hình sự — và bản án sơ thẩm không ghi nhận tình tiết này.</p>
+<h3>Thứ ba, về khả năng áp dụng Điều 54</h3>
+<p>Nếu tình tiết giảm nhẹ nêu trên được ghi nhận đầy đủ, bị cáo hội đủ điều kiện để Hội đồng xét xử quyết định hình phạt dưới mức thấp nhất của khung hình phạt được áp dụng theo khoản 1 Điều 54 Bộ luật Hình sự.</p>
+
+<h2>Diễn biến tố tụng</h2>
+<p>Ngày 06/5/2025, Tòa án nhân dân tỉnh Cà Mau xét xử phúc thẩm, hủy toàn bộ bản án sơ thẩm để điều tra lại do vi phạm tố tụng: không đưa người đại diện theo pháp luật của nhà trường vào tham gia tố tụng để xác định thiệt hại. Ngày 16/8/2025, ông Tâm được thay đổi biện pháp ngăn chặn từ tạm giam sang bảo lĩnh, sau khi bị tạm giam từ ngày 15/8/2024. Ngày 28/5/2026, Cơ quan Cảnh sát điều tra Công an tỉnh Cà Mau ban hành kết luận điều tra và đình chỉ điều tra bị can đối với ông Trần Văn Tâm; quyết định được trao ngày 29/5/2026.</p>`,
+    keyArguments: [],
+    result: undefined,
+    sources: [],
+  },
+  {
     id: "van-thinh-phat-gd2",
     slug: "dai-an-van-thinh-phat-giai-doan-2",
     title: "Đại án Vạn Thịnh Phát — Giai đoạn 2 (Phúc thẩm)",
@@ -34,60 +97,35 @@ export const notableCases: readonly NotableCase[] = [
     charge: "",
     category: "Hình sự",
     summary:
-      "Luật sư Đặng Kim Chinh bào chữa thành công cho bị cáo Kwok Hakman Oliver — Tổng Giám đốc Công ty CP Tập đoàn đầu tư An Đông, quốc tịch Úc. Nhờ đề nghị áp dụng tình tiết giảm nhẹ hiếm gặp \"phạm tội do lạc hậu\", HĐXX đã tuyên giảm án cho thân chủ từ 5 năm 6 tháng tù xuống còn 3 năm 6 tháng tù.",
-    body: `<h2>Điểm nhấn</h2>
-<p>Tại phiên tòa phúc thẩm vụ án Vạn Thịnh Phát giai đoạn 2 (TAND Cấp cao tại TP.HCM, xét xử từ 25/3 đến 21/4/2025), luật sư Đặng Kim Chinh (Đoàn Luật sư TP.HCM) đã bào chữa thành công cho bị cáo Kwok Hakman Oliver — Tổng Giám đốc Công ty CP Tập đoàn đầu tư An Đông, quốc tịch Úc. Nhờ lập luận pháp lý sắc bén, đặc biệt là việc đề nghị áp dụng tình tiết giảm nhẹ hiếm gặp "phạm tội do lạc hậu", Hội đồng xét xử (HĐXX) đã chấp nhận quan điểm bào chữa và tuyên giảm án cho thân chủ từ 5 năm 6 tháng tù xuống còn 3 năm 6 tháng tù — mức giảm 2 năm so với bản án sơ thẩm.</p>
+      "Luật sư Đặng Kim Chinh là người bào chữa cho bị cáo Kwok Hakman Oliver — nguyên Tổng Giám đốc kiêm người đại diện theo pháp luật Công ty Cổ phần Tập đoàn Đầu tư An Đông — tại cấp phúc thẩm. Ngày 21/4/2025, Hội đồng xét xử phúc thẩm tuyên phạt bị cáo 3 năm 6 tháng tù, giảm 2 năm so với bản án sơ thẩm.",
+    body: `<p>Bào chữa cho bị cáo Kwok Hakman Oliver, nguyên Tổng Giám đốc kiêm người đại diện theo pháp luật Công ty Cổ phần Tập đoàn Đầu tư An Đông</p>
 
-<h2>Bối cảnh vụ án</h2>
-<p>Vạn Thịnh Phát giai đoạn 2 là một trong những vụ án kinh tế lớn nhất từng được đưa ra xét xử tại Việt Nam, liên quan đến bà Trương Mỹ Lan (Chủ tịch Tập đoàn Vạn Thịnh Phát) cùng hàng chục đồng phạm. Theo nội dung vụ án, bị cáo Trương Mỹ Lan bị cáo buộc chỉ đạo sử dụng 4 công ty thuộc Tập đoàn Vạn Thịnh Phát (An Đông, Sunny World, Quang Thuận và Setra) để phát hành 25 mã trái phiếu không có tài sản đảm bảo, huy động vốn bất hợp pháp của hơn 35.800 nhà đầu tư, chiếm đoạt hơn 30.000 tỷ đồng. Vụ án còn liên quan đến các tội danh rửa tiền và vận chuyển trái phép tiền tệ qua biên giới.</p>
-<p>Tại bản án sơ thẩm (TAND TP.HCM, tháng 10/2024), bà Trương Mỹ Lan bị tuyên án chung thân về tội "Lừa đảo chiếm đoạt tài sản". Tại phiên phúc thẩm, mức án này được giảm xuống 30 năm tù chung cho cả ba tội danh. Trong số 27 bị cáo được HĐXX phúc thẩm tuyên án ngày 21/4/2025, có nhiều bị cáo là người thân và cộng sự thân cận của bà Lan.</p>
+<h2>Bối cảnh tố tụng</h2>
+<p>Giai đoạn 2 vụ án tập trung vào hành vi phát hành trái phiếu doanh nghiệp. Tại bản án sơ thẩm ngày 17/10/2024, Tòa án nhân dân Thành phố Hồ Chí Minh tuyên phạt bị cáo Kwok Hakman Oliver (71 tuổi, quốc tịch Úc) 5 năm 6 tháng tù về tội "Lừa đảo chiếm đoạt tài sản". Bị cáo bị xác định đã ký toàn bộ hồ sơ, tài liệu hợp thức việc phát hành trái phiếu của Công ty An Đông năm 2018 với tư cách người đại diện theo pháp luật, giúp sức phát hành ba gói trái phiếu, chiếm đoạt 24.900 tỷ đồng của các bị hại. Bị cáo kháng cáo xin giảm nhẹ hình phạt.</p>
 
-<h2>Vai trò của bị cáo Kwok Hakman Oliver trong vụ án</h2>
-<p>Ông Kwok Hakman Oliver (71 tuổi, quốc tịch Úc) là em rể của bị cáo Ngô Thanh Nhã — em dâu bà Trương Mỹ Lan. Với tư cách Tổng Giám đốc và người đại diện theo pháp luật của Công ty An Đông, ông bị cấp sơ thẩm xác định đã ký các hợp đồng hợp tác đầu tư, hợp đồng mua trái phiếu sơ cấp, hợp đồng vay vốn và các hồ sơ, tài liệu liên quan đến việc phát hành trái phiếu của Công ty An Đông năm 2018 — hành vi bị quy kết là đồng phạm giúp sức cho bà Trương Mỹ Lan trong chuỗi hành vi lừa đảo chiếm đoạt tài sản.</p>
-<p>Tại bản án sơ thẩm (TAND TP.HCM, tháng 2/2024), ông bị tuyên phạt 5 năm 6 tháng tù về tội "Lừa đảo chiếm đoạt tài sản". Trong số các bị cáo người nước ngoài của vụ án, ông là người duy nhất có đơn kháng cáo xin giảm nhẹ hình phạt tại phiên phúc thẩm giai đoạn 2.</p>
+<h2>Phạm vi tham gia</h2>
+<p>Luật sư Đặng Kim Chinh là người bào chữa cho bị cáo Kwok Hakman Oliver tại phiên phúc thẩm của Tòa án nhân dân Cấp cao tại Thành phố Hồ Chí Minh, trình bày phần bào chữa ngày 04/4/2025. Trước đó, ngày 03/4/2025, luật sư trực tiếp thẩm vấn bị cáo để làm rõ vị trí, vai trò, nhận thức và hoàn cảnh phạm tội.</p>
 
-<h2>Chiến lược bào chữa của luật sư Đặng Kim Chinh</h2>
-<h3>Làm rõ giới hạn vai trò thực tế của bị cáo</h3>
-<p>Trong phần xét hỏi, luật sư Đặng Kim Chinh trực tiếp đặt câu hỏi để làm rõ phạm vi công việc thực sự của ông Kwok Hakman Oliver tại Công ty An Đông. Bị cáo trình bày rằng nhiệm vụ chính được giao là điều hành hoạt động hằng ngày của khách sạn Windsor và Trung tâm thương mại An Đông Plaza — không phải là người phụ trách mảng tài chính hay hoạt động phát hành trái phiếu của công ty. Đây là cơ sở quan trọng để phân biệt vai trò của bị cáo với nhóm chủ mưu, chỉ đạo trực tiếp trong chuỗi hành vi phạm tội.</p>
+<h2>Nội dung bào chữa</h2>
+<p>Luận điểm được ghi nhận rộng rãi nhất là đề nghị áp dụng tình tiết giảm nhẹ "phạm tội do lạc hậu" theo khoản 1 Điều 51 Bộ luật Hình sự — một tình tiết hiếm khi được viện dẫn đối với bị cáo là người nước ngoài. Luật sư lập luận rằng "lạc hậu" ở đây được hiểu là sự tụt hậu về nhận thức pháp luật: bị cáo sinh sống phần lớn cuộc đời ở nước ngoài, không tiếp thu kịp kiến thức pháp luật Việt Nam, đặc biệt là pháp luật chuyên ngành về phát hành trái phiếu doanh nghiệp — lĩnh vực mà hành vi sai phạm đã trở thành hành vi giúp sức trong chuỗi hành vi cấu thành tội lừa đảo chiếm đoạt tài sản bị quy kết.</p>
+<p>Song song, luật sư đề nghị đánh giá lại vai trò của bị cáo trong vụ án đồng phạm: bị cáo phạm tội lần đầu, chỉ điều hành hoạt động thường nhật của Công ty Windsor và An Đông Plaza, không quản lý, điều hành hoạt động tài chính của Công ty An Đông, do đó có vai trò hạn chế trong việc phát hành trái phiếu. Về tình tiết giảm nhẹ mới phát sinh tại cấp phúc thẩm, luật sư trình bày việc bị cáo chủ động nộp thêm 500 triệu đồng (sau khi đã nộp 1 tỷ đồng ở cấp sơ thẩm), tham gia công tác phòng, chống dịch COVID-19 tại Thành phố Hồ Chí Minh và đóng góp xây dựng công trình phúc lợi, nhà tình thương.</p>
 
-<h3>Đề nghị áp dụng tình tiết giảm nhẹ "phạm tội do lạc hậu"</h3>
-<p>Điểm mấu chốt và cũng là điểm đáng chú ý nhất trong phần bào chữa: luật sư đề nghị HĐXX xem xét áp dụng tình tiết giảm nhẹ "phạm tội do lạc hậu" — một tình tiết ít khi được viện dẫn trong thực tiễn xét xử. Ngoài các tình tiết giảm nhẹ được liệt kê cụ thể trong Bộ luật Hình sự, pháp luật hình sự Việt Nam cho phép HĐXX cân nhắc thêm những tình tiết giảm nhẹ khác phù hợp với hoàn cảnh riêng của từng vụ án, miễn là nêu rõ căn cứ trong bản án.</p>
-<p>Lập luận của luật sư dựa trên các yếu tố cụ thể:</p>
-<ul>
-<li>Bị cáo là người nước ngoài, đã sinh sống 59 năm ở nước ngoài (Úc) trước khi đến Việt Nam làm việc và sinh sống khi đã lớn tuổi;</li>
-<li>Sự khác biệt về ngôn ngữ, văn hóa, môi trường kinh doanh và hệ thống pháp luật giữa Việt Nam và Úc khiến bị cáo bị hạn chế đáng kể khả năng nhận thức về pháp luật Việt Nam, đặc biệt là các quy định chuyên ngành, đặc thù liên quan đến hoạt động phát hành trái phiếu doanh nghiệp;</li>
-<li>Bị cáo đã thực hiện hành vi giúp sức cho các bị cáo khác mà không nhận thức được đó là hành vi vi phạm pháp luật hình sự tại Việt Nam — dù về nguyên tắc, pháp luật hình sự Việt Nam vẫn buộc bị cáo phải biết.</li>
-</ul>
-<p>Ngay sau phần trình bày của luật sư, khi được HĐXX gọi lên bục khai báo, bị cáo Kwok Hakman Oliver xác nhận đồng ý hoàn toàn với quan điểm bào chữa nêu trên.</p>
-
-<h3>Các tình tiết giảm nhẹ bổ trợ khác</h3>
-<p>Bên cạnh lập luận trọng tâm, luật sư và bị cáo cũng trình bày thêm các yếu tố có lợi khác để HĐXX xem xét toàn diện:</p>
-<ul>
-<li>Sau phiên sơ thẩm, bị cáo đã tiếp tục tác động để gia đình tự nguyện nộp thêm 500 triệu đồng khắc phục hậu quả;</li>
-<li>Bị cáo cùng Công ty An Đông từng tham gia hoạt động phòng, chống dịch COVID-19;</li>
-<li>Bị cáo và gia đình có đóng góp xây dựng công trình phúc lợi, nhà tình thương tại các địa bàn khó khăn;</li>
-<li>Bị cáo đã trên 70 tuổi và tại thời điểm xét xử phúc thẩm đã bị tạm giam gần 2 năm 6 tháng.</li>
-</ul>
-
-<h2>Kết quả</h2>
-<p>Trên cơ sở chấp nhận quan điểm bào chữa của luật sư Đặng Kim Chinh cùng phần tự bào chữa của bị cáo, HĐXX phúc thẩm TAND Cấp cao tại TP.HCM đã tuyên giảm án cho bị cáo Kwok Hakman Oliver từ 5 năm 6 tháng tù xuống còn 3 năm 6 tháng tù về tội "Lừa đảo chiếm đoạt tài sản" trong bản án tuyên ngày 21/4/2025. Đây là kết quả có ý nghĩa thực tiễn rõ rệt, phản ánh hiệu quả của việc xây dựng lập luận bào chữa dựa trên hoàn cảnh cá nhân đặc thù của thân chủ, kết hợp với việc vận dụng linh hoạt các quy định về tình tiết giảm nhẹ trách nhiệm hình sự.</p>
-
-<h2>Ý nghĩa vụ việc</h2>
-<p>Vụ việc là một ví dụ tiêu biểu cho năng lực tranh tụng của luật sư Đặng Kim Chinh trong các vụ án hình sự phức tạp, nhiều bị cáo, có yếu tố nước ngoài. Việc xây dựng thành công một tình tiết giảm nhẹ không nằm trong danh mục liệt kê thông thường của pháp luật, dựa trên phân tích sâu về bối cảnh cá nhân, văn hóa và nhận thức pháp luật của thân chủ, cho thấy cách tiếp cận bào chữa toàn diện — không chỉ tập trung vào tình tiết vụ án mà còn khai thác các yếu tố nhân thân, hoàn cảnh để bảo vệ tối đa quyền và lợi ích hợp pháp của bị cáo.</p>`,
+<h2>Kết quả tố tụng</h2>
+<p>Ngày 21/4/2025, Hội đồng xét xử phúc thẩm tuyên phạt bị cáo Kwok Hakman Oliver 3 năm 6 tháng tù, giảm 2 năm so với bản án sơ thẩm.</p>`,
     keyArguments: [],
     result: undefined,
     sources: [
+      {
+        name: "Pháp Luật TP.HCM",
+        url: "https://plo.vn/chi-tiet-muc-an-doi-voi-28-bi-cao-vu-van-thinh-phat-giai-doan-2-post845550.html",
+      },
       {
         name: "Báo Tiền Phong",
         url: "https://tienphong.vn/luat-su-de-nghi-ap-dung-tinh-tiet-giam-nhe-pham-toi-do-lac-hau-cho-mot-dong-pham-cua-ba-truong-my-lan-post1731264.tpo",
       },
       {
-        name: "Báo Tiền Phong",
-        url: "https://tienphong.vn/ba-truong-my-lan-xin-mien-hon-30-ty-dong-an-phi-vi-thuoc-doi-tuong-nguoi-cao-tuoi-post1728960.tpo",
-      },
-      {
-        name: "Pháp Luật TP.HCM",
-        url: "https://plo.vn/phuc-tham-dai-an-van-thinh-phat-giai-doan-2-post834171.html",
+        name: "VnExpress",
+        url: "https://vnexpress.net/ba-truong-my-lan-duoc-giam-an-chung-than-xuong-30-nam-tu-4876576.html",
       },
     ],
   },
@@ -103,35 +141,20 @@ export const notableCases: readonly NotableCase[] = [
     charge: "",
     category: "Hình sự",
     summary:
-      "Luật sư Đặng Kim Chinh bào chữa cho bị cáo Lê Khánh Hiền — cựu Tổng Giám đốc Ngân hàng SCB. Bằng việc viện dẫn văn bản xác nhận chính thức từ chính SCB về thành tích của bị cáo trong tái cơ cấu ngân hàng, luật sư đã xây dựng căn cứ giảm nhẹ theo điểm v khoản 1 Điều 51 Bộ luật Hình sự; HĐXX chấp nhận kháng cáo và giảm hình phạt từ 5 năm tù xuống còn 3 năm tù.",
-    body: `<h2>1. Tóm tắt vụ việc</h2>
-<p>Luật sư Đặng Kim Chinh (Đoàn Luật sư TP.HCM) bào chữa cho bị cáo Lê Khánh Hiền — cựu Tổng Giám đốc Ngân hàng TMCP Sài Gòn (SCB) — tại phiên tòa phúc thẩm vụ án Vạn Thịnh Phát giai đoạn 1, do TAND Cấp cao tại TP.HCM xét xử từ ngày 4/11 đến 3/12/2024.</p>
-<p>Bằng việc viện dẫn văn bản xác nhận chính thức từ Ngân hàng SCB — tổ chức bị thiệt hại trong vụ án — về thành tích của bị cáo trong quá trình tái cơ cấu ngân hàng, luật sư đã xây dựng căn cứ áp dụng tình tiết giảm nhẹ được quy định cụ thể tại điểm v khoản 1 Điều 51 Bộ luật Hình sự. Tại bản án tuyên ngày 3/12/2024, HĐXX chấp nhận kháng cáo và giảm hình phạt cho bị cáo từ 5 năm tù xuống còn 3 năm tù.</p>
+      "Luật sư Đặng Kim Chinh là người bào chữa cho bị cáo Lê Khánh Hiền — nguyên Tổng Giám đốc Ngân hàng TMCP Sài Gòn (SCB) — tại cấp phúc thẩm. Ngày 03/12/2024, Hội đồng xét xử phúc thẩm tuyên phạt bị cáo 3 năm tù, giảm 2 năm so với bản án sơ thẩm.",
+    body: `<p>Bào chữa cho bị cáo Lê Khánh Hiền, nguyên Tổng Giám đốc Ngân hàng TMCP Sài Gòn (SCB)</p>
 
-<h2>2. Bối cảnh vụ án</h2>
-<p>Vụ án Vạn Thịnh Phát giai đoạn 1 xét xử bà Trương Mỹ Lan (cựu Chủ tịch HĐQT Tập đoàn Vạn Thịnh Phát) cùng đồng phạm về các tội "Tham ô tài sản", "Đưa hối lộ" và "Vi phạm quy định về cho vay trong hoạt động của các tổ chức tín dụng". Theo cáo trạng, dù không nắm giữ chức vụ tại SCB, bà Trương Mỹ Lan gián tiếp sở hữu trên 91% cổ phần ngân hàng, qua đó chi phối gần như toàn bộ hoạt động và chỉ đạo dàn lãnh đạo chủ chốt của SCB thực hiện các hành vi gây thiệt hại đặc biệt lớn.</p>
-<p>Tại bản án sơ thẩm, bà Trương Mỹ Lan bị tuyên án tử hình về tội "Tham ô tài sản". Vụ án giai đoạn 1 có 86 bị cáo, trong đó 48 bị cáo có đơn kháng cáo được đưa ra xét xử phúc thẩm. Tại bản án phúc thẩm tuyên ngày 3/12/2024, bà Trương Mỹ Lan bị tuyên y án tử hình về tội tham ô tài sản; phần lớn các bị cáo còn lại — trong đó có nhiều cựu lãnh đạo, cán bộ SCB — được HĐXX xem xét giảm nhẹ hình phạt ở các mức độ khác nhau.</p>
+<h2>Bối cảnh tố tụng</h2>
+<p>Giai đoạn 1 vụ án xảy ra tại Tập đoàn Vạn Thịnh Phát và Ngân hàng SCB được Tòa án nhân dân Thành phố Hồ Chí Minh xét xử sơ thẩm từ ngày 05/3 đến ngày 11/4/2024 đối với 86 bị cáo. Bị cáo Lê Khánh Hiền bị Hội đồng xét xử sơ thẩm tuyên phạt 5 năm tù về tội "Vi phạm quy định về cho vay trong hoạt động của các tổ chức tín dụng". Bị cáo kháng cáo xin giảm nhẹ hình phạt. Tòa án nhân dân Cấp cao tại Thành phố Hồ Chí Minh mở phiên phúc thẩm vào tháng 11/2024.</p>
 
-<h2>3. Hồ sơ thân chủ và vấn đề pháp lý trọng tâm</h2>
-<p>Thân chủ: Lê Khánh Hiền, cựu Tổng Giám đốc Ngân hàng TMCP Sài Gòn (SCB).</p>
-<p>Hành vi bị quy kết: Cấp sơ thẩm (TAND TP.HCM) xác định bị cáo có liên quan đến hoạt động cấp tín dụng cho các công ty, cá nhân thuộc hệ sinh thái Vạn Thịnh Phát trong giai đoạn SCB thực hiện đề án tái cơ cấu, và tuyên phạt 5 năm tù về tội "Vi phạm quy định về cho vay trong hoạt động của các tổ chức tín dụng".</p>
-<p>Vấn đề pháp lý trọng tâm cần giải quyết ở cấp phúc thẩm: Cân đối giữa trách nhiệm hình sự phát sinh từ vai trò quản lý điều hành của bị cáo tại SCB với những đóng góp thực chất, có thể kiểm chứng khách quan của bị cáo đối với sự an toàn hệ thống của chính ngân hàng trong giai đoạn khủng hoảng thanh khoản — nhằm bảo đảm việc lượng hình phản ánh đầy đủ, cân xứng với toàn bộ quá trình công tác của bị cáo, không chỉ hành vi bị quy kết.</p>
+<h2>Phạm vi tham gia</h2>
+<p>Luật sư Đặng Kim Chinh (Đoàn Luật sư Thành phố Hồ Chí Minh) là người bào chữa cho bị cáo Lê Khánh Hiền tại cấp phúc thẩm. Tư cách này được các cơ quan báo chí ghi nhận trực tiếp tại phiên tòa ngày 06/11/2024.</p>
 
-<h2>4. Chiến lược bào chữa</h2>
-<h3>4.1. Căn cứ pháp lý cho tình tiết giảm nhẹ "có thành tích xuất sắc trong công tác"</h3>
-<p>Điểm v khoản 1 Điều 51 Bộ luật Hình sự năm 2015 (sửa đổi, bổ sung năm 2017) quy định: người phạm tội là người có thành tích xuất sắc trong sản xuất, chiến đấu, học tập hoặc công tác được coi là tình tiết giảm nhẹ trách nhiệm hình sự. Đây là tình tiết giảm nhẹ được liệt kê cụ thể trong luật, khác với tình tiết giảm nhẹ "khác" theo khoản 2 cùng điều — do đó có giá trị áp dụng trực tiếp, không phụ thuộc vào việc Tòa án phải tự xác lập căn cứ ngoài luật định.</p>
-<p>Để làm căn cứ cho việc áp dụng tình tiết này, luật sư đã đưa ra chứng cứ có giá trị đặc biệt: chính Ngân hàng SCB — bên bị thiệt hại trong vụ án — có văn bản gửi HĐXX xác nhận bị cáo Lê Khánh Hiền có thành tích xuất sắc trong đề án tái cơ cấu ngân hàng, cụ thể là đã góp phần ổn định tính thanh khoản và hiện đại hóa hệ thống công nghệ thông tin của SCB trong giai đoạn khó khăn.</p>
-<p>Việc chứng cứ xác nhận thành tích xuất phát trực tiếp từ tổ chức bị thiệt hại — thay vì từ chính bị cáo hoặc luật sư — làm tăng đáng kể tính khách quan và sức thuyết phục của căn cứ giảm nhẹ được viện dẫn.</p>
+<h2>Nội dung bào chữa</h2>
+<p>Luật sư trình bày trước Hội đồng xét xử rằng thân chủ thuộc một trường hợp cần được xem xét riêng biệt: Ngân hàng SCB đã có công văn gửi Hội đồng xét xử ghi nhận bị cáo có thành tích trong đề án tái cơ cấu ngân hàng, cụ thể là góp phần ổn định tính thanh khoản và hiện đại hóa hệ thống công nghệ thông tin của SCB. Đây là căn cứ thực tế gắn với nhóm tình tiết giảm nhẹ về thành tích trong công tác theo khoản 1 Điều 51 Bộ luật Hình sự. Về nhân thân và thái độ khắc phục, luật sư trình bày việc bị cáo tiếp tục vận động gia đình khắc phục hậu quả sau phiên tòa sơ thẩm. Bản thân bị cáo khai giữ chức vụ Tổng Giám đốc SCB trong 11 tháng, trong bối cảnh ngân hàng đang khủng hoảng, và nghỉ việc sau khi hoàn thành tái cơ cấu giai đoạn 1.</p>
 
-<h3>4.2. Tình tiết giảm nhẹ bổ trợ về thái độ khắc phục hậu quả</h3>
-<p>Tại phần tự trình bày, bị cáo Lê Khánh Hiền xác nhận với HĐXX rằng sau bản án sơ thẩm, bị cáo đã tiếp tục vận động gia đình khắc phục hậu quả vụ án — tình tiết giảm nhẹ được ghi nhận tại điểm b khoản 1 Điều 51 Bộ luật Hình sự (người phạm tội tự nguyện sửa chữa, bồi thường thiệt hại hoặc khắc phục hậu quả).</p>
-<p>Việc kết hợp giữa (i) căn cứ khách quan về thành tích công tác được bên thứ ba xác nhận và (ii) tình tiết chủ quan về thái độ khắc phục hậu quả của chính bị cáo tạo thành một hồ sơ đề nghị giảm nhẹ hình phạt có cơ sở toàn diện cả về mặt luật định lẫn thực tiễn.</p>
-
-<h2>5. Kết quả</h2>
-<p>Tại bản án phúc thẩm tuyên ngày 3/12/2024, HĐXX TAND Cấp cao tại TP.HCM chấp nhận kháng cáo và giảm hình phạt cho bị cáo Lê Khánh Hiền từ 5 năm tù xuống còn 3 năm tù về tội "Vi phạm quy định về cho vay trong hoạt động của các tổ chức tín dụng" — mức giảm 2 năm so với bản án sơ thẩm.</p>
-
-<h2>6. Nhận định chuyên môn</h2>
-<p>Vụ việc là ví dụ cho thấy giá trị của việc chủ động thu thập chứng cứ khách quan từ bên thứ ba — kể cả từ chính tổ chức bị thiệt hại — để làm căn cứ áp dụng các tình tiết giảm nhẹ được liệt kê cụ thể trong luật. So với việc chỉ dựa vào lời trình bày của bị cáo, một văn bản xác nhận chính thức từ SCB về đóng góp thực chất của bị cáo trong công tác tái cơ cấu có giá trị chứng minh cao hơn, giúp HĐXX có cơ sở khách quan để đánh giá toàn diện quá trình công tác của bị cáo bên cạnh hành vi vi phạm bị quy kết.</p>`,
+<h2>Kết quả tố tụng</h2>
+<p>Ngày 03/12/2024, Hội đồng xét xử phúc thẩm tuyên phạt bị cáo Lê Khánh Hiền 3 năm tù, giảm 2 năm so với bản án sơ thẩm.</p>`,
     keyArguments: [],
     result: undefined,
     sources: [
@@ -153,22 +176,18 @@ export const notableCases: readonly NotableCase[] = [
     charge: "",
     category: "Hình sự",
     summary:
-      "Luật sư Đặng Kim Chinh tham gia trong đội ngũ luật sư bào chữa tại phiên phúc thẩm vụ án buôn lậu gần 200 triệu lít xăng dầu từ Singapore về Việt Nam — một trong những đại án buôn lậu có quy mô lớn nhất từng được xét xử tại Việt Nam, với 74 bị cáo ở cấp sơ thẩm.",
-    body: `<h2>1. Tóm tắt vụ việc</h2>
-<p>Luật sư Đặng Kim Chinh (Đoàn Luật sư TP.HCM) tham gia trong đội ngũ luật sư bào chữa tại phiên tòa phúc thẩm vụ án buôn lậu gần 200 triệu lít xăng dầu từ Singapore về Việt Nam — một trong những đại án buôn lậu có quy mô lớn nhất từng được xét xử tại Việt Nam, do TAND Cấp cao tại TP.HCM xét xử.</p>
-<p>Đây là vụ án có số lượng bị cáo và luật sư tham gia tố tụng thuộc hàng lớn nhất trong lịch sử tố tụng hình sự tại Đồng Nai, với hàng chục luật sư bào chữa cho 74 bị cáo ở cấp sơ thẩm.</p>
+      "Luật sư Đặng Kim Chinh tham gia bào chữa tại phiên tòa phúc thẩm vụ án buôn lậu hơn 198 triệu lít xăng từ Singapore về Việt Nam, trị giá hơn 2.596 tỷ đồng, với 74 bị cáo bị xét xử sơ thẩm tại Tòa án nhân dân tỉnh Đồng Nai.",
+    body: `<h2>Bối cảnh tố tụng</h2>
+<p>Từ tháng 3/2020 đến tháng 2/2021, nhóm bị cáo do Phan Thanh Hữu và Đào Ngọc Viễn cầm đầu sử dụng tàu Pacific Ocean (trọng tải 3.000 tấn) và Western Sea (trọng tải 5.000 tấn) thực hiện 48 chuyến vận chuyển xăng nhập lậu từ Singapore về Việt Nam, tổng cộng hơn 198 triệu lít, trị giá hơn 2.596 tỷ đồng. Tòa án nhân dân tỉnh Đồng Nai xét xử sơ thẩm 74 bị cáo. Tòa án nhân dân Cấp cao tại Thành phố Hồ Chí Minh mở phiên phúc thẩm từ tháng 3/2023, ban hành Bản án hình sự phúc thẩm số 205/2023/HS-PT ngày 17/4/2023, trong đó giảm án cho bị cáo Phan Thanh Hữu từ 17 năm xuống 13 năm tù và tuyên bị cáo Đào Ngọc Viễn 15 năm tù về tội "Buôn lậu".</p>
 
-<h2>2. Bối cảnh vụ án</h2>
-<p>Theo hồ sơ vụ án, từ tháng 3/2020 đến tháng 2/2021, đường dây do Phan Thanh Hữu (Giám đốc Công ty TNHH Thương mại Phan Lê Hoàng Anh) và Đào Ngọc Viễn (Giám đốc Công ty TNHH Đại Dương Hải Phòng) cầm đầu đã sử dụng các tàu biển thực hiện 48 chuyến vận chuyển xăng lậu từ Singapore về Việt Nam, tổng cộng gần 200 triệu lít, trị giá hơn 2.596 tỷ đồng, tiêu thụ tại nhiều tỉnh, thành phía Nam.</p>
-<p>Tại bản án sơ thẩm (TAND tỉnh Đồng Nai, tháng 12/2022), bị cáo Đào Ngọc Viễn bị tuyên phạt 17 năm tù, Phan Thanh Hữu 16 năm tù về tội "Buôn lậu"; bị cáo Ngô Văn Thụy (cựu Đội trưởng Đội kiểm soát chống buôn lậu khu vực miền Nam, Tổng cục Hải quan) bị tuyên phạt 15 năm tù về tội "Nhận hối lộ" — đây là bị cáo duy nhất trong vụ án bị xét xử về hành vi nhận hối lộ, 73 bị cáo còn lại bị xét xử về hành vi buôn lậu.</p>
-<p>Vụ án có 26/74 bị cáo kháng cáo xin giảm nhẹ hình phạt, cùng 14 người có quyền lợi, nghĩa vụ liên quan đề nghị xem xét lại phần dân sự. Viện Kiểm sát Nhân dân Cấp cao tại TP.HCM đồng thời có kháng nghị theo hướng tăng nặng hình phạt đối với 28 bị cáo mà cấp sơ thẩm đã áp dụng mức án dưới khung hoặc cho hưởng án treo, phạt tiền.</p>
+<h2>Phạm vi tham gia</h2>
+<p>Luật sư Đặng Kim Chinh tham gia bào chữa tại phiên tòa phúc thẩm này.</p>
 
-<h2>3. Diễn biến phiên phúc thẩm</h2>
-<p>Phiên tòa phúc thẩm được TAND Cấp cao tại TP.HCM mở lần đầu ngày 13/3/2023 do thẩm phán Trần Thị Thu Thủy làm chủ tọa. Do một số luật sư bào chữa cùng nhiều bị cáo và người có quyền lợi, nghĩa vụ liên quan vắng mặt, HĐXX quyết định hoãn phiên tòa để bảo đảm quyền lợi tố tụng của các bên, và mở lại xét xử từ ngày 5/4 đến 27/4/2023.</p>
-<p>Tại bản án phúc thẩm số 205/2023/HS-PT (tuyên ngày 17/4/2023), HĐXX chấp nhận một phần kháng cáo, giảm nhẹ hình phạt cho phần lớn các bị cáo có đơn kháng cáo: bị cáo Phan Thanh Hữu được giảm từ 16 năm xuống 13 năm 6 tháng tù; bị cáo Đào Ngọc Viễn được giảm từ 17 năm xuống 15 năm tù, cùng về tội "Buôn lậu". Nhiều bị cáo khác trong nhóm quản lý, thuyền trưởng, thuyền phó, thuyền viên và các bị cáo có kháng cáo cũng được xem xét giảm nhẹ hình phạt ở các mức độ khác nhau.</p>
+<h2>Diễn biến tố tụng về sau</h2>
+<p>Năm 2024, Hội đồng Thẩm phán Tòa án nhân dân Tối cao xét xử giám đốc thẩm, nhận định việc hai cấp tòa chỉ áp dụng hình phạt tiền là hình phạt chính đối với 10 bị cáo là chủ doanh nghiệp — trong khi những người giúp sức có vai trò nhẹ hơn lại bị áp dụng hình phạt tù — là sai lầm trong việc áp dụng pháp luật, chưa bảo đảm nguyên tắc phân hóa trách nhiệm hình sự trong đồng phạm. Trên cơ sở đó, Hội đồng giám đốc thẩm hủy một phần bản án phúc thẩm và một phần bản án sơ thẩm để xét xử sơ thẩm lại theo hướng không áp dụng hình phạt chính là phạt tiền.</p>
 
-<h2>4. Nhận định chuyên môn</h2>
-<p>Đây là một vụ án có tính chất đặc biệt phức tạp về cả quy mô (74 bị cáo, hàng chục luật sư tham gia tố tụng) lẫn tính chất pháp lý (đồng thời tồn tại kháng cáo xin giảm nhẹ của bị cáo và kháng nghị tăng nặng của Viện Kiểm sát đối với cùng một nhóm bị cáo). Việc tham gia bào chữa trong một vụ án ở quy mô này đòi hỏi luật sư phải nắm vững toàn bộ hồ sơ, xử lý đồng thời nhiều tình tiết pháp lý liên quan đến việc phân hóa trách nhiệm hình sự giữa các nhóm bị cáo có vai trò khác nhau trong cùng một đường dây phạm tội — từ người cầm đầu, người vận chuyển, đến các mắt xích trung gian tiêu thụ.</p>`,
+<h2>Phạm vi tài liệu</h2>
+<p>Việc Luật sư Đặng Kim Chinh tham gia bào chữa tại phiên phúc thẩm tháng 3/2023 được ghi nhận trong hồ sơ nghề nghiệp của luật sư. Phiên tòa có 43 luật sư tham gia bào chữa; các bài báo tường thuật hiện tiếp cận được không nêu tên từng người bào chữa, do đó danh tính bị cáo được luật sư bào chữa trong vụ án này chưa được xác định qua nguồn công khai. Nội dung quan điểm bào chữa vì vậy không được trình bày tại bài viết này.</p>`,
     keyArguments: [],
     sources: [
       {

@@ -16,6 +16,7 @@ use serde_json::json;
 use std::convert::Infallible;
 
 const MAX_QUESTION_CHARS: usize = 2000;
+const MAX_SLUG_CHARS: usize = 200;
 const MAX_RETRIES: u32 = 5;
 const BUSY_MSG: &str = "Xin lỗi hệ thống đang bận, vui lòng thử lại sau.";
 
@@ -27,6 +28,9 @@ fn sse(payload: serde_json::Value) -> Result<Event, Infallible> {
 pub struct ChatBody {
 
     pub message: String,
+
+    #[serde(default)]
+    pub slug: Option<String>,
 }
 
 pub async fn health() -> impl IntoResponse {
@@ -46,7 +50,14 @@ pub async fn chat(
         return Err(ApiError::BadRequest("Câu hỏi quá dài.".into()));
     }
 
-    let messages = prepare_messages(&state, &question).await?;
+    let slug = body.slug.as_deref().map(str::trim).filter(|s| {
+        !s.is_empty()
+            && s.len() <= MAX_SLUG_CHARS
+            && s.bytes()
+                .all(|b| b.is_ascii_alphanumeric() || b == b'-' || b == b'_')
+    });
+
+    let messages = prepare_messages(&state, &question, slug).await?;
 
     let http = state.http().clone();
     let cfg = state.config().clone();

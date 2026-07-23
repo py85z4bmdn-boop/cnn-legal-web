@@ -35,7 +35,13 @@ const allItems = [
   })),
 ];
 
-const categories = ["Tất cả", ...Array.from(new Set(allItems.map((i) => i.category))).sort()];
+const categoryOrder = ["Hình sự", "Dân sự", "Kinh doanh thương mại"];
+const usedCategories = new Set(allItems.map((i) => i.category));
+const categories = [
+  "Tất cả",
+  ...categoryOrder.filter((c) => usedCategories.has(c)),
+  ...Array.from(usedCategories).filter((c) => !categoryOrder.includes(c)).sort(),
+];
 
 const title = `Kinh nghiệm | ${site.name}`;
 const description = "Tổng hợp các bài viết chuyên môn và vụ án tiêu biểu trong quá trình hành nghề của Luật sư Đặng Kim Chinh.";
@@ -124,7 +130,7 @@ const structuredData = [
         </aside>
 
         <div class="flex-1">
-          <p class="mb-8 font-sans text-[2rem] font-semibold tracking-[-0.01em] text-text-dark">Bài viết & Dự án</p>
+          <p class="mb-8 font-sans text-[2rem] font-semibold tracking-[-0.01em] text-text-dark">Bài viết & Vụ án</p>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-5" id="items-grid">
             {allItems.map((item) => (
               <li class="experience-item" data-category={item.category}>

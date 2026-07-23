@@ -1,5 +1,5 @@
 use crate::{
-    db::{search_knn, Pool, Retrieved},
+    db::{fetch_doc_chunks, search_knn, Pool, Retrieved},
     embed::Embedder,
     openrouter::ChatMessage,
     state::AppState,
@@ -7,16 +7,61 @@ use crate::{
 };
 use anyhow::Result;
 
+const DOC_CONTEXT_MAX_CHARS: usize = 8000;
+const DOC_CONTEXT_MAX_CHARS_WHOLE: usize = 26000;
+
+const WHOLE_DOC_HINTS: &[&str] = &[
+    "tóm tắt",
+    "tóm lược",
+    "tóm gọn",
+    "tổng hợp",
+    "tổng quan",
+    "khái quát",
+    "nội dung chính",
+    "ý chính",
+    "điểm chính",
+    "nói về gì",
+    "viết về gì",
+    "đại ý",
+];
+
+fn doc_budget(question: &str) -> usize {
+    let q = question.to_lowercase();
+    if WHOLE_DOC_HINTS.iter().any(|h| q.contains(h)) {
+        DOC_CONTEXT_MAX_CHARS_WHOLE
+    } else {
+        DOC_CONTEXT_MAX_CHARS
+    }
+}
+
 pub async fn build_rag_context(
     embedder: &Embedder,
     pool: &Pool,
     question: &str,
     top_k: usize,
-) -> Result<Vec<Retrieved>> {
+    slug: Option<&str>,
+) -> Result<(Vec<Retrieved>, Option<String>)> {
     let q_emb = embedder.embed_one(question).await?;
     let conn = pool.get()?;
-    let hits = search_knn(&conn, &q_emb, top_k)?;
-    Ok(hits)
+
+    let mut chunks = Vec::new();
+    let mut current_title = None;
+
+    if let Some(slug) = slug {
+        let doc = fetch_doc_chunks(&conn, slug, doc_budget(question))?;
+        if let Some(first) = doc.first() {
+            current_title = Some(first.title.clone());
+        }
+        chunks.extend(doc);
+    }
+
+    for hit in search_knn(&conn, &q_emb, top_k)? {
+        if !chunks.iter().any(|c| c.id == hit.id) {
+            chunks.push(hit);
+        }
+    }
+
+    Ok((chunks, current_title))
 }
 
 fn render_chunks(chunks: &[Retrieved]) -> String {
@@ -35,8 +80,20 @@ fn render_chunks(chunks: &[Retrieved]) -> String {
     s.trim_end().to_string()
 }
 
-pub fn build_prompt(question: &str, chunks: &[Retrieved]) -> Vec<ChatMessage> {
-    let system = SYSTEM_PROMPT_TEMPLATE.replace("{{retrieved_chunks}}", &render_chunks(chunks));
+pub fn build_prompt(
+    question: &str,
+    chunks: &[Retrieved],
+    current_title: Option<&str>,
+) -> Vec<ChatMessage> {
+    let mut system = SYSTEM_PROMPT_TEMPLATE.replace("{{retrieved_chunks}}", &render_chunks(chunks));
+    if let Some(title) = current_title {
+        system.push_str(&format!(
+            "\n\nNgười dùng đang mở trang \"{title}\". Khi câu hỏi nhắc tới \"bài viết này\", \
+             \"bài này\", \"vụ án này\" hoặc không nêu rõ tên, hãy hiểu là đang hỏi về \
+             \"{title}\" và chỉ trả lời dựa trên phần tài liệu của đúng bài đó. \
+             Chỉ dùng tài liệu của bài khác khi người dùng nêu đích danh tên bài đó."
+        ));
+    }
     vec![
         ChatMessage {
             role: "system",
@@ -50,8 +107,18 @@ pub fn build_prompt(question: &str, chunks: &[Retrieved]) -> Vec<ChatMessage> {
     ]
 }
 
-pub async fn prepare_messages(state: &AppState, question: &str) -> Result<Vec<ChatMessage>> {
-    let chunks =
-        build_rag_context(state.embedder(), state.pool(), question, state.config().top_k).await?;
-    Ok(build_prompt(question, &chunks))
+pub async fn prepare_messages(
+    state: &AppState,
+    question: &str,
+    slug: Option<&str>,
+) -> Result<Vec<ChatMessage>> {
+    let (chunks, current_title) = build_rag_context(
+        state.embedder(),
+        state.pool(),
+        question,
+        state.config().top_k,
+        slug,
+    )
+    .await?;
+    Ok(build_prompt(question, &chunks, current_title.as_deref()))
 }
